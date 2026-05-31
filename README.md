@@ -231,7 +231,7 @@ Possible next steps:
 3. Optional local web/demo UI.
 4. Optional RAG/search layer once `knowledge/` grows large.
 
-See `docs/DEVELOPMENT_PLAN.md` and `docs/CODEX_TASKS.md`.
+See `docs/DEVELOPMENT_PLAN.md` and `docs/CODEX_TASKS.md`. For the full roadmap to a public open-source launch (with phase-by-phase review gates), see `docs/MASTER_PLAN.md`.
 
 ## License
 
