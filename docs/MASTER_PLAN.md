@@ -76,7 +76,7 @@ saul print-openclaw-config --workspace /abs/path
   - `65b4373` docs(p0-4): IP/商标免责加固 + 锁决策 + 重写 P1
 - **代码层**：CLI 9 模块全部就绪，`tsc` 通过，**25/25 测试绿**（含 10 个 example 快照），CI 已配置。
 - **内容层**：4 skills + 9 知识包 + 5 examples + 安全策略齐全，26 份引用副本无漂移。
-- **当前所处阶段**：**P0 已通过 Review Gate（用户确认 2026-06-01）**，进入 **P1**（零门槛集成到宿主：OpenClaw + Claude Code 两者都支持）。
+- **当前所处阶段**：**P1 完成，待 Review Gate（= M1）用户实测确认**。OpenClaw + Claude Code 两宿主安装/卸载均已实装。
 - **关键决策（已拍板，2026-06-01）**：
   1. **命名**：✅ 保留 "Better Call Saul"。P0-4 已用商标排除 + 善意合规条款把 IP 风险压到最低。
   2. **产品形态**：✅ **不接独立 LLM、不做付费 Web 部署**。本项目是**集成到已有智能体宿主的插件**——用户先装好 OpenClaw 或 Claude Code，再装本项目，即可在宿主里用 Saul 角色解决日常纠纷。推理由宿主智能体提供。
@@ -142,13 +142,13 @@ saul print-openclaw-config --workspace /abs/path
 > 目标：用户在**已部署的智能体宿主**（OpenClaw / Claude Code）里，几条命令就能装上并立刻用 Saul 角色解决纠纷。
 > 定位已定（2026-06-01）：**本项目是宿主插件，不接独立 LLM、不做付费部署**。推理由宿主提供，我们只交付角色 + 知识 + 技能 + 路由。
 
-- [ ] P1-1 完善 OpenClaw 一键安装（`scripts/install-local-skills.sh` 校验宿主、装 4 skills、给出启用提示）
-- [ ] P1-2 适配 **Claude Code**：提供 Claude Code 兼容的安装方式（skills/agent 落地到其工作区）+ 文档
-- [ ] P1-3 `npx better-call-saul install`：自动探测已安装的宿主（OpenClaw/Claude Code），把内容装进对应工作区
-- [ ] P1-4 `saul bundle` 输出做成「可直接粘进宿主会话」的成品 prompt 包（补一键复制/使用指引）
-- [ ] P1-5 预置 Gallery：6-8 个真实案例「输入→输出」对照（纯 Markdown，无宿主也能看效果）
-- [ ] P1-6 安装/使用文档：三步在宿主里启用 Saul 角色（OpenClaw 与 Claude Code 各一份）
-- [ ] P1-7 安全与可逆：只装进工作区、不改用户全局配置、提供干净卸载/更新路径
+- [x] P1-1 完善 OpenClaw 一键安装（`scripts/install-local-skills.sh` 校验宿主、装 4 skills、给出启用提示；支持 `--dry-run`）
+- [x] P1-2 适配 **Claude Code**：`saul install --host claude-code` 把 4 skills 拷到 `.claude/skills/`、生成 `saul` subagent 到 `.claude/agents/`（project/user 两种 scope）
+- [x] P1-3 `saul install`/`npx better-call-saul install`：`detect-hosts` 自动探测宿主，auto 选择并装进对应工作区
+- [x] P1-4 `saul bundle` 输出即可粘贴的成品 prompt 包；`better-call-saul` bin 别名 + INSTALL 文档给出复制/使用指引
+- [x] P1-5 预置 Gallery：[GALLERY.md](../GALLERY.md) 6 个案例「输入→输出」对照（纯 Markdown）
+- [x] P1-6 安装/使用文档：[docs/INSTALL.md](INSTALL.md) 覆盖 OpenClaw 与 Claude Code 三步启用 + 无宿主粘贴方案
+- [x] P1-7 安全与可逆：只装进工作区、`uninstall` 只删我们装的文件、`--dry-run` 预览、不改全局配置
 
 **Review Gate P1（= M1）**：在 OpenClaw 与 Claude Code 两个宿主里都能装上并跑出 Saul 角色的 10 段式结果；`npx ... install` 可用；Gallery 可看；安装可逆不污染全局。→ 等用户实测后说「继续」。
 
@@ -225,6 +225,7 @@ saul print-openclaw-config --workspace /abs/path
 
 > 格式：`YYYY-MM-DD | 阶段-任务 | 做了什么 | 验证结果`
 
+- 2026-06-01 | P1-1~7 | 零门槛集成：src/installer.ts（detect-hosts/install/uninstall，Claude Code 原生拷贝 skills + 生成 saul subagent，project/user scope，幂等且可逆）；cli 加 detect-hosts/install/uninstall；硬化 OpenClaw 脚本（--dry-run/预检）；GALLERY.md 6 案例；docs/INSTALL.md 双宿主；better-call-saul bin 别名；templates/ 入包 | typecheck 通过，30/30 测试绿（新增 installer 5 测试），validate/check-refs 通过，临时 HOME 实装+卸载验证可逆
 - 2026-06-01 | P0 收口 | 按 Codex review 修三点：P0-1 措辞改「prompt bundle 快照」；第2节补全提交链 + 19/19→25/25；记录 YOUR_NAME 占位符为公开前必修并加 P4-4b | 文档一致，未动代码
 - 2026-06-01 | P0-4 | 保留命名；给 DISCLAIMER 加商标/命名 + 善意合规条款，LICENSE 加商标排除说明 | validate 通过，P0 全部 5 任务完成，待 Review Gate 用户确认
 - 2026-06-01 | 决策 | 命名保留；定位为「集成到 OpenClaw/Claude Code 宿主的插件」，不接独立 LLM、不付费部署；据此重写 P1 为零门槛集成 | 已更新第 2/9 节与 P1 任务

@@ -4,7 +4,8 @@
   "description": "An OpenClaw-based AI fixer for everyday disputes, complaints, and negotiations.",
   "type": "module",
   "bin": {
-    "saul": "dist/cli.js"
+    "saul": "dist/cli.js",
+    "better-call-saul": "dist/cli.js"
   },
   "files": [
     "dist",
@@ -13,6 +14,7 @@
     "lore",
     "prompts",
     "schema",
+    "templates",
     "SOUL.md"
   ],
   "engines": {

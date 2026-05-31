@@ -9,6 +9,13 @@ import { buildPromptBundle } from "./prompt-bundler.js";
 import { parseExampleFile } from "./example.js";
 import { buildOpenClawConfigSnippet, runDoctor } from "./doctor.js";
 import { checkReferenceSync } from "./references-sync.js";
+import {
+  applyPlan,
+  detectHosts,
+  planClaudeInstall,
+  planClaudeUninstall,
+  type InstallScope,
+} from "./installer.js";
 import type { DisputeCase } from "./types.js";
 
 const program = new Command();
@@ -142,6 +149,93 @@ program
   .option("--workspace <path>", "Absolute workspace path.", process.cwd())
   .action((opts: { workspace: string }) => {
     console.log(buildOpenClawConfigSnippet(opts.workspace));
+  });
+
+function normalizeScope(value: string): InstallScope {
+  if (value !== "project" && value !== "user") {
+    throw new Error(`Invalid --scope "${value}". Use "project" or "user".`);
+  }
+  return value;
+}
+
+program
+  .command("detect-hosts")
+  .description("Detect which agent hosts (OpenClaw, Claude Code) are available here.")
+  .action(() => {
+    for (const d of detectHosts(process.cwd())) {
+      console.log(`${d.available ? "✓" : "•"} ${d.host}: ${d.detail}`);
+    }
+  });
+
+program
+  .command("install")
+  .description("Install the Saul skills + subagent into a detected agent host.")
+  .option("--host <host>", "Target host: claude-code or openclaw.", "auto")
+  .option("--scope <scope>", "Claude Code scope: project or user.", "project")
+  .option("--dry-run", "Show what would change without writing files.")
+  .action((opts: { host: string; scope: string; dryRun?: boolean }) => {
+    const scope = normalizeScope(opts.scope);
+    const cwd = process.cwd();
+    const repoRoot = root();
+
+    let host = opts.host;
+    if (host === "auto") {
+      const detected = detectHosts(cwd).filter((d) => d.available).map((d) => d.host);
+      if (detected.includes("claude-code")) {
+        host = "claude-code";
+      } else if (detected.includes("openclaw")) {
+        host = "openclaw";
+      } else {
+        console.log(
+          "No host detected. Install OpenClaw or Claude Code first, or pass --host explicitly.",
+        );
+        process.exitCode = 1;
+        return;
+      }
+    }
+
+    if (host === "claude-code") {
+      const plan = planClaudeInstall(repoRoot, scope, cwd);
+      const result = applyPlan(plan, Boolean(opts.dryRun));
+      console.log(`${result.applied ? "Installed" : "[dry-run] Would install"} into ${plan.baseDir}:`);
+      for (const op of result.ops) {
+        console.log(`  ${op.action} ${op.target}`);
+      }
+      if (result.applied) {
+        console.log('Done. In Claude Code, the "saul" subagent and skills are now available in this scope.');
+      }
+      return;
+    }
+
+    if (host === "openclaw") {
+      console.log("For OpenClaw, run the install script (it shells out to the openclaw CLI):");
+      console.log("  bash scripts/install-local-skills.sh");
+      console.log("Or print a config snippet with: saul print-openclaw-config --workspace " + repoRoot);
+      return;
+    }
+
+    throw new Error(`Unknown --host "${host}". Use claude-code, openclaw, or auto.`);
+  });
+
+program
+  .command("uninstall")
+  .description("Remove the Saul skills + subagent that were installed into a host.")
+  .option("--host <host>", "Target host: claude-code.", "claude-code")
+  .option("--scope <scope>", "Claude Code scope: project or user.", "project")
+  .option("--dry-run", "Show what would be removed without deleting.")
+  .action((opts: { host: string; scope: string; dryRun?: boolean }) => {
+    if (opts.host !== "claude-code") {
+      console.log("Uninstall is supported for --host claude-code. For OpenClaw, use: openclaw skills remove <name>.");
+      process.exitCode = 1;
+      return;
+    }
+    const scope = normalizeScope(opts.scope);
+    const plan = planClaudeUninstall(scope, process.cwd());
+    const result = applyPlan(plan, Boolean(opts.dryRun));
+    console.log(`${result.applied ? "Removed" : "[dry-run] Would remove"} from ${plan.baseDir}:`);
+    for (const op of result.ops) {
+      console.log(`  ${op.action} ${op.target}`);
+    }
   });
 
 program.parseAsync(process.argv).catch((err: unknown) => {

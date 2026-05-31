@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Host integration: `saul detect-hosts`, `saul install`, and `saul uninstall`
+  commands. Native, reversible Claude Code install (skills into
+  `.claude/skills/`, a `saul` subagent into `.claude/agents/`; project or user
+  scope, `--dry-run` supported) plus a hardened OpenClaw install script.
+- `saul` Claude Code subagent template and `better-call-saul` bin alias for the
+  `npx better-call-saul install` workflow.
+- `GALLERY.md` with six illustrative input/output dispute cases and
+  `docs/INSTALL.md` covering both hosts.
 - Example output snapshot regression tests covering every file in `examples/`,
   locking in the deterministic routing + prompt-bundle pipeline.
 - CI, Node, license, and tests badges to the top of the README.

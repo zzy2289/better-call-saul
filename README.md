@@ -112,6 +112,22 @@ better-call-saul/
 
 ## OpenClaw integration approach
 
+Better Call Saul is a **plugin for an agent host you already run** (OpenClaw or
+Claude Code). It ships no model and no cloud service — the host provides the
+reasoning; this repo provides the Saul persona, the dispute knowledge, the four
+skills, and the routing.
+
+**Install into your host** (full guide: [docs/INSTALL.md](docs/INSTALL.md)):
+
+```bash
+npm install && npm run build
+node dist/cli.js detect-hosts                                  # see what's available
+node dist/cli.js install --host claude-code --scope project    # Claude Code
+bash scripts/install-local-skills.sh                           # OpenClaw
+```
+
+See [GALLERY.md](GALLERY.md) for example outputs.
+
 OpenClaw skills are AgentSkills-compatible folders containing `SKILL.md` frontmatter plus instructions. This repo keeps project skills under `skills/<skill-name>/SKILL.md` and keeps shared knowledge packs outside the skills to avoid turning every skill into a giant prompt.
 
 The intended runtime pattern is:
@@ -175,9 +191,12 @@ saul doctor                              # check Node, OpenClaw, and repo health
 saul validate                            # validate files, skills, schemas, examples, reference sync
 saul list-skills [--json]                # list discovered skills
 saul check-refs                          # detect drift between skill references/ copies and sources
+saul detect-hosts                        # detect OpenClaw / Claude Code on this machine
+saul install --host <claude-code|openclaw|auto> [--scope project|user] [--dry-run]
+saul uninstall --host claude-code [--scope project|user] [--dry-run]
 saul classify --text "..."               # route a dispute to skill/knowledge/risk/missing-facts
 saul classify --file examples/x.md       # classify from an example or case .json
-saul bundle --text "..." [--json]        # build a full prompt bundle to paste into OpenClaw
+saul bundle --text "..." [--json]        # build a full prompt bundle to paste into your host
 saul run-example examples/amazon_refund.md  # parse + classify + bundle (dry-run)
 saul print-openclaw-config --workspace /abs/path  # print a config snippet (does not edit config)
 ```
