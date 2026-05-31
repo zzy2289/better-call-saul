@@ -149,6 +149,33 @@ bash scripts/install-local-skills.sh
 
 Start a new OpenClaw session after changing skills. OpenClaw snapshots eligible skills at session start, so a fresh session avoids stale skill instructions.
 
+## CLI (`saul`)
+
+This repo ships a small TypeScript CLI for setup, validation, classification, and prompt bundling. It never sends messages, runs browser automation, or edits your OpenClaw config.
+
+```bash
+npm install
+npm run build        # compile to dist/ (optional; tsx runs src directly)
+
+# During development you can run commands via tsx:
+npm run saul -- doctor
+npm run saul -- validate
+```
+
+Commands:
+
+```bash
+saul doctor                              # check Node, OpenClaw, and repo health
+saul validate                            # validate files, skills, schemas, examples, reference sync
+saul list-skills [--json]                # list discovered skills
+saul check-refs                          # detect drift between skill references/ copies and sources
+saul classify --text "..."               # route a dispute to skill/knowledge/risk/missing-facts
+saul classify --file examples/x.md       # classify from an example or case .json
+saul bundle --text "..." [--json]        # build a full prompt bundle to paste into OpenClaw
+saul run-example examples/amazon_refund.md  # parse + classify + bundle (dry-run)
+saul print-openclaw-config --workspace /abs/path  # print a config snippet (does not edit config)
+```
+
 ## Example prompts
 
 ```text
@@ -188,15 +215,21 @@ See `docs/SAFETY_POLICY.md`.
 
 ## Development status
 
-This repo is a starter skeleton. The content layer is ready for iteration. The code layer should be built next:
+The content layer and the core code layer are both in place:
 
-1. TypeScript CLI for local setup and validation.
-2. OpenClaw workspace installer.
-3. Skill/frontmatter validator.
-4. Scenario classifier and knowledge-file router.
-5. Example runner.
-6. Test fixtures and CI.
-7. Optional RAG/search layer.
+- ✅ TypeScript CLI (`saul`) with `doctor`, `validate`, `list-skills`, `check-refs`, `classify`, `bundle`, `run-example`, and `print-openclaw-config`.
+- ✅ Repo validator (required files, skill frontmatter, JSON schemas, examples, reference drift).
+- ✅ Deterministic keyword scenario classifier and knowledge-file router.
+- ✅ Prompt bundler (Markdown + JSON) assembling persona, lore, knowledge, skill, and case.
+- ✅ Reference drift checker so skill `references/` copies stay in sync with sources.
+- ✅ Vitest test suite and multi-version GitHub Actions CI.
+
+Possible next steps:
+
+1. Example expected-output snapshots for regression testing.
+2. OpenClaw workspace installer beyond the current local skill installer.
+3. Optional local web/demo UI.
+4. Optional RAG/search layer once `knowledge/` grows large.
 
 See `docs/DEVELOPMENT_PLAN.md` and `docs/CODEX_TASKS.md`.
 
