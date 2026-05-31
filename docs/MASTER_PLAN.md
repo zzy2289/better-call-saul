@@ -68,16 +68,20 @@ saul print-openclaw-config --workspace /abs/path
 ## 2. 当前状态（每次收尾务必更新本节）
 
 - **Git**：本地仓库，分支 `main`，**尚未推送 GitHub**（用户要求暂不开源）。
-- **已完成提交**：
+- **已完成提交**（最新在下）：
   - `a9e1db7` chore: initial commit（内容骨架）
   - `9144124` feat: TypeScript saul CLI + 测试 + CI
-- **代码层**：CLI 9 模块全部就绪，`tsc` 通过，**19/19 测试绿**，CI 已配置。
+  - `6f588b5` docs: 加 MASTER_PLAN 交接文档
+  - `ee18ed3` feat(p0): example 快照 + README 徽章 + 治理文件 + 模板完善
+  - `65b4373` docs(p0-4): IP/商标免责加固 + 锁决策 + 重写 P1
+- **代码层**：CLI 9 模块全部就绪，`tsc` 通过，**25/25 测试绿**（含 10 个 example 快照），CI 已配置。
 - **内容层**：4 skills + 9 知识包 + 5 examples + 安全策略齐全，26 份引用副本无漂移。
-- **当前所处阶段**：**P0 收尾**（5/5 任务完成，待 Review Gate 用户确认）。下一步进 **P1**。
+- **当前所处阶段**：**P0 已通过 Review Gate（用户确认 2026-06-01）**，进入 **P1**（零门槛集成到宿主：OpenClaw + Claude Code 两者都支持）。
 - **关键决策（已拍板，2026-06-01）**：
   1. **命名**：✅ 保留 "Better Call Saul"。P0-4 已用商标排除 + 善意合规条款把 IP 风险压到最低。
   2. **产品形态**：✅ **不接独立 LLM、不做付费 Web 部署**。本项目是**集成到已有智能体宿主的插件**——用户先装好 OpenClaw 或 Claude Code，再装本项目，即可在宿主里用 Saul 角色解决日常纠纷。推理由宿主智能体提供。
   3. **部署**：✅ 无需付费云部署；分发 = 本地安装到宿主工作区 + npm 包。
+- **公开前必修（不阻塞 P1，但推 GitHub 前必须做）**：README CI 徽章/clone URL、CHANGELOG 链接、issue contact links 中的 `YOUR_NAME` 占位符，需在确定 GitHub owner/repo 后批量替换（记在 P4-5 前置检查）。
 
 ---
 
@@ -124,7 +128,7 @@ saul print-openclaw-config --workspace /abs/path
 ### P0 · 工程可信度（地基）
 > 目标：任何访客 10 秒内觉得"靠谱、有人维护"。
 
-- [x] P0-1 为 5 个 example 各写一份「标准完整输出」快照，并加 snapshot 回归测试
+- [x] P0-1 为 5 个 example 各写一份「prompt bundle 快照」（routing + 拼装后的完整 bundle，不含 LLM 生成），并加 snapshot 回归测试
 - [x] P0-2 README 顶部加 CI 徽章（+ 可选覆盖率徽章）
 - [x] P0-3 补齐治理文件：`CODE_OF_CONDUCT.md`、`CHANGELOG.md`、`.github/FUNDING.yml`
 - [x] P0-4 复核 LICENSE 与 IP/免责声明，确保「非官方 + 原创人设」声明滴水不漏
@@ -183,6 +187,7 @@ saul print-openclaw-config --workspace /abs/path
 - [ ] P4-2 准备多平台文案（英文：Show HN / Reddit / Product Hunt / Twitter / Dev.to；中文：小红书 / 即刻 / V2EX / 少数派 / 公众号）
 - [ ] P4-3 设计传播钩子：故事感标题 + 真实战绩截图（退款成功/欠款追回）
 - [ ] P4-4 选好时机（避节假日，HN 选周二/三美西早上）
+- [ ] P4-4b 推送前把所有 `YOUR_NAME` 占位符批量替换为真实 GitHub owner/repo（README 徽章/clone URL、CHANGELOG 链接、issue contact links），`grep -rn YOUR_NAME` 应为空
 - [ ] P4-5 正式推送 GitHub（公开仓库）+ 同日多平台发布
 - [ ] P4-6 发布当日全程在线答疑（HN/PH 流量进来必须秒回）
 
@@ -220,6 +225,7 @@ saul print-openclaw-config --workspace /abs/path
 
 > 格式：`YYYY-MM-DD | 阶段-任务 | 做了什么 | 验证结果`
 
+- 2026-06-01 | P0 收口 | 按 Codex review 修三点：P0-1 措辞改「prompt bundle 快照」；第2节补全提交链 + 19/19→25/25；记录 YOUR_NAME 占位符为公开前必修并加 P4-4b | 文档一致，未动代码
 - 2026-06-01 | P0-4 | 保留命名；给 DISCLAIMER 加商标/命名 + 善意合规条款，LICENSE 加商标排除说明 | validate 通过，P0 全部 5 任务完成，待 Review Gate 用户确认
 - 2026-06-01 | 决策 | 命名保留；定位为「集成到 OpenClaw/Claude Code 宿主的插件」，不接独立 LLM、不付费部署；据此重写 P1 为零门槛集成 | 已更新第 2/9 节与 P1 任务
 - 2026-05-31 | P0-1/2/3/5 | 加 example 快照回归测试（10 快照）；README 顶部加 CI/Node/License/Tests 徽章；补 CODE_OF_CONDUCT/CHANGELOG/FUNDING.yml；补 issue config.yml + bug 预提交清单 + PR 模板字段 | typecheck 通过，25/25 测试绿，validate 通过，26 引用副本无漂移。P0-4 待 IP 决策，剩余 P0 进 Review Gate
