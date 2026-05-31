@@ -6,6 +6,11 @@ labels: bug
 assignees: ""
 ---
 
+## Before you submit
+
+- [ ] I searched existing issues and this is not a duplicate.
+- [ ] I removed all secrets and personal dispute details from the report below.
+
 ## What happened?
 
 ## Steps to reproduce

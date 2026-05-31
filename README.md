@@ -1,5 +1,11 @@
 # Better Call Saul
 
+<!-- Badges: replace YOUR_NAME with the GitHub owner once the repo is published. -->
+[![CI](https://github.com/YOUR_NAME/better-call-saul/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_NAME/better-call-saul/actions/workflows/ci.yml)
+[![Node](https://img.shields.io/badge/node-%3E%3D18-339933?logo=node.js&logoColor=white)](https://nodejs.org)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Tests](https://img.shields.io/badge/tests-vitest-6E9F18?logo=vitest&logoColor=white)](test)
+
 An OpenClaw-based AI fixer for everyday disputes, complaints, and negotiations.
 
 Better Call Saul turns messy conflict descriptions into practical strategies, copy-ready scripts, simulated replies, risk checks, and short "Saul commentary" that explains why a certain angle works.

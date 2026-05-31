@@ -124,11 +124,11 @@ saul print-openclaw-config --workspace /abs/path
 ### P0 · 工程可信度（地基）
 > 目标：任何访客 10 秒内觉得"靠谱、有人维护"。
 
-- [ ] P0-1 为 5 个 example 各写一份「标准完整输出」快照，并加 snapshot 回归测试
-- [ ] P0-2 README 顶部加 CI 徽章（+ 可选覆盖率徽章）
-- [ ] P0-3 补齐治理文件：`CODE_OF_CONDUCT.md`、`CHANGELOG.md`、`.github/FUNDING.yml`
+- [x] P0-1 为 5 个 example 各写一份「标准完整输出」快照，并加 snapshot 回归测试
+- [x] P0-2 README 顶部加 CI 徽章（+ 可选覆盖率徽章）
+- [x] P0-3 补齐治理文件：`CODE_OF_CONDUCT.md`、`CHANGELOG.md`、`.github/FUNDING.yml`
 - [ ] P0-4 复核 LICENSE 与 IP/免责声明，确保「非官方 + 原创人设」声明滴水不漏
-- [ ] P0-5 完善 issue/PR 模板（已存在则补字段）
+- [x] P0-5 完善 issue/PR 模板（已存在则补字段）
 
 **Review Gate P0**：`npm test` 全绿（含新快照）；`saul validate` 通过；治理文件齐全；IP 声明经用户确认无风险。→ 等用户说「继续」。
 
@@ -220,7 +220,7 @@ saul print-openclaw-config --workspace /abs/path
 
 > 格式：`YYYY-MM-DD | 阶段-任务 | 做了什么 | 验证结果`
 
-- 2026-05-31 | 前置 | 写本 MASTER_PLAN 总交接文档 | 待用户确认命名/LLM/部署三项决策后开 P0
+- 2026-05-31 | P0-1/2/3/5 | 加 example 快照回归测试（10 快照）；README 顶部加 CI/Node/License/Tests 徽章；补 CODE_OF_CONDUCT/CHANGELOG/FUNDING.yml；补 issue config.yml + bug 预提交清单 + PR 模板字段 | typecheck 通过，25/25 测试绿，validate 通过，26 引用副本无漂移。P0-4 待 IP 决策，剩余 P0 进 Review Gate
 - 2026-05-31 | 代码层 | TS CLI（validate/classify/bundle/doctor）+ 测试 + CI | typecheck 通过，19/19 测试绿，提交 9144124
 - 2026-05-31 | 内容层 | git 初始化 + 内容骨架首次提交 | 提交 a9e1db7
 
