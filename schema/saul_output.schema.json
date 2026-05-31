@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SaulOutput",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "situationRead": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "whatUserWants": {
+      "type": "string"
+    },
+    "leverageMap": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "bestStrategy": {
+      "type": "string"
+    },
+    "scripts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tone": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "tone",
+          "message"
+        ]
+      }
+    },
+    "replyBranches": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "theirReply": {
+            "type": "string"
+          },
+          "yourCounter": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "theirReply",
+          "yourCounter"
+        ]
+      }
+    },
+    "riskCheck": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "saulCommentary": {
+      "type": "string"
+    },
+    "nextMoves": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "situationRead",
+    "bestStrategy",
+    "scripts",
+    "riskCheck",
+    "saulCommentary",
+    "nextMoves"
+  ]
+}

@@ -1,0 +1,33 @@
+// Example only. Validate against your installed OpenClaw schema before copying.
+// OpenClaw reads ~/.openclaw/openclaw.json by default.
+// Replace /ABSOLUTE/PATH/TO/better-call-saul with this repo path.
+{
+  agents: {
+    defaults: {
+      workspace: "/ABSOLUTE/PATH/TO/better-call-saul",
+      skills: [
+        "complaint-handler",
+        "negotiation-simulator",
+        "angle-finder",
+        "risk-assessor"
+      ],
+      sandbox: {
+        mode: "non-main",
+        scope: "agent"
+      }
+    }
+  },
+  skills: {
+    load: {
+      extraDirs: ["/ABSOLUTE/PATH/TO/better-call-saul/skills"],
+      watch: true,
+      watchDebounceMs: 250
+    },
+    entries: {
+      "complaint-handler": { enabled: true },
+      "negotiation-simulator": { enabled: true },
+      "angle-finder": { enabled: true },
+      "risk-assessor": { enabled: true }
+    }
+  }
+}

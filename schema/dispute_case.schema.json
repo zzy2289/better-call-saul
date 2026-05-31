@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DisputeCase",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "scenario": {
+      "type": "string",
+      "minLength": 1
+    },
+    "jurisdiction": {
+      "type": "string"
+    },
+    "platform": {
+      "type": "string"
+    },
+    "opponent": {
+      "type": "string"
+    },
+    "desiredOutcome": {
+      "type": "string"
+    },
+    "fallbackOutcome": {
+      "type": "string"
+    },
+    "amountAtStake": {
+      "type": [
+        "number",
+        "string"
+      ]
+    },
+    "timeline": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "priorReplies": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "preferredTone": {
+      "type": "string",
+      "enum": [
+        "polite",
+        "firm",
+        "legalistic",
+        "saul-style",
+        "mixed"
+      ]
+    },
+    "urgency": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    }
+  },
+  "required": [
+    "scenario"
+  ]
+}
