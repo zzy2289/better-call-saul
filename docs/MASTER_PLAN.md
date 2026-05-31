@@ -73,11 +73,11 @@ saul print-openclaw-config --workspace /abs/path
   - `9144124` feat: TypeScript saul CLI + 测试 + CI
 - **代码层**：CLI 9 模块全部就绪，`tsc` 通过，**19/19 测试绿**，CI 已配置。
 - **内容层**：4 skills + 9 知识包 + 5 examples + 安全策略齐全，26 份引用副本无漂移。
-- **当前所处阶段**：**P0 之前**。下一步从 **P0** 开始。
-- **尚未决策（阻塞项，需用户拍板）**：
-  1. **命名**：是否保留 "Better Call Saul"（自带流量但有版权风险）还是换原创主名 + "Saul-inspired" 副标。
-  2. **是否接真实 LLM**：决定 Demo 能否产出成品话术（对 star 转化至关重要）。
-  3. **是否允许付费部署**（Vercel/域名/模型额度）。
+- **当前所处阶段**：**P0 收尾**（5/5 任务完成，待 Review Gate 用户确认）。下一步进 **P1**。
+- **关键决策（已拍板，2026-06-01）**：
+  1. **命名**：✅ 保留 "Better Call Saul"。P0-4 已用商标排除 + 善意合规条款把 IP 风险压到最低。
+  2. **产品形态**：✅ **不接独立 LLM、不做付费 Web 部署**。本项目是**集成到已有智能体宿主的插件**——用户先装好 OpenClaw 或 Claude Code，再装本项目，即可在宿主里用 Saul 角色解决日常纠纷。推理由宿主智能体提供。
+  3. **部署**：✅ 无需付费云部署；分发 = 本地安装到宿主工作区 + npm 包。
 
 ---
 
@@ -127,26 +127,26 @@ saul print-openclaw-config --workspace /abs/path
 - [x] P0-1 为 5 个 example 各写一份「标准完整输出」快照，并加 snapshot 回归测试
 - [x] P0-2 README 顶部加 CI 徽章（+ 可选覆盖率徽章）
 - [x] P0-3 补齐治理文件：`CODE_OF_CONDUCT.md`、`CHANGELOG.md`、`.github/FUNDING.yml`
-- [ ] P0-4 复核 LICENSE 与 IP/免责声明，确保「非官方 + 原创人设」声明滴水不漏
+- [x] P0-4 复核 LICENSE 与 IP/免责声明，确保「非官方 + 原创人设」声明滴水不漏
 - [x] P0-5 完善 issue/PR 模板（已存在则补字段）
 
 **Review Gate P0**：`npm test` 全绿（含新快照）；`saul validate` 通过；治理文件齐全；IP 声明经用户确认无风险。→ 等用户说「继续」。
 
 ---
 
-### P1 · 零门槛体验（★转化率命门，最高优先级）
-> 目标：不装任何环境就能立刻玩到「成品话术」。**这是 1w star 成败关键。**
-> ⚠️ 开工前需用户拍板「是否接真实 LLM」「是否允许付费部署」。
+### P1 · 零门槛集成（★转化率命门，最高优先级）
+> 目标：用户在**已部署的智能体宿主**（OpenClaw / Claude Code）里，几条命令就能装上并立刻用 Saul 角色解决纠纷。
+> 定位已定（2026-06-01）：**本项目是宿主插件，不接独立 LLM、不做付费部署**。推理由宿主提供，我们只交付角色 + 知识 + 技能 + 路由。
 
-- [ ] P1-1 选型并搭建 Web Demo 骨架（单页：粘贴纠纷 → 看 10 段式输出）
-- [ ] P1-2 接入 LLM 推理层（支持用户自带 API key；考虑免费额度/演示 key 策略）
-- [ ] P1-3 把 CLI 的 classify + bundle 复用为后端推理管线（不重复造轮子）
-- [ ] P1-4 `npx better-call-saul "我的纠纷..."` 一行命令直接出话术
-- [ ] P1-5 预置 Gallery：6-8 个真实案例「输入→输出」对照（无 key 也能看效果）
-- [ ] P1-6 部署 Demo（Vercel 等），README 第一行放体验链接
-- [ ] P1-7 Demo 基本错误处理与限流（防滥用/防爆账单）
+- [ ] P1-1 完善 OpenClaw 一键安装（`scripts/install-local-skills.sh` 校验宿主、装 4 skills、给出启用提示）
+- [ ] P1-2 适配 **Claude Code**：提供 Claude Code 兼容的安装方式（skills/agent 落地到其工作区）+ 文档
+- [ ] P1-3 `npx better-call-saul install`：自动探测已安装的宿主（OpenClaw/Claude Code），把内容装进对应工作区
+- [ ] P1-4 `saul bundle` 输出做成「可直接粘进宿主会话」的成品 prompt 包（补一键复制/使用指引）
+- [ ] P1-5 预置 Gallery：6-8 个真实案例「输入→输出」对照（纯 Markdown，无宿主也能看效果）
+- [ ] P1-6 安装/使用文档：三步在宿主里启用 Saul 角色（OpenClaw 与 Claude Code 各一份）
+- [ ] P1-7 安全与可逆：只装进工作区、不改用户全局配置、提供干净卸载/更新路径
 
-**Review Gate P1（= M1）**：Demo 线上可访问；真实产出 10 段式结果；`npx` 一行命令可用；Gallery 可看；有限流。→ 等用户体验后说「继续」。
+**Review Gate P1（= M1）**：在 OpenClaw 与 Claude Code 两个宿主里都能装上并跑出 Saul 角色的 10 段式结果；`npx ... install` 可用；Gallery 可看；安装可逆不污染全局。→ 等用户实测后说「继续」。
 
 ---
 
@@ -220,17 +220,19 @@ saul print-openclaw-config --workspace /abs/path
 
 > 格式：`YYYY-MM-DD | 阶段-任务 | 做了什么 | 验证结果`
 
+- 2026-06-01 | P0-4 | 保留命名；给 DISCLAIMER 加商标/命名 + 善意合规条款，LICENSE 加商标排除说明 | validate 通过，P0 全部 5 任务完成，待 Review Gate 用户确认
+- 2026-06-01 | 决策 | 命名保留；定位为「集成到 OpenClaw/Claude Code 宿主的插件」，不接独立 LLM、不付费部署；据此重写 P1 为零门槛集成 | 已更新第 2/9 节与 P1 任务
 - 2026-05-31 | P0-1/2/3/5 | 加 example 快照回归测试（10 快照）；README 顶部加 CI/Node/License/Tests 徽章；补 CODE_OF_CONDUCT/CHANGELOG/FUNDING.yml；补 issue config.yml + bug 预提交清单 + PR 模板字段 | typecheck 通过，25/25 测试绿，validate 通过，26 引用副本无漂移。P0-4 待 IP 决策，剩余 P0 进 Review Gate
 - 2026-05-31 | 代码层 | TS CLI（validate/classify/bundle/doctor）+ 测试 + CI | typecheck 通过，19/19 测试绿，提交 9144124
 - 2026-05-31 | 内容层 | git 初始化 + 内容骨架首次提交 | 提交 a9e1db7
 
 ---
 
-## 9. 待用户决策清单（开 P0/P1 前必须先答）
+## 9. 用户决策清单（已全部拍板 · 2026-06-01）
 
-1. 命名：保留 "Better Call Saul" / 换原创主名 + Saul-inspired 副标？
-2. LLM：是否接真实模型让 Demo 出成品话术？自带 key / 提供演示额度？
-3. 部署：是否允许花钱（Vercel/域名/模型）？预算上限？
-4. 发布顺序确认：Web Demo 先于 `npx`，还是反过来？
+1. ✅ 命名：**保留 "Better Call Saul"**。P0-4 已用商标排除 + 善意合规条款压低 IP 风险。
+2. ✅ LLM：**不接独立 LLM**。推理由用户已部署的宿主智能体（OpenClaw / Claude Code）提供。
+3. ✅ 部署：**不做付费 Web 部署**。分发 = 本地安装到宿主工作区 + npm 包。
+4. ✅ 产品形态：**宿主插件**。用户先装好 OpenClaw / Claude Code，再装本项目，即可在智能体里用 Saul 角色解决日常纠纷。
 
-> 以上未答前，新窗口可先做 P0 中**不依赖决策**的任务（P0-1 快照、P0-2 徽章、P0-3 治理文件、P0-5 模板），但 P0-4（IP 复核）与所有 P1 任务需先拿到决策。
+> 决策已落地，P1 已据此重写为「零门槛集成到宿主智能体」。无遗留阻塞项。
