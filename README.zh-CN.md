@@ -64,7 +64,7 @@ Better Call Saul 是你的 AI 智能体（Claude Code / OpenClaw）的一个插�
 npm install && npm run build
 
 # 2. 接入你的智能体
-npx better-call-saul install --host auto   # 自动检测 Claude Code / OpenClaw
+npx better-call-saul install --host auto   # 自动检测 Claude Code / Codex / OpenClaw
 
 # 3. 开聊
 # 在你的智能体里描述你的情况 — Saul 接管。
@@ -76,7 +76,7 @@ npx better-call-saul install --host auto   # 自动检测 Claude Code / OpenClaw
 npx better-call-saul bundle --text "房东扣了我1万8押金说要清洁费，但我有入住时的照片证明本来就脏" --lang zh
 ```
 
-> 完整安装指南（Claude Code & OpenClaw）→ [docs/INSTALL.md](docs/INSTALL.md)
+> 完整安装指南（Claude Code、Codex & OpenClaw）→ [docs/INSTALL.md](docs/INSTALL.md)
 
 ---
 

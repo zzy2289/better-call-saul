@@ -64,7 +64,7 @@ Better Call Saul is a plug-in for your AI agent (Claude Code / OpenClaw). Give i
 npm install && npm run build
 
 # 2. Plug into your agent host
-npx better-call-saul install --host auto   # auto-detects Claude Code / OpenClaw
+npx better-call-saul install --host auto   # auto-detects Claude Code / Codex / OpenClaw
 
 # 3. Ask your agent
 # Just describe your situation in your agent — Saul takes over.
@@ -76,7 +76,7 @@ Or, without a host — generate a paste-ready prompt bundle:
 npx better-call-saul bundle --text "My landlord is keeping my $1800 deposit for 'cleaning' but I have move-in photos proving it was already dirty"
 ```
 
-> Full install guide for Claude Code & OpenClaw → [docs/INSTALL.md](docs/INSTALL.md)
+> Full install guide for Claude Code, Codex & OpenClaw → [docs/INSTALL.md](docs/INSTALL.md)
 
 ---
 

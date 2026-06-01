@@ -177,7 +177,7 @@ function normalizeScope(value: string): InstallScope {
 
 program
   .command("detect-hosts")
-  .description("Detect which agent hosts (OpenClaw, Claude Code) are available here.")
+  .description("Detect which agent hosts (Claude Code, Codex, OpenClaw) are available here.")
   .action(() => {
     for (const d of detectHosts(process.cwd())) {
       console.log(`${d.available ? "✓" : "•"} ${d.host}: ${d.detail}`);
@@ -186,9 +186,9 @@ program
 
 program
   .command("install")
-  .description("Install the Saul skills + subagent into a detected agent host.")
+  .description("Install the Saul skills into a detected agent host (Claude Code, Codex, or OpenClaw).")
   .option("--host <host>", "Target host: claude-code, codex, or openclaw.", "auto")
-  .option("--scope <scope>", "Claude Code scope: project or user.", "project")
+  .option("--scope <scope>", "Install scope: project or user.", "project")
   .option("--dry-run", "Show what would change without writing files.")
   .action((opts: { host: string; scope: string; dryRun?: boolean }) => {
     const scope = normalizeScope(opts.scope);

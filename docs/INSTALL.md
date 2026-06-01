@@ -1,8 +1,8 @@
 # Install Better Call Saul into your agent host
 
 Better Call Saul is a **plugin for an agent host you already run** — it does not
-ship its own model or cloud service. Install it into OpenClaw or Claude Code,
-then ask the host to use the Saul fixer for your dispute.
+ship its own model or cloud service. Install it into Claude Code, Codex (OpenAI),
+or OpenClaw, then ask the host to use the Saul fixer for your dispute.
 
 Prerequisite: Node.js >= 18.
 
@@ -68,6 +68,39 @@ This removes only the paths recorded in the install manifest
 (`<scope>/.claude/.saul-install.json`) — the four Saul skill folders and the
 `saul` subagent file we created. Pre-existing files with the same name are never
 overwritten on install and never deleted on uninstall.
+
+---
+
+## Codex (OpenAI)
+
+The CLI installs the four skills into `<scope>/.agents/skills/`. No subagent
+template is needed — Codex reads skills from `.agents/skills/` directly.
+
+### Project scope
+
+```bash
+node /path/to/better-call-saul/dist/cli.js install --host codex --scope project
+```
+
+### Personal scope
+
+```bash
+node dist/cli.js install --host codex --scope user
+```
+
+Preview without writing anything:
+
+```bash
+node dist/cli.js install --host codex --scope project --dry-run
+```
+
+### Uninstall (fully reversible)
+
+```bash
+node dist/cli.js uninstall --host codex --scope project
+```
+
+Works the same as Claude Code: only manifest-owned paths are removed.
 
 ---
 
