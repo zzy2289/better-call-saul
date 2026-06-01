@@ -11,3 +11,5 @@ These files are copied from the repo root so this skill remains useful when inst
 - `knowledge__jurisdiction_notes.md` copied from `knowledge/jurisdiction_notes.md`
 - `knowledge__insurance_claims.md` copied from `knowledge/insurance_claims.md`
 - `knowledge__debt_collection.md` copied from `knowledge/debt_collection.md`
+- `docs__SAFETY_POLICY.md` copied from `docs/SAFETY_POLICY.md`
+- `prompts__output_formats.md` copied from `prompts/output_formats.md`

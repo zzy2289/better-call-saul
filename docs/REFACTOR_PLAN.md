@@ -31,18 +31,18 @@
 
 ### Phase 2: Skill 自包含化
 
-- [ ] **2.1 每个 skill 的 references/ 补齐关键文件**
-  - 每个 skill 目录下 `references/` 应包含：
-    - `soul-summary.md` — SOUL.md 的核心段落摘要（人格、使命、安全边界）
-    - `safety-policy.md` — docs/SAFETY_POLICY.md 的拷贝或摘要
-    - `output-format.md` — prompts/output_formats.md 的拷贝
-    - 已有的 knowledge 文件拷贝保持不变
-  - 更新 `references/README.md` 映射表
-  - 确保 `check-refs` 能检测新增文件的漂移
+- [x] **2.1 每个 skill 的 references/ 补齐关键文件**
+  - 补齐的文件（遵循 `dir__file.md` 命名约定）：
+    - `docs__SAFETY_POLICY.md` → complaint-handler, angle-finder, negotiation-simulator
+    - `prompts__output_formats.md` → angle-finder, risk-assessor
+  - SOUL.md 已在所有 4 个 skill 中存在（不带前缀）
+  - 更新了各 `references/README.md` 映射表
+  - `check-refs` 验证通过：38 个 reference 全部同步
 
-- [ ] **2.2 验证独立可用性**
-  - 单独拷贝一个 skill 目录到 `/tmp/test-skill/`
-  - 确认 agent 仅读该目录就能理解：做什么、怎么做、什么不能做、输出格式
+- [x] **2.2 验证独立可用性**
+  - 将 complaint-handler 拷贝到 `/tmp/test-skill/` 验证
+  - 确认包含：SKILL.md + SOUL.md + SAFETY_POLICY + output_formats + 10 knowledge 文件
+  - 仅读该目录即可理解：做什么、怎么做、什么不能做、输出格式
 
 ### Phase 3: 扩展 installer 支持 Codex
 

@@ -13,4 +13,5 @@ These files are copied from the repo root so this skill remains useful when inst
 - `knowledge__chargeback_and_payment_disputes.md` copied from `knowledge/chargeback_and_payment_disputes.md`
 - `knowledge__landlord_tenant_disputes.md` copied from `knowledge/landlord_tenant_disputes.md`
 - `knowledge__warranty_and_defects.md` copied from `knowledge/warranty_and_defects.md`
+- `docs__SAFETY_POLICY.md` copied from `docs/SAFETY_POLICY.md`
 - `prompts__output_formats.md` copied from `prompts/output_formats.md`

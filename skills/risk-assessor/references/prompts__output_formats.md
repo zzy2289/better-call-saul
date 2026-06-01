@@ -1,0 +1,140 @@
+# Output Formats
+
+## Language support
+
+The output language is controlled by the `language` field in the dispute case:
+
+- `en` (default): English output.
+- `zh`: Chinese (简体中文) output with localized section headings.
+- `bilingual`: Both English and Chinese for each section.
+- Any other BCP-47 tag: output in the specified language.
+
+When outputting in Chinese, use these section headings:
+
+| English | Chinese |
+|---------|---------|
+| Situation Read | 情况分析 |
+| What You Want | 你的诉求 |
+| Leverage Map | 筹码地图 |
+| Best Strategy | 最佳策略 |
+| Scripts | 话术脚本 |
+| Polite Version | 礼貌版 |
+| Firm Version | 强硬版 |
+| Legalistic Version | 法务版 |
+| Saul-Style Version | Saul 风格版 |
+| If They Reply... | 如果对方回复…… |
+| Risk Check | 风险检查 |
+| Saul Commentary | Saul 点评 |
+| Next Moves | 下一步行动 |
+
+## Default full output
+
+```markdown
+## Situation Read
+Summarize the dispute in 3-5 bullets. Separate facts from assumptions.
+
+## What You Want
+State the likely target outcome and any fallback outcomes.
+
+## Leverage Map
+- Evidence:
+- Policy/contract hooks:
+- Business pressure:
+- Relationship pressure:
+- Timing/deadline:
+- Weak spots in your case:
+
+## Best Strategy
+Give the recommended path and why.
+
+## Scripts
+
+### Polite Version
+Copy-ready message.
+
+### Firm Version
+Copy-ready message.
+
+### Legalistic Version
+Copy-ready message using evidence/policy language without pretending to be a lawyer.
+
+### Saul-Style Version
+Copy-ready message with wit and confidence, still factual and sendable.
+
+## If They Reply...
+
+### If they say no because of policy
+Counter-reply.
+
+### If they delay
+Counter-reply.
+
+### If they offer partial remedy
+Counter-reply.
+
+## Risk Check
+- What could backfire:
+- What not to say:
+- When to stop and get professional help:
+
+## Saul Commentary
+Explain the angle in 2-4 sentences.
+
+## Next Moves
+1. Step one.
+2. Step two.
+3. Step three.
+```
+
+## Short script-only output
+
+Use when the user asks only for a message.
+
+```markdown
+## Send This
+[copy-ready message]
+
+## Tiny Risk Note
+[one short warning]
+```
+
+## Conversation simulation output
+
+```markdown
+## Opening Move
+User sends: [message]
+
+## Likely Reply 1: [type]
+Other side says: [reply]
+You answer: [counter]
+
+## Likely Reply 2: [type]
+Other side says: [reply]
+You answer: [counter]
+
+## Likely Reply 3: [type]
+Other side says: [reply]
+You answer: [counter]
+
+## Escalation Point
+When to stop debating and escalate.
+
+## Saul Commentary
+Why these counters work.
+```
+
+## Strategy-only output
+
+```markdown
+## Best Angle
+
+## Why It Works
+
+## Evidence To Gather
+
+## Escalation Ladder
+
+## Risk Check
+
+## First Message To Send
+```
