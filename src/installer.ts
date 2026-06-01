@@ -11,7 +11,7 @@ import { homedir } from "node:os";
 import { join } from "node:path";
 import { SKILL_NAMES } from "./paths.js";
 
-export type HostKind = "openclaw" | "claude-code";
+export type HostKind = "openclaw" | "claude-code" | "codex";
 export type InstallScope = "project" | "user";
 
 export interface HostDetection {
@@ -72,6 +72,11 @@ export function claudeBaseDir(scope: InstallScope, cwd: string, home = homedir()
   return scope === "user" ? join(home, ".claude") : join(cwd, ".claude");
 }
 
+/** Resolve the Codex base dir for a scope (project = <cwd>/.agents). */
+export function codexBaseDir(scope: InstallScope, cwd: string, home = homedir()): string {
+  return scope === "user" ? join(home, ".agents") : join(cwd, ".agents");
+}
+
 function manifestPath(baseDir: string): string {
   return join(baseDir, MANIFEST_NAME);
 }
@@ -130,6 +135,20 @@ export function detectHosts(cwd: string, home = homedir()): HostDetection[] {
     detail: claudeAvailable ? reasons.join(", ") : "no claude CLI or .claude dir",
   });
 
+  const codexBin = hasBinary("codex");
+  const projectAgents = existsSync(join(cwd, ".agents"));
+  const userAgents = existsSync(join(home, ".agents"));
+  const codexAvailable = codexBin || projectAgents || userAgents;
+  const codexReasons: string[] = [];
+  if (codexBin) codexReasons.push("codex CLI on PATH");
+  if (projectAgents) codexReasons.push("./.agents exists");
+  if (userAgents) codexReasons.push("~/.agents exists");
+  detections.push({
+    host: "codex",
+    available: codexAvailable,
+    detail: codexAvailable ? codexReasons.join(", ") : "no codex CLI or .agents dir",
+  });
+
   return detections;
 }
 
@@ -177,6 +196,40 @@ export function planClaudeUninstall(
   const owned = manifest?.entries ?? [];
   const ops: FileOp[] = owned.map((target) => ({ action: "remove" as const, target }));
   return { host: "claude-code", scope, baseDir, ops };
+}
+
+/**
+ * Build the Codex install plan: copy each skill into `<base>/skills/<name>`.
+ * Codex reads skills from `.agents/skills/` — no subagent template needed.
+ */
+export function planCodexInstall(
+  repoRoot: string,
+  scope: InstallScope,
+  cwd: string,
+  home = homedir(),
+): InstallPlan {
+  const baseDir = codexBaseDir(scope, cwd, home);
+  const ops: FileOp[] = SKILL_NAMES.map((name) => ({
+    action: "copy-dir" as const,
+    source: join(repoRoot, "skills", name),
+    target: join(baseDir, "skills", name),
+  }));
+  return { host: "codex", scope, baseDir, ops };
+}
+
+/**
+ * Build the Codex uninstall plan from the on-disk manifest.
+ */
+export function planCodexUninstall(
+  scope: InstallScope,
+  cwd: string,
+  home = homedir(),
+): InstallPlan {
+  const baseDir = codexBaseDir(scope, cwd, home);
+  const manifest = readManifest(baseDir);
+  const owned = manifest?.entries ?? [];
+  const ops: FileOp[] = owned.map((target) => ({ action: "remove" as const, target }));
+  return { host: "codex", scope, baseDir, ops };
 }
 
 /**

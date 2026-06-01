@@ -7,8 +7,12 @@ import {
   applyInstall,
   applyUninstall,
   claudeBaseDir,
+  codexBaseDir,
+  detectHosts,
   planClaudeInstall,
   planClaudeUninstall,
+  planCodexInstall,
+  planCodexUninstall,
 } from "../src/installer.js";
 
 const repoRoot = findRepoRoot();
@@ -98,5 +102,60 @@ describe("claude code installer", () => {
   it("uninstall with no manifest is a no-op plan", () => {
     const plan = planClaudeUninstall("project", work);
     expect(plan.ops).toEqual([]);
+  });
+});
+
+describe("codex installer", () => {
+  it("resolves project vs user base dirs", () => {
+    expect(codexBaseDir("project", "/proj")).toBe(join("/proj", ".agents"));
+    expect(codexBaseDir("user", "/proj", "/home/me")).toBe(join("/home/me", ".agents"));
+  });
+
+  it("plans copies for every skill (no subagent)", () => {
+    const plan = planCodexInstall(repoRoot, "project", work);
+    const copyTargets = plan.ops.filter((o) => o.action === "copy-dir").map((o) => o.target);
+    const writeTargets = plan.ops.filter((o) => o.action === "write-file");
+    expect(copyTargets).toHaveLength(4);
+    expect(writeTargets).toHaveLength(0);
+    expect(plan.host).toBe("codex");
+    expect(plan.baseDir).toBe(join(work, ".agents"));
+  });
+
+  it("installs, writes a manifest, then cleanly uninstalls", () => {
+    const installed = applyInstall(planCodexInstall(repoRoot, "project", work), false);
+    expect(installed.applied).toBe(true);
+    expect(installed.skipped).toEqual([]);
+
+    const manifest = join(work, ".agents", ".saul-install.json");
+    const skillFile = join(work, ".agents", "skills", "complaint-handler", "SKILL.md");
+    expect(existsSync(manifest)).toBe(true);
+    expect(existsSync(skillFile)).toBe(true);
+
+    applyUninstall(planCodexUninstall("project", work), false);
+    expect(existsSync(skillFile)).toBe(false);
+    expect(existsSync(manifest)).toBe(false);
+  });
+
+  it("uninstall with no manifest is a no-op plan", () => {
+    const plan = planCodexUninstall("project", work);
+    expect(plan.ops).toEqual([]);
+  });
+});
+
+describe("detectHosts", () => {
+  it("returns entries for all three hosts", () => {
+    const hosts = detectHosts(work, work);
+    const names = hosts.map((h) => h.host);
+    expect(names).toContain("openclaw");
+    expect(names).toContain("claude-code");
+    expect(names).toContain("codex");
+  });
+
+  it("detects codex when .agents/ exists", () => {
+    mkdirSync(join(work, ".agents"), { recursive: true });
+    const hosts = detectHosts(work, work);
+    const codex = hosts.find((h) => h.host === "codex");
+    expect(codex?.available).toBe(true);
+    expect(codex?.detail).toContain("./.agents exists");
   });
 });

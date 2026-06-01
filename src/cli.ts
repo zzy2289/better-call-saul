@@ -16,6 +16,8 @@ import {
   installOpenClaw,
   planClaudeInstall,
   planClaudeUninstall,
+  planCodexInstall,
+  planCodexUninstall,
   type InstallScope,
 } from "./installer.js";
 import type { DisputeCase } from "./types.js";
@@ -185,7 +187,7 @@ program
 program
   .command("install")
   .description("Install the Saul skills + subagent into a detected agent host.")
-  .option("--host <host>", "Target host: claude-code or openclaw.", "auto")
+  .option("--host <host>", "Target host: claude-code, codex, or openclaw.", "auto")
   .option("--scope <scope>", "Claude Code scope: project or user.", "project")
   .option("--dry-run", "Show what would change without writing files.")
   .action((opts: { host: string; scope: string; dryRun?: boolean }) => {
@@ -198,11 +200,13 @@ program
       const detected = detectHosts(cwd).filter((d) => d.available).map((d) => d.host);
       if (detected.includes("claude-code")) {
         host = "claude-code";
+      } else if (detected.includes("codex")) {
+        host = "codex";
       } else if (detected.includes("openclaw")) {
         host = "openclaw";
       } else {
         console.log(
-          "No host detected. Install OpenClaw or Claude Code first, or pass --host explicitly.",
+          "No host detected. Install Claude Code, Codex, or OpenClaw first, or pass --host explicitly.",
         );
         process.exitCode = 1;
         return;
@@ -242,23 +246,42 @@ program
       return;
     }
 
-    throw new Error(`Unknown --host "${host}". Use claude-code, openclaw, or auto.`);
+    if (host === "codex") {
+      const plan = planCodexInstall(repoRoot, scope, cwd);
+      const result = applyInstall(plan, Boolean(opts.dryRun));
+      console.log(`${result.applied ? "Installed" : "[dry-run] Would install"} into ${plan.baseDir}:`);
+      for (const target of result.installed) {
+        console.log(`  + ${target}`);
+      }
+      for (const target of result.skipped) {
+        console.log(`  ! skipped (pre-existing, not ours): ${target}`);
+      }
+      if (result.applied) {
+        console.log("Done. Saul skills are now available for Codex in this scope.");
+      }
+      return;
+    }
+
+    throw new Error(`Unknown --host "${host}". Use claude-code, codex, openclaw, or auto.`);
   });
 
 program
   .command("uninstall")
   .description("Remove the Saul skills + subagent that were installed into a host.")
-  .option("--host <host>", "Target host: claude-code.", "claude-code")
-  .option("--scope <scope>", "Claude Code scope: project or user.", "project")
+  .option("--host <host>", "Target host: claude-code or codex.", "claude-code")
+  .option("--scope <scope>", "Scope: project or user.", "project")
   .option("--dry-run", "Show what would be removed without deleting.")
   .action((opts: { host: string; scope: string; dryRun?: boolean }) => {
-    if (opts.host !== "claude-code") {
-      console.log("Uninstall is supported for --host claude-code. For OpenClaw, use: openclaw skills remove <name>.");
+    if (opts.host !== "claude-code" && opts.host !== "codex") {
+      console.log("Uninstall is supported for --host claude-code or codex. For OpenClaw, use: openclaw skills remove <name>.");
       process.exitCode = 1;
       return;
     }
     const scope = normalizeScope(opts.scope);
-    const plan = planClaudeUninstall(scope, process.cwd());
+    const cwd = process.cwd();
+    const plan = opts.host === "codex"
+      ? planCodexUninstall(scope, cwd)
+      : planClaudeUninstall(scope, cwd);
     if (plan.ops.length === 0) {
       console.log(`No Saul install manifest found in ${plan.baseDir}. Nothing to remove.`);
       return;

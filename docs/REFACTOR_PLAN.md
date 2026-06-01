@@ -46,19 +46,26 @@
 
 ### Phase 3: 扩展 installer 支持 Codex
 
-- [ ] **3.1 installer.ts 增加 Codex host 检测**
-  - `detectHosts()` 增加 Codex 检测逻辑（检查 `.agents/` 目录或环境变量）
-  - 新增 `planCodexInstall()` — 目标路径 `.agents/skills/<name>/`
-  - 复用已有的 `applyInstall()` 逻辑
+- [x] **3.1 installer.ts 增加 Codex host 检测**
+  - `HostKind` 类型扩展为 `"openclaw" | "claude-code" | "codex"`
+  - `codexBaseDir()` — 目标路径 `.agents/`（project）或 `~/.agents/`（user）
+  - `detectHosts()` 增加 Codex 检测（codex CLI / .agents/ 目录）
+  - `planCodexInstall()` — 复制 skills 到 `.agents/skills/<name>/`（无 subagent）
+  - `planCodexUninstall()` — 基于 manifest 精确卸载
 
-- [ ] **3.2 CLI 适配**
+- [x] **3.2 CLI 适配**
   - `saul install --host codex` 支持
   - `saul uninstall --host codex` 支持
   - `saul detect-hosts` 输出增加 Codex 行
+  - auto-detect 优先级：claude-code > codex > openclaw
 
-- [ ] **3.3 补测试**
-  - installer 的 Codex 路径测试
-  - detect-hosts 新增 host 的测试
+- [x] **3.3 补测试**
+  - `codexBaseDir()` 路径解析测试
+  - Codex install plan 结构验证（4 skills, 0 subagent）
+  - install → manifest → uninstall 完整生命周期
+  - uninstall 无 manifest 时 no-op
+  - `detectHosts()` 返回 3 个 host + .agents/ 检测
+  - 测试从 150 → 156（+6）
 
 ### Phase 4: Frontmatter 标准化
 
