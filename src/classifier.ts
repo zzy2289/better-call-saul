@@ -154,9 +154,9 @@ const DOMAIN_RULES: DomainRule[] = [
 ];
 
 const HIGH_RISK_RE =
-  /\b(sue|lawsuit|legal action|court|small claims|threat(?:en)?|chargeback|defamation|lawyer|attorney|police|fraud|fake|forg(?:e|ed|ing)|fabricat|blackmail|extort|dox(?:x?ing)?|impersonat|stalk|intimidat)\b/i;
+  /\b(sue|lawsuit|legal action|court|small claims|threat(?:en)?|defamation|lawyer|attorney|police|fraud|fake|forg(?:e|ed|ing)|fabricat|blackmail|extort|dox(?:x?ing)?|impersonat|stalk|intimidat)\b/i;
 const MEDIUM_RISK_RE =
-  /\b(public review|legalistic|dispute|escalat|ombudsman|regulator|complaint|employment)\b/i;
+  /\b(public review|legalistic|dispute|escalat|ombudsman|regulator|complaint|employment|chargeback|charge-?back)\b/i;
 
 function countMatches(text: string, re: RegExp): number {
   const global = new RegExp(re.source, re.flags.includes("g") ? re.flags : `${re.flags}g`);

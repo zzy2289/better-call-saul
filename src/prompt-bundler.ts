@@ -40,6 +40,24 @@ export function buildPromptBundle(root: string, input: DisputeCase | string): Pr
     ? { name: skillMeta.name, content: readFileSync(skillMeta.file, "utf8") }
     : null;
 
+  // Include secondary skills' content (e.g. risk-assessor for elevated risk).
+  const secondarySkillContents: { name: string; content: string }[] = [];
+  for (const secName of classification.secondarySkills) {
+    const secMeta = findSkill(root, secName);
+    if (secMeta) {
+      secondarySkillContents.push({
+        name: secMeta.name,
+        content: readFileSync(secMeta.file, "utf8"),
+      });
+    }
+  }
+
+  // Include SAFETY_POLICY.md when risk is elevated.
+  const safetyPolicy =
+    classification.riskLevel !== "low"
+      ? readIfExists(root, "docs/SAFETY_POLICY.md")
+      : null;
+
   const outputFormat = readIfExists(root, "prompts/output_formats.md") ?? "";
 
   const markdown = renderMarkdown({
@@ -47,6 +65,8 @@ export function buildPromptBundle(root: string, input: DisputeCase | string): Pr
     lore,
     knowledge,
     skill,
+    secondarySkills: secondarySkillContents,
+    safetyPolicy,
     outputFormat,
     classification,
     caseObj,
@@ -54,7 +74,17 @@ export function buildPromptBundle(root: string, input: DisputeCase | string): Pr
 
   return {
     markdown,
-    json: { soul, lore, knowledge, skill, outputFormat, classification, case: caseObj },
+    json: {
+      soul,
+      lore,
+      knowledge,
+      skill,
+      secondarySkills: secondarySkillContents,
+      safetyPolicy,
+      outputFormat,
+      classification,
+      case: caseObj,
+    },
   };
 }
 
@@ -63,11 +93,13 @@ function renderMarkdown(args: {
   lore: { path: string; content: string }[];
   knowledge: { path: string; content: string }[];
   skill: { name: string; content: string } | null;
+  secondarySkills: { name: string; content: string }[];
+  safetyPolicy: string | null;
   outputFormat: string;
   classification: Classification;
   caseObj: DisputeCase;
 }): string {
-  const { soul, lore, knowledge, skill, outputFormat, classification, caseObj } = args;
+  const { soul, lore, knowledge, skill, secondarySkills, safetyPolicy, outputFormat, classification, caseObj } = args;
   const parts: string[] = [];
 
   parts.push("# Better Call Saul — Prompt Bundle\n");
@@ -99,6 +131,16 @@ function renderMarkdown(args: {
   if (skill) {
     parts.push(`\n## Skill: ${skill.name}\n`);
     parts.push(skill.content.trim());
+  }
+
+  for (const sec of secondarySkills) {
+    parts.push(`\n## Secondary Skill: ${sec.name}\n`);
+    parts.push(sec.content.trim());
+  }
+
+  if (safetyPolicy) {
+    parts.push("\n## Safety Policy\n");
+    parts.push(safetyPolicy.trim());
   }
 
   parts.push("\n## Output Format\n");

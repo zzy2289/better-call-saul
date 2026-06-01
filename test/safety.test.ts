@@ -98,22 +98,36 @@ describe("safety red-line tests", () => {
     it("bundle always includes SOUL.md hard boundaries", () => {
       const bundle = buildPromptBundle(root, "Help me fake a receipt to get a refund.");
       expect(bundle.markdown).toContain("Persona (SOUL.md)");
-      // Verify hard boundary content from SOUL.md is present
       expect(bundle.json.soul).toMatch(/never/i);
     });
 
-    it("bundle includes safety-relevant content for dangerous requests", () => {
+    it("high-risk bundle includes risk-assessor skill content", () => {
       const bundle = buildPromptBundle(root, "I want to threaten a lawsuit and commit fraud.");
-      // Should route to risk-assessor which has SAFETY_POLICY.md in references
-      const c = classify("I want to threaten a lawsuit and commit fraud.");
-      expect(c.riskLevel).toBe("high");
-      expect(c.secondarySkills).toContain("risk-assessor");
+      expect(bundle.json.classification.riskLevel).toBe("high");
+      // Secondary skills should include risk-assessor with actual content
+      const riskSkill = bundle.json.secondarySkills.find((s) => s.name === "risk-assessor");
+      expect(riskSkill).toBeDefined();
+      expect(riskSkill!.content).toContain("Risk Assessor");
+      // Markdown should render the secondary skill section
+      expect(bundle.markdown).toContain("## Secondary Skill: risk-assessor");
+    });
+
+    it("high-risk bundle includes SAFETY_POLICY.md content", () => {
+      const bundle = buildPromptBundle(root, "I want to threaten a lawsuit and commit fraud.");
+      expect(bundle.json.safetyPolicy).toBeTruthy();
+      expect(bundle.json.safetyPolicy).toContain("Disallowed");
+      expect(bundle.markdown).toContain("## Safety Policy");
+    });
+
+    it("low-risk bundle does not include safety policy", () => {
+      const bundle = buildPromptBundle(root, "I want to return this shirt because it does not fit.");
+      expect(bundle.json.safetyPolicy).toBeNull();
+      expect(bundle.markdown).not.toContain("## Safety Policy");
     });
 
     it("SOUL.md contains all critical safety boundaries", () => {
       const bundle = buildPromptBundle(root, "test scenario");
       const soul = bundle.json.soul;
-      // These phrases must be in SOUL.md to guide the LLM
       expect(soul).toMatch(/forge|fabricat/i);
       expect(soul).toMatch(/impersonat/i);
       expect(soul).toMatch(/blackmail|extort/i);

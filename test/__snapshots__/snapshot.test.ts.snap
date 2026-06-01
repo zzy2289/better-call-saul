@@ -7200,6 +7200,198 @@ Do not help fabricate evidence, fake legal threats, abuse chargebacks, impersona
 
 When a user wants revenge, redirect to a recoverable outcome.
 
+## Secondary Skill: negotiation-simulator
+
+---
+name: negotiation-simulator
+description: Use this skill when the user wants to rehearse a negotiation, predict the other side's replies, prepare counters, test tone, or simulate a full back-and-forth for disputes, pricing, freelance work, contracts, refunds, support escalation, or business communication.
+user-invocable: true
+metadata: {"openclaw":{"always":true}}
+---
+
+# Negotiation Simulator
+
+## Trigger
+
+Use this skill when the user asks for:
+
+- A simulated conversation.
+- Likely replies.
+- Counter-replies.
+- Roleplay practice.
+- Objection handling.
+- Negotiation branches.
+- "What if they say no?"
+- "How should I respond if they say..."
+
+## References
+
+When installed as a standalone OpenClaw skill, consult local copies in \`{baseDir}/references/\`. When running from the full repo workspace, also consult the root project files listed below.
+
+When available, consult:
+
+- \`{baseDir}/../../SOUL.md\`
+- \`{baseDir}/../../knowledge/negotiation_principles.md\`
+- \`{baseDir}/../../knowledge/customer_service_escalation.md\`
+- \`{baseDir}/../../knowledge/freelance_late_payment.md\`
+- \`{baseDir}/../../knowledge/contract_red_flags.md\`
+- \`{baseDir}/../../knowledge/employment_disputes.md\`
+- \`{baseDir}/../../prompts/output_formats.md\`
+
+## Workflow
+
+1. Identify the user's desired outcome and fallback.
+2. Identify the other side's likely incentives and objections.
+3. Create the user's opening move.
+4. Simulate at least three likely replies from the other side.
+5. For each reply, write a counter that stays calm and strategic.
+6. Identify the escalation point where continuing the same conversation stops helping.
+7. Add a risk check and Saul Commentary.
+
+## Simulation branches
+
+Use these default branches when relevant:
+
+- Policy refusal.
+- Delay or ghosting.
+- Lowball offer.
+- Partial remedy.
+- Blame shifting.
+- Request for more proof.
+- Emotional pushback.
+- "Final decision" language.
+
+## Output
+
+Use this structure:
+
+\`\`\`markdown
+## Opening Move
+
+## Likely Reply 1: Policy Refusal
+
+## Your Counter
+
+## Likely Reply 2: Delay
+
+## Your Counter
+
+## Likely Reply 3: Partial Offer
+
+## Your Counter
+
+## Escalation Point
+
+## Risk Check
+
+## Saul Commentary
+\`\`\`
+
+## Safety limits
+
+Do not simulate threats, harassment, deception, blackmail, fake identities, or false evidence.
+
+## Secondary Skill: angle-finder
+
+---
+name: angle-finder
+description: Use this skill when the user asks for the best angle, leverage, loopholes, strategy, pressure points, negotiation framing, or how to turn a weak dispute into a stronger truthful case. It finds practical, lawful angles and explains why each one works.
+user-invocable: true
+metadata: {"openclaw":{"always":true}}
+---
+
+# Angle Finder
+
+## Trigger
+
+Use this skill when the user asks:
+
+- What angle should I use?
+- How can I push back?
+- What leverage do I have?
+- Is there a loophole?
+- How do I make this sound stronger?
+- How do I get them to say yes?
+- How do I negotiate this?
+
+## References
+
+When installed as a standalone OpenClaw skill, consult local copies in \`{baseDir}/references/\`. When running from the full repo workspace, also consult the root project files listed below.
+
+When available, consult:
+
+- \`{baseDir}/../../SOUL.md\`
+- \`{baseDir}/../../knowledge/negotiation_principles.md\`
+- \`{baseDir}/../../knowledge/customer_service_escalation.md\`
+- \`{baseDir}/../../knowledge/ecommerce_refunds.md\`
+- \`{baseDir}/../../knowledge/freelance_late_payment.md\`
+- \`{baseDir}/../../knowledge/contract_red_flags.md\`
+- \`{baseDir}/../../knowledge/jurisdiction_notes.md\`
+- \`{baseDir}/../../knowledge/insurance_claims.md\`
+- \`{baseDir}/../../knowledge/debt_collection.md\`
+
+## Workflow
+
+1. Restate the situation in neutral terms.
+2. Identify the user's desired outcome.
+3. Build a leverage map.
+4. List 3-5 possible angles.
+5. Rank the angles by strength, risk, and ease.
+6. Choose the recommended angle.
+7. Write a first message using that angle.
+8. Explain why it works.
+9. Warn what not to say.
+
+## Leverage categories
+
+- Evidence.
+- Policy promise.
+- Contract language.
+- Timeline.
+- Money.
+- Reputation.
+- Operational inconvenience.
+- Regulatory/ombudsman path.
+- Platform dispute path.
+- Relationship preservation.
+- Public review risk.
+- Face-saving exit.
+
+## Output
+
+\`\`\`markdown
+## Situation Read
+
+## Possible Angles
+
+### Angle 1: [name]
+Strength:
+Risk:
+Best use:
+
+### Angle 2: [name]
+Strength:
+Risk:
+Best use:
+
+### Angle 3: [name]
+Strength:
+Risk:
+Best use:
+
+## Recommended Angle
+
+## First Message
+
+## What Not To Say
+
+## Saul Commentary
+\`\`\`
+
+## Safety limits
+
+A "loophole" must mean a lawful policy, contract, incentive, or communication angle. Do not provide deception, fraud, blackmail, false claims, impersonation, or harassment tactics.
+
 ## Output Format
 
 # Output Formats
@@ -8433,6 +8625,107 @@ Use this structure:
 
 Do not simulate threats, harassment, deception, blackmail, fake identities, or false evidence.
 
+## Secondary Skill: angle-finder
+
+---
+name: angle-finder
+description: Use this skill when the user asks for the best angle, leverage, loopholes, strategy, pressure points, negotiation framing, or how to turn a weak dispute into a stronger truthful case. It finds practical, lawful angles and explains why each one works.
+user-invocable: true
+metadata: {"openclaw":{"always":true}}
+---
+
+# Angle Finder
+
+## Trigger
+
+Use this skill when the user asks:
+
+- What angle should I use?
+- How can I push back?
+- What leverage do I have?
+- Is there a loophole?
+- How do I make this sound stronger?
+- How do I get them to say yes?
+- How do I negotiate this?
+
+## References
+
+When installed as a standalone OpenClaw skill, consult local copies in \`{baseDir}/references/\`. When running from the full repo workspace, also consult the root project files listed below.
+
+When available, consult:
+
+- \`{baseDir}/../../SOUL.md\`
+- \`{baseDir}/../../knowledge/negotiation_principles.md\`
+- \`{baseDir}/../../knowledge/customer_service_escalation.md\`
+- \`{baseDir}/../../knowledge/ecommerce_refunds.md\`
+- \`{baseDir}/../../knowledge/freelance_late_payment.md\`
+- \`{baseDir}/../../knowledge/contract_red_flags.md\`
+- \`{baseDir}/../../knowledge/jurisdiction_notes.md\`
+- \`{baseDir}/../../knowledge/insurance_claims.md\`
+- \`{baseDir}/../../knowledge/debt_collection.md\`
+
+## Workflow
+
+1. Restate the situation in neutral terms.
+2. Identify the user's desired outcome.
+3. Build a leverage map.
+4. List 3-5 possible angles.
+5. Rank the angles by strength, risk, and ease.
+6. Choose the recommended angle.
+7. Write a first message using that angle.
+8. Explain why it works.
+9. Warn what not to say.
+
+## Leverage categories
+
+- Evidence.
+- Policy promise.
+- Contract language.
+- Timeline.
+- Money.
+- Reputation.
+- Operational inconvenience.
+- Regulatory/ombudsman path.
+- Platform dispute path.
+- Relationship preservation.
+- Public review risk.
+- Face-saving exit.
+
+## Output
+
+\`\`\`markdown
+## Situation Read
+
+## Possible Angles
+
+### Angle 1: [name]
+Strength:
+Risk:
+Best use:
+
+### Angle 2: [name]
+Strength:
+Risk:
+Best use:
+
+### Angle 3: [name]
+Strength:
+Risk:
+Best use:
+
+## Recommended Angle
+
+## First Message
+
+## What Not To Say
+
+## Saul Commentary
+\`\`\`
+
+## Safety limits
+
+A "loophole" must mean a lawful policy, contract, incentive, or communication angle. Do not provide deception, fraud, blackmail, false claims, impersonation, or harassment tactics.
+
 ## Output Format
 
 # Output Formats
@@ -9605,6 +9898,107 @@ Always include:
 Do not help fabricate evidence, fake legal threats, abuse chargebacks, impersonate officials, harass staff, or publish false accusations.
 
 When a user wants revenge, redirect to a recoverable outcome.
+
+## Secondary Skill: angle-finder
+
+---
+name: angle-finder
+description: Use this skill when the user asks for the best angle, leverage, loopholes, strategy, pressure points, negotiation framing, or how to turn a weak dispute into a stronger truthful case. It finds practical, lawful angles and explains why each one works.
+user-invocable: true
+metadata: {"openclaw":{"always":true}}
+---
+
+# Angle Finder
+
+## Trigger
+
+Use this skill when the user asks:
+
+- What angle should I use?
+- How can I push back?
+- What leverage do I have?
+- Is there a loophole?
+- How do I make this sound stronger?
+- How do I get them to say yes?
+- How do I negotiate this?
+
+## References
+
+When installed as a standalone OpenClaw skill, consult local copies in \`{baseDir}/references/\`. When running from the full repo workspace, also consult the root project files listed below.
+
+When available, consult:
+
+- \`{baseDir}/../../SOUL.md\`
+- \`{baseDir}/../../knowledge/negotiation_principles.md\`
+- \`{baseDir}/../../knowledge/customer_service_escalation.md\`
+- \`{baseDir}/../../knowledge/ecommerce_refunds.md\`
+- \`{baseDir}/../../knowledge/freelance_late_payment.md\`
+- \`{baseDir}/../../knowledge/contract_red_flags.md\`
+- \`{baseDir}/../../knowledge/jurisdiction_notes.md\`
+- \`{baseDir}/../../knowledge/insurance_claims.md\`
+- \`{baseDir}/../../knowledge/debt_collection.md\`
+
+## Workflow
+
+1. Restate the situation in neutral terms.
+2. Identify the user's desired outcome.
+3. Build a leverage map.
+4. List 3-5 possible angles.
+5. Rank the angles by strength, risk, and ease.
+6. Choose the recommended angle.
+7. Write a first message using that angle.
+8. Explain why it works.
+9. Warn what not to say.
+
+## Leverage categories
+
+- Evidence.
+- Policy promise.
+- Contract language.
+- Timeline.
+- Money.
+- Reputation.
+- Operational inconvenience.
+- Regulatory/ombudsman path.
+- Platform dispute path.
+- Relationship preservation.
+- Public review risk.
+- Face-saving exit.
+
+## Output
+
+\`\`\`markdown
+## Situation Read
+
+## Possible Angles
+
+### Angle 1: [name]
+Strength:
+Risk:
+Best use:
+
+### Angle 2: [name]
+Strength:
+Risk:
+Best use:
+
+### Angle 3: [name]
+Strength:
+Risk:
+Best use:
+
+## Recommended Angle
+
+## First Message
+
+## What Not To Say
+
+## Saul Commentary
+\`\`\`
+
+## Safety limits
+
+A "loophole" must mean a lawful policy, contract, incentive, or communication angle. Do not provide deception, fraud, blackmail, false claims, impersonation, or harassment tactics.
 
 ## Output Format
 
@@ -11641,6 +12035,97 @@ Low / Medium / High
 
 If the tactic involves deception, coercion, harassment, blackmail, forged evidence, fake legal threats, or impersonation, refuse briefly and provide a lawful alternative.
 
+## Secondary Skill: negotiation-simulator
+
+---
+name: negotiation-simulator
+description: Use this skill when the user wants to rehearse a negotiation, predict the other side's replies, prepare counters, test tone, or simulate a full back-and-forth for disputes, pricing, freelance work, contracts, refunds, support escalation, or business communication.
+user-invocable: true
+metadata: {"openclaw":{"always":true}}
+---
+
+# Negotiation Simulator
+
+## Trigger
+
+Use this skill when the user asks for:
+
+- A simulated conversation.
+- Likely replies.
+- Counter-replies.
+- Roleplay practice.
+- Objection handling.
+- Negotiation branches.
+- "What if they say no?"
+- "How should I respond if they say..."
+
+## References
+
+When installed as a standalone OpenClaw skill, consult local copies in \`{baseDir}/references/\`. When running from the full repo workspace, also consult the root project files listed below.
+
+When available, consult:
+
+- \`{baseDir}/../../SOUL.md\`
+- \`{baseDir}/../../knowledge/negotiation_principles.md\`
+- \`{baseDir}/../../knowledge/customer_service_escalation.md\`
+- \`{baseDir}/../../knowledge/freelance_late_payment.md\`
+- \`{baseDir}/../../knowledge/contract_red_flags.md\`
+- \`{baseDir}/../../knowledge/employment_disputes.md\`
+- \`{baseDir}/../../prompts/output_formats.md\`
+
+## Workflow
+
+1. Identify the user's desired outcome and fallback.
+2. Identify the other side's likely incentives and objections.
+3. Create the user's opening move.
+4. Simulate at least three likely replies from the other side.
+5. For each reply, write a counter that stays calm and strategic.
+6. Identify the escalation point where continuing the same conversation stops helping.
+7. Add a risk check and Saul Commentary.
+
+## Simulation branches
+
+Use these default branches when relevant:
+
+- Policy refusal.
+- Delay or ghosting.
+- Lowball offer.
+- Partial remedy.
+- Blame shifting.
+- Request for more proof.
+- Emotional pushback.
+- "Final decision" language.
+
+## Output
+
+Use this structure:
+
+\`\`\`markdown
+## Opening Move
+
+## Likely Reply 1: Policy Refusal
+
+## Your Counter
+
+## Likely Reply 2: Delay
+
+## Your Counter
+
+## Likely Reply 3: Partial Offer
+
+## Your Counter
+
+## Escalation Point
+
+## Risk Check
+
+## Saul Commentary
+\`\`\`
+
+## Safety limits
+
+Do not simulate threats, harassment, deception, blackmail, fake identities, or false evidence.
+
 ## Output Format
 
 # Output Formats
@@ -12789,6 +13274,107 @@ Always include:
 Do not help fabricate evidence, fake legal threats, abuse chargebacks, impersonate officials, harass staff, or publish false accusations.
 
 When a user wants revenge, redirect to a recoverable outcome.
+
+## Secondary Skill: angle-finder
+
+---
+name: angle-finder
+description: Use this skill when the user asks for the best angle, leverage, loopholes, strategy, pressure points, negotiation framing, or how to turn a weak dispute into a stronger truthful case. It finds practical, lawful angles and explains why each one works.
+user-invocable: true
+metadata: {"openclaw":{"always":true}}
+---
+
+# Angle Finder
+
+## Trigger
+
+Use this skill when the user asks:
+
+- What angle should I use?
+- How can I push back?
+- What leverage do I have?
+- Is there a loophole?
+- How do I make this sound stronger?
+- How do I get them to say yes?
+- How do I negotiate this?
+
+## References
+
+When installed as a standalone OpenClaw skill, consult local copies in \`{baseDir}/references/\`. When running from the full repo workspace, also consult the root project files listed below.
+
+When available, consult:
+
+- \`{baseDir}/../../SOUL.md\`
+- \`{baseDir}/../../knowledge/negotiation_principles.md\`
+- \`{baseDir}/../../knowledge/customer_service_escalation.md\`
+- \`{baseDir}/../../knowledge/ecommerce_refunds.md\`
+- \`{baseDir}/../../knowledge/freelance_late_payment.md\`
+- \`{baseDir}/../../knowledge/contract_red_flags.md\`
+- \`{baseDir}/../../knowledge/jurisdiction_notes.md\`
+- \`{baseDir}/../../knowledge/insurance_claims.md\`
+- \`{baseDir}/../../knowledge/debt_collection.md\`
+
+## Workflow
+
+1. Restate the situation in neutral terms.
+2. Identify the user's desired outcome.
+3. Build a leverage map.
+4. List 3-5 possible angles.
+5. Rank the angles by strength, risk, and ease.
+6. Choose the recommended angle.
+7. Write a first message using that angle.
+8. Explain why it works.
+9. Warn what not to say.
+
+## Leverage categories
+
+- Evidence.
+- Policy promise.
+- Contract language.
+- Timeline.
+- Money.
+- Reputation.
+- Operational inconvenience.
+- Regulatory/ombudsman path.
+- Platform dispute path.
+- Relationship preservation.
+- Public review risk.
+- Face-saving exit.
+
+## Output
+
+\`\`\`markdown
+## Situation Read
+
+## Possible Angles
+
+### Angle 1: [name]
+Strength:
+Risk:
+Best use:
+
+### Angle 2: [name]
+Strength:
+Risk:
+Best use:
+
+### Angle 3: [name]
+Strength:
+Risk:
+Best use:
+
+## Recommended Angle
+
+## First Message
+
+## What Not To Say
+
+## Saul Commentary
+\`\`\`
+
+## Safety limits
+
+A "loophole" must mean a lawful policy, contract, incentive, or communication angle. Do not provide deception, fraud, blackmail, false claims, impersonation, or harassment tactics.
 
 ## Output Format
 
@@ -17122,6 +17708,107 @@ Always include:
 Do not help fabricate evidence, fake legal threats, abuse chargebacks, impersonate officials, harass staff, or publish false accusations.
 
 When a user wants revenge, redirect to a recoverable outcome.
+
+## Secondary Skill: angle-finder
+
+---
+name: angle-finder
+description: Use this skill when the user asks for the best angle, leverage, loopholes, strategy, pressure points, negotiation framing, or how to turn a weak dispute into a stronger truthful case. It finds practical, lawful angles and explains why each one works.
+user-invocable: true
+metadata: {"openclaw":{"always":true}}
+---
+
+# Angle Finder
+
+## Trigger
+
+Use this skill when the user asks:
+
+- What angle should I use?
+- How can I push back?
+- What leverage do I have?
+- Is there a loophole?
+- How do I make this sound stronger?
+- How do I get them to say yes?
+- How do I negotiate this?
+
+## References
+
+When installed as a standalone OpenClaw skill, consult local copies in \`{baseDir}/references/\`. When running from the full repo workspace, also consult the root project files listed below.
+
+When available, consult:
+
+- \`{baseDir}/../../SOUL.md\`
+- \`{baseDir}/../../knowledge/negotiation_principles.md\`
+- \`{baseDir}/../../knowledge/customer_service_escalation.md\`
+- \`{baseDir}/../../knowledge/ecommerce_refunds.md\`
+- \`{baseDir}/../../knowledge/freelance_late_payment.md\`
+- \`{baseDir}/../../knowledge/contract_red_flags.md\`
+- \`{baseDir}/../../knowledge/jurisdiction_notes.md\`
+- \`{baseDir}/../../knowledge/insurance_claims.md\`
+- \`{baseDir}/../../knowledge/debt_collection.md\`
+
+## Workflow
+
+1. Restate the situation in neutral terms.
+2. Identify the user's desired outcome.
+3. Build a leverage map.
+4. List 3-5 possible angles.
+5. Rank the angles by strength, risk, and ease.
+6. Choose the recommended angle.
+7. Write a first message using that angle.
+8. Explain why it works.
+9. Warn what not to say.
+
+## Leverage categories
+
+- Evidence.
+- Policy promise.
+- Contract language.
+- Timeline.
+- Money.
+- Reputation.
+- Operational inconvenience.
+- Regulatory/ombudsman path.
+- Platform dispute path.
+- Relationship preservation.
+- Public review risk.
+- Face-saving exit.
+
+## Output
+
+\`\`\`markdown
+## Situation Read
+
+## Possible Angles
+
+### Angle 1: [name]
+Strength:
+Risk:
+Best use:
+
+### Angle 2: [name]
+Strength:
+Risk:
+Best use:
+
+### Angle 3: [name]
+Strength:
+Risk:
+Best use:
+
+## Recommended Angle
+
+## First Message
+
+## What Not To Say
+
+## Saul Commentary
+\`\`\`
+
+## Safety limits
+
+A "loophole" must mean a lawful policy, contract, incentive, or communication angle. Do not provide deception, fraud, blackmail, false claims, impersonation, or harassment tactics.
 
 ## Output Format
 
@@ -22730,6 +23417,86 @@ Best use:
 
 A "loophole" must mean a lawful policy, contract, incentive, or communication angle. Do not provide deception, fraud, blackmail, false claims, impersonation, or harassment tactics.
 
+## Secondary Skill: complaint-handler
+
+---
+name: complaint-handler
+description: Use this skill when the user describes a consumer, platform, billing, travel, subscription, service, or support dispute and wants complaint, refund, cancellation, replacement, escalation, or customer-service scripts. It turns messy facts into evidence-based messages, escalation ladders, risk-aware variants, and Saul-style commentary.
+user-invocable: true
+metadata: {"openclaw":{"always":true}}
+---
+
+# Complaint Handler
+
+## Trigger
+
+Use this skill for:
+
+- Refunds.
+- Returns.
+- Defective goods.
+- Delivery problems.
+- Misleading listings.
+- Billing errors.
+- Subscription cancellation.
+- Support refusal.
+- Telecom, banking, insurance, utility, airline, hotel, SaaS, or marketplace complaints.
+- "I got screwed" situations where the user wants a practical escalation plan.
+
+## References
+
+When installed as a standalone OpenClaw skill, consult local copies in \`{baseDir}/references/\`. When running from the full repo workspace, also consult the root project files listed below.
+
+When available, consult:
+
+- \`{baseDir}/../../SOUL.md\`
+- \`{baseDir}/../../knowledge/customer_service_escalation.md\`
+- \`{baseDir}/../../knowledge/ecommerce_refunds.md\`
+- \`{baseDir}/../../knowledge/subscription_cancellation.md\`
+- \`{baseDir}/../../knowledge/travel_disputes.md\`
+- \`{baseDir}/../../knowledge/negotiation_principles.md\`
+- \`{baseDir}/../../knowledge/jurisdiction_notes.md\`
+- \`{baseDir}/../../knowledge/china_consumer_rights.md\`
+- \`{baseDir}/../../knowledge/chargeback_and_payment_disputes.md\`
+- \`{baseDir}/../../knowledge/landlord_tenant_disputes.md\`
+- \`{baseDir}/../../knowledge/warranty_and_defects.md\`
+- \`{baseDir}/../../prompts/output_formats.md\`
+
+## Workflow
+
+1. Identify the dispute type.
+2. Extract known facts: who, what, when, where, platform, price, promise, actual outcome, prior support response.
+3. Identify missing facts that matter. Do not block on missing facts unless the output would be misleading.
+4. Build an evidence checklist.
+5. Decide the strongest angle: not as described, defective, billing error, failed service, cancellation attempt, policy exception, support delay, or written-record escalation.
+6. Choose an escalation ladder.
+7. Generate scripts in multiple tones.
+8. Simulate the most likely refusal and provide counters.
+9. Add a risk check.
+10. Add Saul Commentary.
+
+## Output
+
+Default to the full format from \`prompts/output_formats.md\`.
+
+Always include:
+
+- Best angle.
+- Evidence needed.
+- Polite script.
+- Firm script.
+- Legalistic script.
+- Saul-style script.
+- If-they-reply counters.
+- Risk check.
+- Saul Commentary.
+
+## Safety limits
+
+Do not help fabricate evidence, fake legal threats, abuse chargebacks, impersonate officials, harass staff, or publish false accusations.
+
+When a user wants revenge, redirect to a recoverable outcome.
+
 ## Output Format
 
 # Output Formats
@@ -23787,6 +24554,107 @@ Use this structure:
 ## Safety limits
 
 Do not simulate threats, harassment, deception, blackmail, fake identities, or false evidence.
+
+## Secondary Skill: angle-finder
+
+---
+name: angle-finder
+description: Use this skill when the user asks for the best angle, leverage, loopholes, strategy, pressure points, negotiation framing, or how to turn a weak dispute into a stronger truthful case. It finds practical, lawful angles and explains why each one works.
+user-invocable: true
+metadata: {"openclaw":{"always":true}}
+---
+
+# Angle Finder
+
+## Trigger
+
+Use this skill when the user asks:
+
+- What angle should I use?
+- How can I push back?
+- What leverage do I have?
+- Is there a loophole?
+- How do I make this sound stronger?
+- How do I get them to say yes?
+- How do I negotiate this?
+
+## References
+
+When installed as a standalone OpenClaw skill, consult local copies in \`{baseDir}/references/\`. When running from the full repo workspace, also consult the root project files listed below.
+
+When available, consult:
+
+- \`{baseDir}/../../SOUL.md\`
+- \`{baseDir}/../../knowledge/negotiation_principles.md\`
+- \`{baseDir}/../../knowledge/customer_service_escalation.md\`
+- \`{baseDir}/../../knowledge/ecommerce_refunds.md\`
+- \`{baseDir}/../../knowledge/freelance_late_payment.md\`
+- \`{baseDir}/../../knowledge/contract_red_flags.md\`
+- \`{baseDir}/../../knowledge/jurisdiction_notes.md\`
+- \`{baseDir}/../../knowledge/insurance_claims.md\`
+- \`{baseDir}/../../knowledge/debt_collection.md\`
+
+## Workflow
+
+1. Restate the situation in neutral terms.
+2. Identify the user's desired outcome.
+3. Build a leverage map.
+4. List 3-5 possible angles.
+5. Rank the angles by strength, risk, and ease.
+6. Choose the recommended angle.
+7. Write a first message using that angle.
+8. Explain why it works.
+9. Warn what not to say.
+
+## Leverage categories
+
+- Evidence.
+- Policy promise.
+- Contract language.
+- Timeline.
+- Money.
+- Reputation.
+- Operational inconvenience.
+- Regulatory/ombudsman path.
+- Platform dispute path.
+- Relationship preservation.
+- Public review risk.
+- Face-saving exit.
+
+## Output
+
+\`\`\`markdown
+## Situation Read
+
+## Possible Angles
+
+### Angle 1: [name]
+Strength:
+Risk:
+Best use:
+
+### Angle 2: [name]
+Strength:
+Risk:
+Best use:
+
+### Angle 3: [name]
+Strength:
+Risk:
+Best use:
+
+## Recommended Angle
+
+## First Message
+
+## What Not To Say
+
+## Saul Commentary
+\`\`\`
+
+## Safety limits
+
+A "loophole" must mean a lawful policy, contract, incentive, or communication angle. Do not provide deception, fraud, blackmail, false claims, impersonation, or harassment tactics.
 
 ## Output Format
 

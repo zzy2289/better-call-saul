@@ -72,6 +72,8 @@ export interface PromptBundle {
     lore: { path: string; content: string }[];
     knowledge: { path: string; content: string }[];
     skill: { name: string; content: string } | null;
+    secondarySkills: { name: string; content: string }[];
+    safetyPolicy: string | null;
     outputFormat: string;
     classification: Classification;
     case: DisputeCase;

@@ -75,6 +75,11 @@ saul print-openclaw-config --workspace /abs/path
   - `6f588b5` docs: 加 MASTER_PLAN 交接文档
   - `ee18ed3` feat(p0): example 快照 + README 徽章 + 治理文件 + 模板完善
   - `65b4373` docs(p0-4): IP/商标免责加固 + 锁决策 + 重写 P1
+  - `3017cb2` docs: address P0 review
+  - `ce27b98` feat(p1): host integration for OpenClaw + Claude Code
+  - `4a69374` fix(p1): resolve Review Gate blockers
+  - `aca5b3f` docs: pass Review Gate P1
+  - `62760f5` feat(p2): product thickness — knowledge, i18n, examples, eval, safety
 - **代码层**：CLI 9 模块全部就绪，`tsc` 通过，**117/117 测试绿**（8 测试文件，含评测集 51 + 安全红线 16 + 快照 23 + 分类器 7 + 其他），CI 已配置。
 - **内容层**：4 skills + 16 知识包 + 22 examples + 安全策略齐全，33 份引用副本无漂移。
 - **当前所处阶段**：**P2 · 产品厚度** 已完成（P2-0 延后，P2-1–P2-5 全部完成），等待用户 Review。
@@ -228,7 +233,8 @@ saul print-openclaw-config --workspace /abs/path
 
 > 格式：`YYYY-MM-DD | 阶段-任务 | 做了什么 | 验证结果`
 
-- 2026-06-02 | P2-1–P2-5 | **产品厚度全部完成**：(1) knowledge 9→16 个，新增 7 个领域（中国消费者/chargeback/就业/房东租客/保险/催收/质保），分类器新增 7 个 domain rule + CJK 词边界修复；(2) 多语言支持（DisputeCase.language + bundler zh/bilingual/other + CLI --lang）；(3) examples 5→22 个 + 快照；(4) 评测集 10 个 JSON cases + vitest 评测测试（51 个 assertions）；(5) 安全红线 16 个测试（伪造证据/敲诈/冒充/制造假评论等均检测为 high risk）；总测试 117/117 绿，validate + check-refs 通过，P2-0 OpenClaw 延后为后期拓展 | typecheck 通过，117 测试绿，33 副本无漂移
+- 2026-06-01 | P2 Review Fix | 修 4 项审查发现：(1) bundle 高/中风险时注入 secondary skill 内容 + SAFETY_POLICY.md；(2) 评测集加真正质量评分（scoreCase 5 维度 + 80% 逐案基线 + 90% 聚合基线 + eval/baseline.json）；(3) chargeback 从 HIGH_RISK 降到 MEDIUM_RISK 对齐安全策略；(4) MASTER_PLAN 补缺漏的 5 个 commit + 修正日期 | typecheck 通过，130/130 测试绿，validate + check-refs 通过，8 快照已更新
+- 2026-06-01 | P2-1–P2-5 | **产品厚度全部完成**：(1) knowledge 9→16 个，新增 7 个领域（中国消费者/chargeback/就业/房东租客/保险/催收/质保），分类器新增 7 个 domain rule + CJK 词边界修复；(2) 多语言支持（DisputeCase.language + bundler zh/bilingual/other + CLI --lang）；(3) examples 5→22 个 + 快照；(4) 评测集 10 个 JSON cases + vitest 评测测试（51 个 assertions）；(5) 安全红线 16 个测试（伪造证据/敲诈/冒充/制造假评论等均检测为 high risk）；总测试 117/117 绿，validate + check-refs 通过，P2-0 OpenClaw 延后为后期拓展 | typecheck 通过，117 测试绿，33 副本无漂移
 - 2026-06-01 | P1 Review Gate | **Claude Code 宿主实测通过**：安装/运行/卸载端到端 OK，Review Gate P1（= M1）通过，进入 P2。**OpenClaw 支持延后**——代码已实装但未在真实宿主实测，列为 P2-0 前置任务，不阻塞 P2 | 用户确认通过；当前阶段更新为 P2
 - 2026-06-01 | P1 review fixes | 修 Codex 三个 blocker：(1) install/uninstall 改用包内相对根 `findRepoRoot()`（不再依赖 cwd 的 SOUL.md），`npx better-call-saul install` 在任意用户目录可用；(2) `saul install --host openclaw` 真正执行 `openclaw skills install`（不再只打印），package files 加入 `scripts/`；(3) manifest 化安装（`.claude/.saul-install.json`）—— 不覆盖同名既有文件、卸载只删自己装的、完全可逆；并把 Claude Code subagent 输出改成 canonical 9 段全量格式 | typecheck 通过，33/33 测试（installer 新增冲突保护/卸载隔离/无 manifest 等用例），build/validate/check-refs 通过，外部 cwd 端到端 install→re-install→uninstall 验证 0 残留
 
