@@ -76,11 +76,12 @@ saul print-openclaw-config --workspace /abs/path
   - `65b4373` docs(p0-4): IP/商标免责加固 + 锁决策 + 重写 P1
 - **代码层**：CLI 9 模块全部就绪，`tsc` 通过，**25/25 测试绿**（含 10 个 example 快照），CI 已配置。
 - **内容层**：4 skills + 9 知识包 + 5 examples + 安全策略齐全，26 份引用副本无漂移。
-- **当前所处阶段**：**P1 完成，待 Review Gate（= M1）用户实测确认**。OpenClaw + Claude Code 两宿主安装/卸载均已实装。
+- **当前所处阶段**：**P2 · 产品厚度（口碑与留存）**。P1 已通过 Review Gate（Claude Code 宿主实测安装/运行/卸载通过；OpenClaw 延后验证，不阻塞）。
 - **关键决策（已拍板，2026-06-01）**：
   1. **命名**：✅ 保留 "Better Call Saul"。P0-4 已用商标排除 + 善意合规条款把 IP 风险压到最低。
   2. **产品形态**：✅ **不接独立 LLM、不做付费 Web 部署**。本项目是**集成到已有智能体宿主的插件**——用户先装好 OpenClaw 或 Claude Code，再装本项目，即可在宿主里用 Saul 角色解决日常纠纷。推理由宿主智能体提供。
   3. **部署**：✅ 无需付费云部署；分发 = 本地安装到宿主工作区 + npm 包。
+  4. **P1 M1 通过口径**：✅ **先以 Claude Code 宿主通过 Review Gate P1**（安装/运行/卸载实测 OK）；**OpenClaw 支持延后**（代码已实装但未在真实宿主端到端实测），延后验证**不阻塞进入 P2**。OpenClaw 兼容/实测列为 P2 前置任务。
 - **公开前必修（不阻塞 P1，但推 GitHub 前必须做）**：README CI 徽章/clone URL、CHANGELOG 链接、issue contact links 中的 `YOUR_NAME` 占位符，需在确定 GitHub owner/repo 后批量替换（记在 P4-5 前置检查）。
 
 ---
@@ -150,20 +151,21 @@ saul print-openclaw-config --workspace /abs/path
 - [x] P1-6 安装/使用文档：[docs/INSTALL.md](INSTALL.md) 覆盖 OpenClaw 与 Claude Code 三步启用 + 无宿主粘贴方案
 - [x] P1-7 安全与可逆：只装进工作区、`uninstall` 只删我们装的文件、`--dry-run` 预览、不改全局配置
 
-**Review Gate P1（= M1）**：在 OpenClaw 与 Claude Code 两个宿主里都能装上并跑出 Saul 角色的 10 段式结果；`npx ... install` 可用；Gallery 可看；安装可逆不污染全局。→ 等用户实测后说「继续」。
+**Review Gate P1（= M1）**：✅ **已通过（2026-06-01）**。Claude Code 宿主已安装、运行、卸载通过（`npx ... install` 可用；Gallery 可看；安装可逆不污染全局，manifest 化不覆盖同名既有文件）。**OpenClaw 延后验证**——代码已实装，但真实宿主端到端实测推迟到 P2 前置任务，不阻塞进入 P2。
 
 ---
 
 ### P2 · 产品厚度（口碑与留存）
 > 目标：试过的人觉得「真有用」，愿意自来水安利。（可与 P3 并行）
 
+- [ ] P2-0 **OpenClaw 兼容/实测（P1 延后项，P2 前置）**：在真实 OpenClaw 宿主里跑 `saul install --host openclaw`，验证 4 skills 装入、新会话能触发 Saul 角色跑出全量结果、`openclaw skills remove` 可干净卸载；记录与 Claude Code 的行为差异
 - [ ] P2-1 扩充 knowledge 包，覆盖更多高频场景（中国：电商/12315；欧美：chargeback/ombudsman 等）
 - [ ] P2-2 多语言话术（至少中英双语输出）
 - [ ] P2-3 场景库扩到 20+，每个配 example + 快照
 - [ ] P2-4 建评测集（纠纷→理想策略），量化输出质量，作为换模型/改 prompt 的标尺
 - [ ] P2-5 安全红线自动化测试（证明会拒绝伪造证据/敲诈/冒充）
 
-**Review Gate P2**：知识/场景扩充达标；双语可用；评测集有基线分；安全红线测试全过。→ 用户确认。
+**Review Gate P2**：OpenClaw 兼容性实测通过（P2-0）；知识/场景扩充达标；双语可用；评测集有基线分；安全红线测试全过。→ 用户确认。
 
 ---
 
@@ -225,6 +227,7 @@ saul print-openclaw-config --workspace /abs/path
 
 > 格式：`YYYY-MM-DD | 阶段-任务 | 做了什么 | 验证结果`
 
+- 2026-06-01 | P1 Review Gate | **Claude Code 宿主实测通过**：安装/运行/卸载端到端 OK，Review Gate P1（= M1）通过，进入 P2。**OpenClaw 支持延后**——代码已实装但未在真实宿主实测，列为 P2-0 前置任务，不阻塞 P2 | 用户确认通过；当前阶段更新为 P2
 - 2026-06-01 | P1 review fixes | 修 Codex 三个 blocker：(1) install/uninstall 改用包内相对根 `findRepoRoot()`（不再依赖 cwd 的 SOUL.md），`npx better-call-saul install` 在任意用户目录可用；(2) `saul install --host openclaw` 真正执行 `openclaw skills install`（不再只打印），package files 加入 `scripts/`；(3) manifest 化安装（`.claude/.saul-install.json`）—— 不覆盖同名既有文件、卸载只删自己装的、完全可逆；并把 Claude Code subagent 输出改成 canonical 9 段全量格式 | typecheck 通过，33/33 测试（installer 新增冲突保护/卸载隔离/无 manifest 等用例），build/validate/check-refs 通过，外部 cwd 端到端 install→re-install→uninstall 验证 0 残留
 
 - 2026-06-01 | P1-1~7 | 零门槛集成：src/installer.ts（detect-hosts/install/uninstall，Claude Code 原生拷贝 skills + 生成 saul subagent，project/user scope，幂等且可逆）；cli 加 detect-hosts/install/uninstall；硬化 OpenClaw 脚本（--dry-run/预检）；GALLERY.md 6 案例；docs/INSTALL.md 双宿主；better-call-saul bin 别名；templates/ 入包 | typecheck 通过，30/30 测试绿（新增 installer 5 测试），validate/check-refs 通过，临时 HOME 实装+卸载验证可逆
