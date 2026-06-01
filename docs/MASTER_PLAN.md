@@ -82,7 +82,7 @@ saul print-openclaw-config --workspace /abs/path
   - `62760f5` feat(p2): product thickness — knowledge, i18n, examples, eval, safety
   - `f639931` fix: address P2 review — 4 findings
   - `da9d6fe` fix: P2 review round 2 — output quality scoring + no test side effects
-  - `2a09b1a` feat(p3): README landing page + zh-CN + brand assets + comparison
+  - `25c9f4d` feat(p3): README landing page + zh-CN + brand assets + comparison
 - **代码层**：CLI 9 模块全部就绪，`tsc` 通过，**150/150 测试绿**（8 测试文件，含评测集 82 + 安全红线 18 + 快照 23 + 分类器 7 + 其他），CI 已配置。
 - **内容层**：4 skills + 16 知识包 + 22 examples + 安全策略齐全，33 份引用副本无漂移。
 - **首屏层**：README 落地页重构完成，中文 README 就绪，Logo/OG 卡/配色方案/品牌指南/录制脚本齐全。
@@ -188,7 +188,7 @@ saul print-openclaw-config --workspace /abs/path
 - [x] P3-4 中英双 README（README.zh-CN.md 完整中文版）
 - [x] P3-5 对比/定位段落：说清与"直接问 ChatGPT"的区别（README 内 Why Not Just ChatGPT 对比表）
 
-**Review Gate P3（= M2）**：README 首屏有 GIF + 链接 + 定位；双语齐全；视觉物料就绪。→ 用户确认。
+**Review Gate P3（= M2）**：README 首屏有演示视觉（placeholder 可接受，真实 GIF 放 P4 前置）+ 链接 + 定位；双语齐全；视觉物料就绪；npm 包含所有 README 引用的文件。→ 用户确认。
 
 ---
 
@@ -196,6 +196,7 @@ saul print-openclaw-config --workspace /abs/path
 > 目标：靠一次集中发布制造脉冲增长。**只发一次，P1~P3 全通过 + 用户二次确认后才执行。**
 
 - [ ] P4-1 发布前预热：种子用户试用，修掉 Demo 明显 bug
+- [ ] P4-1b **录制真实演示 GIF**：用 `scripts/record-demo.sh` 录制 → 渲染为 `docs/assets/demo.gif`，替换 README 中的 placeholder SVG
 - [ ] P4-2 准备多平台文案（英文：Show HN / Reddit / Product Hunt / Twitter / Dev.to；中文：小红书 / 即刻 / V2EX / 少数派 / 公众号）
 - [ ] P4-3 设计传播钩子：故事感标题 + 真实战绩截图（退款成功/欠款追回）
 - [ ] P4-4 选好时机（避节假日，HN 选周二/三美西早上）

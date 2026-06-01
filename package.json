@@ -16,7 +16,12 @@
     "schema",
     "templates",
     "scripts",
-    "SOUL.md"
+    "docs",
+    "examples",
+    "SOUL.md",
+    "GALLERY.md",
+    "DISCLAIMER.md",
+    "README.zh-CN.md"
   ],
   "engines": {
     "node": ">=18"
