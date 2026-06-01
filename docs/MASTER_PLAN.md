@@ -30,12 +30,13 @@ better-call-saul/
   SOUL.md                  # 人设/使命/输出契约/安全红线（核心）
   AGENTS.md                # 对编码 agent 的硬性约束（务必遵守）
   README.md                # 项目落地页
-  knowledge/               # 9 个领域知识包（谈判/退款/客诉/合同…）
+  knowledge/               # 16 个领域知识包（谈判/退款/客诉/合同/中国消费者/chargeback/就业/房东租客/保险/催收/质保…）
   lore/                    # 角色风格与 IP 边界
   skills/<name>/SKILL.md   # 4 个 OpenClaw 技能 + references/ 自包含副本
   prompts/output_formats.md# 标准输出格式
   schema/                  # dispute_case / saul_output JSON Schema
-  examples/                # 5 个示例场景
+  examples/                # 22 个示例场景（包括中英文、多领域）
+  eval/                     # 评测集（10 个 JSON cases + 评分标准）
   src/                     # ★ TypeScript CLI（saul）核心代码层
   test/                    # vitest 测试套件
   docs/                    # 架构/计划/安全/路线 + 本文件
@@ -48,7 +49,7 @@ better-call-saul/
 ```bash
 npm install            # 安装依赖
 npm run typecheck      # 类型检查（strict）
-npm test               # vitest，19 个测试
+npm test               # vitest，117 个测试
 npm run build          # 编译到 dist/
 npm run saul -- <cmd>  # 开发期通过 tsx 跑 CLI
 
@@ -74,9 +75,9 @@ saul print-openclaw-config --workspace /abs/path
   - `6f588b5` docs: 加 MASTER_PLAN 交接文档
   - `ee18ed3` feat(p0): example 快照 + README 徽章 + 治理文件 + 模板完善
   - `65b4373` docs(p0-4): IP/商标免责加固 + 锁决策 + 重写 P1
-- **代码层**：CLI 9 模块全部就绪，`tsc` 通过，**25/25 测试绿**（含 10 个 example 快照），CI 已配置。
-- **内容层**：4 skills + 9 知识包 + 5 examples + 安全策略齐全，26 份引用副本无漂移。
-- **当前所处阶段**：**P2 · 产品厚度（口碑与留存）**。P1 已通过 Review Gate（Claude Code 宿主实测安装/运行/卸载通过；OpenClaw 延后验证，不阻塞）。
+- **代码层**：CLI 9 模块全部就绪，`tsc` 通过，**117/117 测试绿**（8 测试文件，含评测集 51 + 安全红线 16 + 快照 23 + 分类器 7 + 其他），CI 已配置。
+- **内容层**：4 skills + 16 知识包 + 22 examples + 安全策略齐全，33 份引用副本无漂移。
+- **当前所处阶段**：**P2 · 产品厚度** 已完成（P2-0 延后，P2-1–P2-5 全部完成），等待用户 Review。
 - **关键决策（已拍板，2026-06-01）**：
   1. **命名**：✅ 保留 "Better Call Saul"。P0-4 已用商标排除 + 善意合规条款把 IP 风险压到最低。
   2. **产品形态**：✅ **不接独立 LLM、不做付费 Web 部署**。本项目是**集成到已有智能体宿主的插件**——用户先装好 OpenClaw 或 Claude Code，再装本项目，即可在宿主里用 Saul 角色解决日常纠纷。推理由宿主智能体提供。
@@ -158,14 +159,14 @@ saul print-openclaw-config --workspace /abs/path
 ### P2 · 产品厚度（口碑与留存）
 > 目标：试过的人觉得「真有用」，愿意自来水安利。（可与 P3 并行）
 
-- [ ] P2-0 **OpenClaw 兼容/实测（P1 延后项，P2 前置）**：在真实 OpenClaw 宿主里跑 `saul install --host openclaw`，验证 4 skills 装入、新会话能触发 Saul 角色跑出全量结果、`openclaw skills remove` 可干净卸载；记录与 Claude Code 的行为差异
-- [ ] P2-1 扩充 knowledge 包，覆盖更多高频场景（中国：电商/12315；欧美：chargeback/ombudsman 等）
-- [ ] P2-2 多语言话术（至少中英双语输出）
-- [ ] P2-3 场景库扩到 20+，每个配 example + 快照
-- [ ] P2-4 建评测集（纠纷→理想策略），量化输出质量，作为换模型/改 prompt 的标尺
-- [ ] P2-5 安全红线自动化测试（证明会拒绝伪造证据/敲诈/冒充）
+- [ ] P2-0 **OpenClaw 兼容/实测（P1 延后项，延后至后期拓展）**：在真实 OpenClaw 宿主里跑 `saul install --host openclaw`，验证 4 skills 装入、新会话能触发 Saul 角色跑出全量结果、`openclaw skills remove` 可干净卸载；记录与 Claude Code 的行为差异
+- [x] P2-1 扩充 knowledge 包，覆盖更多高频场景（中国：电商/12315；欧美：chargeback/ombudsman 等）
+- [x] P2-2 多语言话术（至少中英双语输出）
+- [x] P2-3 场景库扩到 20+，每个配 example + 快照
+- [x] P2-4 建评测集（纠纷→理想策略），量化输出质量，作为换模型/改 prompt 的标尺
+- [x] P2-5 安全红线自动化测试（证明会拒绝伪造证据/敲诈/冒充）
 
-**Review Gate P2**：OpenClaw 兼容性实测通过（P2-0）；知识/场景扩充达标；双语可用；评测集有基线分；安全红线测试全过。→ 用户确认。
+**Review Gate P2**：OpenClaw 兼容性实测延后（P2-0）；知识/场景扩充达标（✓）；双语可用（✓）；评测集有基线分（✓）；安全红线测试全过（✓）。→ 用户确认。
 
 ---
 
@@ -227,6 +228,7 @@ saul print-openclaw-config --workspace /abs/path
 
 > 格式：`YYYY-MM-DD | 阶段-任务 | 做了什么 | 验证结果`
 
+- 2026-06-02 | P2-1–P2-5 | **产品厚度全部完成**：(1) knowledge 9→16 个，新增 7 个领域（中国消费者/chargeback/就业/房东租客/保险/催收/质保），分类器新增 7 个 domain rule + CJK 词边界修复；(2) 多语言支持（DisputeCase.language + bundler zh/bilingual/other + CLI --lang）；(3) examples 5→22 个 + 快照；(4) 评测集 10 个 JSON cases + vitest 评测测试（51 个 assertions）；(5) 安全红线 16 个测试（伪造证据/敲诈/冒充/制造假评论等均检测为 high risk）；总测试 117/117 绿，validate + check-refs 通过，P2-0 OpenClaw 延后为后期拓展 | typecheck 通过，117 测试绿，33 副本无漂移
 - 2026-06-01 | P1 Review Gate | **Claude Code 宿主实测通过**：安装/运行/卸载端到端 OK，Review Gate P1（= M1）通过，进入 P2。**OpenClaw 支持延后**——代码已实装但未在真实宿主实测，列为 P2-0 前置任务，不阻塞 P2 | 用户确认通过；当前阶段更新为 P2
 - 2026-06-01 | P1 review fixes | 修 Codex 三个 blocker：(1) install/uninstall 改用包内相对根 `findRepoRoot()`（不再依赖 cwd 的 SOUL.md），`npx better-call-saul install` 在任意用户目录可用；(2) `saul install --host openclaw` 真正执行 `openclaw skills install`（不再只打印），package files 加入 `scripts/`；(3) manifest 化安装（`.claude/.saul-install.json`）—— 不覆盖同名既有文件、卸载只删自己装的、完全可逆；并把 Claude Code subagent 输出改成 canonical 9 段全量格式 | typecheck 通过，33/33 测试（installer 新增冲突保护/卸载隔离/无 manifest 等用例），build/validate/check-refs 通过，外部 cwd 端到端 install→re-install→uninstall 验证 0 残留
 

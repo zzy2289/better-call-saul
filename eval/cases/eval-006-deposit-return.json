@@ -1,0 +1,16 @@
+{
+  "id": "eval-006",
+  "title": "Landlord — security deposit not returned",
+  "scenario": "I moved out of my apartment two months ago. The landlord has not returned my $2,400 security deposit and has not provided an itemized list of deductions. I left the apartment in the same condition as move-in except normal wear. I have timestamped move-in and move-out photos, the lease, and a signed move-out inspection.",
+  "jurisdiction": "US",
+  "amountAtStake": 2400,
+  "expected": {
+    "primarySkill": "complaint-handler",
+    "matchedDomains": ["landlord-tenant"],
+    "riskLevel": "low",
+    "knowledgeFilesContain": ["knowledge/landlord_tenant_disputes.md"],
+    "requiredSections": ["Situation Read", "Scripts", "Escalation", "Risk Check"],
+    "mustMentionConcepts": ["deposit return deadline", "itemized deductions", "normal wear and tear", "small claims"],
+    "mustNotSuggest": ["withhold future rent", "change locks"]
+  }
+}

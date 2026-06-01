@@ -31,6 +31,7 @@ When available, consult:
 - `{baseDir}/../../knowledge/customer_service_escalation.md`
 - `{baseDir}/../../knowledge/freelance_late_payment.md`
 - `{baseDir}/../../knowledge/contract_red_flags.md`
+- `{baseDir}/../../knowledge/employment_disputes.md`
 - `{baseDir}/../../prompts/output_formats.md`
 
 ## Workflow

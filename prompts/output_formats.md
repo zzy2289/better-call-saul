@@ -1,5 +1,32 @@
 # Output Formats
 
+## Language support
+
+The output language is controlled by the `language` field in the dispute case:
+
+- `en` (default): English output.
+- `zh`: Chinese (简体中文) output with localized section headings.
+- `bilingual`: Both English and Chinese for each section.
+- Any other BCP-47 tag: output in the specified language.
+
+When outputting in Chinese, use these section headings:
+
+| English | Chinese |
+|---------|---------|
+| Situation Read | 情况分析 |
+| What You Want | 你的诉求 |
+| Leverage Map | 筹码地图 |
+| Best Strategy | 最佳策略 |
+| Scripts | 话术脚本 |
+| Polite Version | 礼貌版 |
+| Firm Version | 强硬版 |
+| Legalistic Version | 法务版 |
+| Saul-Style Version | Saul 风格版 |
+| If They Reply... | 如果对方回复…… |
+| Risk Check | 风险检查 |
+| Saul Commentary | Saul 点评 |
+| Next Moves | 下一步行动 |
+
 ## Default full output
 
 ```markdown

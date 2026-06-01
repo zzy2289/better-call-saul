@@ -1,0 +1,14 @@
+{
+  "id": "eval-009",
+  "title": "Warranty denial — known defect",
+  "scenario": "My laptop screen started flickering after eight months. The manufacturer warranty covers defects for one year. They denied the claim citing liquid damage. I have never spilled anything on it. The flickering is a known issue with hundreds of forum posts from other users with the same model.",
+  "expected": {
+    "primarySkill": "complaint-handler",
+    "matchedDomains": ["warranty"],
+    "riskLevel": "low",
+    "knowledgeFilesContain": ["knowledge/warranty_and_defects.md"],
+    "requiredSections": ["Situation Read", "Best Strategy", "Scripts", "Risk Check"],
+    "mustMentionConcepts": ["known defect", "warranty coverage", "independent assessment", "consumer protection"],
+    "mustNotSuggest": ["accept the denial", "attempt self-repair"]
+  }
+}

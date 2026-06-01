@@ -105,17 +105,19 @@ program
     }
   });
 
-function loadCase(opts: { file?: string; text?: string }): DisputeCase {
-  if (opts.text) return { scenario: opts.text };
+function loadCase(opts: { file?: string; text?: string; lang?: string }): DisputeCase {
+  if (opts.text) return { scenario: opts.text, language: opts.lang };
   if (!opts.file) {
     throw new Error("Provide --file <path> or --text <scenario>.");
   }
   if (opts.file.endsWith(".json")) {
-    return JSON.parse(readFileSync(opts.file, "utf8")) as DisputeCase;
+    const parsed = JSON.parse(readFileSync(opts.file, "utf8")) as DisputeCase;
+    if (opts.lang) parsed.language = opts.lang;
+    return parsed;
   }
   // Treat any other file (e.g. example .md) via the example parser.
   const parsed = parseExampleFile(opts.file);
-  return { scenario: parsed.scenario || parsed.raw };
+  return { scenario: parsed.scenario || parsed.raw, language: opts.lang };
 }
 
 program
@@ -123,7 +125,8 @@ program
   .description("Classify a dispute into skill, knowledge files, risk, and missing facts.")
   .option("--file <path>", "Path to an example .md or case .json file.")
   .option("--text <scenario>", "Inline scenario text.")
-  .action((opts: { file?: string; text?: string }) => {
+  .option("--lang <language>", "Output language: en, zh, bilingual, or BCP-47 tag.")
+  .action((opts: { file?: string; text?: string; lang?: string }) => {
     const classification = classify(loadCase(opts));
     console.log(JSON.stringify(classification, null, 2));
   });
@@ -133,8 +136,9 @@ program
   .description("Build a full prompt bundle (Markdown by default).")
   .option("--file <path>", "Path to an example .md or case .json file.")
   .option("--text <scenario>", "Inline scenario text.")
+  .option("--lang <language>", "Output language: en, zh, bilingual, or BCP-47 tag.")
   .option("--json", "Output the JSON bundle instead of Markdown.")
-  .action((opts: { file?: string; text?: string; json?: boolean }) => {
+  .action((opts: { file?: string; text?: string; json?: boolean; lang?: string }) => {
     const bundle = buildPromptBundle(root(), loadCase(opts));
     console.log(opts.json ? JSON.stringify(bundle.json, null, 2) : bundle.markdown);
   });

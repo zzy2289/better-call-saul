@@ -104,6 +104,42 @@ function renderMarkdown(args: {
   parts.push("\n## Output Format\n");
   parts.push(outputFormat.trim());
 
+  if (caseObj.language && caseObj.language !== "en") {
+    parts.push("\n## Language Instruction\n");
+    if (caseObj.language === "zh") {
+      parts.push(
+        "Output the entire response in Chinese (简体中文). " +
+        "Section headings should use the Chinese equivalents:\n" +
+        "- Situation Read → 情况分析\n" +
+        "- What You Want → 你的诉求\n" +
+        "- Leverage Map → 筹码地图\n" +
+        "- Best Strategy → 最佳策略\n" +
+        "- Scripts → 话术脚本\n" +
+        "  - Polite Version → 礼貌版\n" +
+        "  - Firm Version → 强硬版\n" +
+        "  - Legalistic Version → 法务版\n" +
+        "  - Saul-Style Version → Saul 风格版\n" +
+        "- If They Reply... → 如果对方回复……\n" +
+        "- Risk Check → 风险检查\n" +
+        "- Saul Commentary → Saul 点评\n" +
+        "- Next Moves → 下一步行动\n",
+      );
+    } else if (caseObj.language === "bilingual") {
+      parts.push(
+        "Output the response in both English and Chinese (简体中文). " +
+        "For each section, provide the English version first, then the Chinese version " +
+        "under a sub-heading marked with 🇨🇳. Scripts should be provided in both languages " +
+        "so the user can choose the version that fits their context.\n",
+      );
+    } else {
+      parts.push(
+        `Output the entire response in ${caseObj.language}. ` +
+        "Adapt section headings to the target language where natural equivalents exist. " +
+        "Keep technical terms and proper nouns in their original form.\n",
+      );
+    }
+  }
+
   parts.push("\n## User Case\n");
   parts.push(renderCase(caseObj));
 
@@ -128,5 +164,6 @@ function renderCase(c: DisputeCase): string {
   }
   if (c.preferredTone) lines.push(`Preferred tone: ${c.preferredTone}`);
   if (c.urgency) lines.push(`Urgency: ${c.urgency}`);
+  if (c.language) lines.push(`Language: ${c.language}`);
   return lines.join("\n");
 }

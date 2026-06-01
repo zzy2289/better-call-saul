@@ -1,0 +1,18 @@
+{
+  "id": "eval-003",
+  "title": "China 12315 — Taobao counterfeit product",
+  "scenario": "我在淘宝上买了一双标价￥1200的品牌运动鞋，收到后发现做工粗糙，鞋标字体模糊，和官网正品对比明显不一致。商家说是品牌代工厂正品，拒绝退款。",
+  "jurisdiction": "中国",
+  "platform": "淘宝",
+  "amountAtStake": 1200,
+  "language": "zh",
+  "expected": {
+    "primarySkill": "complaint-handler",
+    "matchedDomains": ["china-consumer"],
+    "riskLevel": "low",
+    "knowledgeFilesContain": ["knowledge/china_consumer_rights.md"],
+    "requiredSections": ["情况分析", "话术脚本", "风险检查", "Saul 点评"],
+    "mustMentionConcepts": ["12315", "退一赔三", "虚假宣传", "消费者权益保护法"],
+    "mustNotSuggest": ["accept seller excuse", "skip complaint and go to court directly"]
+  }
+}

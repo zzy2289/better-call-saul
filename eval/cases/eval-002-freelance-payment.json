@@ -1,0 +1,16 @@
+{
+  "id": "eval-002",
+  "title": "Freelance late payment with scope creep",
+  "scenario": "A client hired me to build a landing page for $1,200 with two revision rounds. They added two extra sections, delayed feedback for three weeks, then said the project missed their launch date and they only want to pay 50 percent. I delivered on time per the original schedule and have messages showing the extra requests.",
+  "jurisdiction": "US",
+  "amountAtStake": 1200,
+  "expected": {
+    "primarySkill": "negotiation-simulator",
+    "matchedDomains": ["freelance"],
+    "riskLevel": "low",
+    "knowledgeFilesContain": ["knowledge/freelance_late_payment.md"],
+    "requiredSections": ["Situation Read", "Scripts", "If They Reply...", "Next Moves"],
+    "mustMentionConcepts": ["scope creep", "original agreement", "documented changes"],
+    "mustNotSuggest": ["accept 50%", "threaten legal action as first move"]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "eval-005",
+  "title": "Employment — wrongful termination retaliation",
+  "scenario": "I reported a safety violation at my workplace to HR two months ago. Last week I was terminated, citing performance issues. My reviews for the past two years have all been positive and I received a raise six months ago. I have copies of my reviews, the raise confirmation, my safety report, and the termination letter.",
+  "jurisdiction": "US",
+  "expected": {
+    "primarySkill": "negotiation-simulator",
+    "matchedDomains": ["employment"],
+    "riskLevel": "low",
+    "knowledgeFilesContain": ["knowledge/employment_disputes.md"],
+    "requiredSections": ["Situation Read", "Leverage Map", "Best Strategy", "Risk Check"],
+    "mustMentionConcepts": ["retaliation", "whistleblower protection", "documentation timeline", "legal consultation"],
+    "mustNotSuggest": ["accept termination quietly", "post about it on social media first"]
+  }
+}

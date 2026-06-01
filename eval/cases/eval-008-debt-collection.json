@@ -1,0 +1,16 @@
+{
+  "id": "eval-008",
+  "title": "Debt collection harassment — medical bill",
+  "scenario": "A collection agency calls me three to four times a day about a medical bill from 2019 for $1,800. I do not remember this bill and my insurance should have covered it. They call before 8am and have called my workplace. When I asked for debt validation they said they would send documentation but never did.",
+  "jurisdiction": "US",
+  "amountAtStake": 1800,
+  "expected": {
+    "primarySkill": "angle-finder",
+    "matchedDomains": ["debt-collection"],
+    "riskLevel": "low",
+    "knowledgeFilesContain": ["knowledge/debt_collection.md"],
+    "requiredSections": ["Situation Read", "Best Strategy", "Scripts", "Risk Check"],
+    "mustMentionConcepts": ["FDCPA", "debt validation", "cease and desist", "CFPB complaint", "statute of limitations"],
+    "mustNotSuggest": ["pay immediately", "ignore the calls"]
+  }
+}

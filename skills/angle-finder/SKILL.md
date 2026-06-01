@@ -32,6 +32,8 @@ When available, consult:
 - `{baseDir}/../../knowledge/freelance_late_payment.md`
 - `{baseDir}/../../knowledge/contract_red_flags.md`
 - `{baseDir}/../../knowledge/jurisdiction_notes.md`
+- `{baseDir}/../../knowledge/insurance_claims.md`
+- `{baseDir}/../../knowledge/debt_collection.md`
 
 ## Workflow
 

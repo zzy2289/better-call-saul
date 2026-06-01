@@ -74,10 +74,87 @@ const DOMAIN_RULES: DomainRule[] = [
       "knowledge/negotiation_principles.md",
     ],
   },
+  {
+    domain: "china-consumer",
+    keywords:
+      /(?:\b(?:12315|12345|taobao|tmall|jd\.com|pinduoduo)\b|淘宝|天猫|京东|拼多多|抖音|闲鱼|退一赔三|三包|消费者权益|消法|工商|市场监管|仅退款|平台介入)/i,
+    primarySkill: "complaint-handler",
+    knowledgeFiles: [
+      "knowledge/china_consumer_rights.md",
+      "knowledge/ecommerce_refunds.md",
+      "knowledge/customer_service_escalation.md",
+      "knowledge/negotiation_principles.md",
+    ],
+  },
+  {
+    domain: "chargeback",
+    keywords:
+      /\b(chargeback|charge-?back|card dispute|payment dispute|credit card dispute|visa dispute|mastercard dispute|section 75|consumer credit act|payment reversal|bank dispute)\b/i,
+    primarySkill: "complaint-handler",
+    knowledgeFiles: [
+      "knowledge/chargeback_and_payment_disputes.md",
+      "knowledge/customer_service_escalation.md",
+      "knowledge/negotiation_principles.md",
+    ],
+  },
+  {
+    domain: "employment",
+    keywords:
+      /(?:\b(?:fired|terminated|wrongful termination|unfair dismissal|unpaid wages|overtime|severance|harassment|discrimination|workplace|employer|employee|HR|human resources|retaliation|whistleblow|non-?compete|misclassification)\b|劳动仲裁|劳动合同|工资|加班费|辞退|裁员)/i,
+    primarySkill: "negotiation-simulator",
+    knowledgeFiles: [
+      "knowledge/employment_disputes.md",
+      "knowledge/negotiation_principles.md",
+      "knowledge/contract_red_flags.md",
+    ],
+  },
+  {
+    domain: "landlord-tenant",
+    keywords:
+      /(?:\b(?:landlord|tenant|rent|lease|deposit|security deposit|eviction|habitability|mold|pest|maintenance|move-?out|subtenant)\b|房东|租客|押金|退租|房屋|租房)/i,
+    primarySkill: "complaint-handler",
+    knowledgeFiles: [
+      "knowledge/landlord_tenant_disputes.md",
+      "knowledge/customer_service_escalation.md",
+      "knowledge/negotiation_principles.md",
+    ],
+  },
+  {
+    domain: "insurance",
+    keywords:
+      /(?:\b(?:insurance|claim denied|claim denial|adjuster|coverage|deductible|premium|policyholder|insurer|underwriter|bad faith|appraisal clause)\b|保险|理赔|拒赔)/i,
+    primarySkill: "angle-finder",
+    knowledgeFiles: [
+      "knowledge/insurance_claims.md",
+      "knowledge/negotiation_principles.md",
+      "knowledge/contract_red_flags.md",
+    ],
+  },
+  {
+    domain: "debt-collection",
+    keywords:
+      /(?:\b(?:debt collector|collection agency|debt collection|debt validation|FDCPA|validate debt|statute of limitations|cease and desist)\b|催收|催债|欠款|讨债)/i,
+    primarySkill: "angle-finder",
+    knowledgeFiles: [
+      "knowledge/debt_collection.md",
+      "knowledge/negotiation_principles.md",
+    ],
+  },
+  {
+    domain: "warranty",
+    keywords:
+      /(?:\b(?:warranty|defect|lemon law|product recall|implied warranty|merchantability)\b|三包|质保|保修|产品缺陷)/i,
+    primarySkill: "complaint-handler",
+    knowledgeFiles: [
+      "knowledge/warranty_and_defects.md",
+      "knowledge/ecommerce_refunds.md",
+      "knowledge/negotiation_principles.md",
+    ],
+  },
 ];
 
 const HIGH_RISK_RE =
-  /\b(sue|lawsuit|legal action|court|small claims|threat|chargeback|defamation|lawyer|attorney|police|fraud)\b/i;
+  /\b(sue|lawsuit|legal action|court|small claims|threat(?:en)?|chargeback|defamation|lawyer|attorney|police|fraud|fake|forg(?:e|ed|ing)|fabricat|blackmail|extort|dox(?:x?ing)?|impersonat|stalk|intimidat)\b/i;
 const MEDIUM_RISK_RE =
   /\b(public review|legalistic|dispute|escalat|ombudsman|regulator|complaint|employment)\b/i;
 
@@ -94,8 +171,8 @@ function detectRisk(text: string): RiskLevel {
 }
 
 const FACT_PROBES: { fact: string; present: RegExp }[] = [
-  { fact: "jurisdiction", present: /\b(country|state|jurisdiction|uk|us|eu|usa|canada|australia)\b/i },
-  { fact: "platform", present: /\b(amazon|ebay|booking|airbnb|paypal|stripe|platform|app|website|marketplace)\b/i },
+  { fact: "jurisdiction", present: /(?:\b(?:country|state|jurisdiction|uk|us|eu|usa|canada|australia|china|korea|germany|france|india|brazil|singapore|hong kong)\b|中国|日本)/i },
+  { fact: "platform", present: /(?:\b(?:amazon|ebay|booking|airbnb|paypal|stripe|platform|app|website|marketplace|taobao|tmall|uber|lyft|doordash|shopify)\b|淘宝|天猫|京东|拼多多|抖音|闲鱼)/i },
   { fact: "amount", present: /(\$|€|£|usd|eur|gbp|\d+\s?(dollars|euros|pounds))/i },
   { fact: "date", present: /\b(\d{4}|january|february|march|april|may|june|july|august|september|october|november|december|yesterday|weeks? ago|days? ago)\b/i },
 ];

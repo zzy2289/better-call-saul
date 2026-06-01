@@ -1,0 +1,17 @@
+{
+  "id": "eval-001",
+  "title": "E-commerce refund — item not as described",
+  "scenario": "I bought a laptop listed as new on Amazon. It arrived with scratches and a battery cycle count over 300. The seller says this is normal warehouse handling and refuses a refund. I have photos, the listing screenshot, and the support chat.",
+  "jurisdiction": "US",
+  "platform": "Amazon",
+  "amountAtStake": 899,
+  "expected": {
+    "primarySkill": "complaint-handler",
+    "matchedDomains": ["ecommerce"],
+    "riskLevel": "low",
+    "knowledgeFilesContain": ["knowledge/ecommerce_refunds.md"],
+    "requiredSections": ["Situation Read", "Leverage Map", "Scripts", "Risk Check", "Saul Commentary"],
+    "mustMentionConcepts": ["not as described", "listing representation", "A-to-z Guarantee"],
+    "mustNotSuggest": ["chargeback as first step", "threaten lawsuit immediately"]
+  }
+}

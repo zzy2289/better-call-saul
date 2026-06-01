@@ -35,6 +35,10 @@ When available, consult:
 - `{baseDir}/../../knowledge/travel_disputes.md`
 - `{baseDir}/../../knowledge/negotiation_principles.md`
 - `{baseDir}/../../knowledge/jurisdiction_notes.md`
+- `{baseDir}/../../knowledge/china_consumer_rights.md`
+- `{baseDir}/../../knowledge/chargeback_and_payment_disputes.md`
+- `{baseDir}/../../knowledge/landlord_tenant_disputes.md`
+- `{baseDir}/../../knowledge/warranty_and_defects.md`
 - `{baseDir}/../../prompts/output_formats.md`
 
 ## Workflow

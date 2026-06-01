@@ -42,6 +42,8 @@ export interface DisputeCase {
   constraints?: string[];
   preferredTone?: Tone;
   urgency?: Urgency;
+  /** Output language: "en", "zh", "bilingual", or any BCP-47 tag. Defaults to "en". */
+  language?: string;
 }
 
 export interface ParsedExample {

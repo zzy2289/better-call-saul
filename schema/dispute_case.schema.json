@@ -70,6 +70,10 @@
         "medium",
         "high"
       ]
+    },
+    "language": {
+      "type": "string",
+      "description": "Output language: en, zh, bilingual, or any BCP-47 tag. Defaults to en."
     }
   },
   "required": [

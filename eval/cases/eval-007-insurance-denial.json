@@ -1,0 +1,15 @@
+{
+  "id": "eval-007",
+  "title": "Insurance claim denied — car accident",
+  "scenario": "My car was hit while parked. The other driver left a note with their insurance info. I filed a claim with their insurer. After two weeks they denied it saying the damage was pre-existing. I have photos from the day before and the body shop estimate of $3,200.",
+  "amountAtStake": 3200,
+  "expected": {
+    "primarySkill": "angle-finder",
+    "matchedDomains": ["insurance"],
+    "riskLevel": "low",
+    "knowledgeFilesContain": ["knowledge/insurance_claims.md"],
+    "requiredSections": ["Situation Read", "Best Strategy", "Scripts", "Risk Check"],
+    "mustMentionConcepts": ["policy language", "appeal", "pre-existing evidence rebuttal", "state insurance commissioner"],
+    "mustNotSuggest": ["accept the denial", "hire a lawyer immediately without appealing first"]
+  }
+}

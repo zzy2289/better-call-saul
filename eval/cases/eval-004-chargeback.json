@@ -1,0 +1,16 @@
+{
+  "id": "eval-004",
+  "title": "Chargeback for undelivered goods",
+  "scenario": "I ordered a custom desk from a small online furniture store for $850. They promised delivery in 4-6 weeks. It has been 12 weeks. I emailed them five times and they replied once then stopped responding. Their phone goes to voicemail. I paid with a Visa credit card.",
+  "jurisdiction": "US",
+  "amountAtStake": 850,
+  "expected": {
+    "primarySkill": "complaint-handler",
+    "matchedDomains": ["ecommerce"],
+    "riskLevel": "low",
+    "knowledgeFilesContain": ["knowledge/ecommerce_refunds.md"],
+    "requiredSections": ["Situation Read", "Best Strategy", "Scripts", "Risk Check"],
+    "mustMentionConcepts": ["chargeback", "Visa", "goods not received", "documentation"],
+    "mustNotSuggest": ["wait longer without action", "accept partial delivery"]
+  }
+}
