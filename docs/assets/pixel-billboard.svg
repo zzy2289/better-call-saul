@@ -1,245 +1,148 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="700" height="280" viewBox="0 0 700 280">
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="420" viewBox="0 0 700 420">
   <defs>
-    <radialGradient id="bkgd" cx="40%" cy="45%" r="65%">
-      <stop offset="0%" stop-color="#1e1e3a"/>
-      <stop offset="100%" stop-color="#111128"/>
-    </radialGradient>
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="3" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-    <pattern id="scan" width="700" height="4" patternUnits="userSpaceOnUse">
-      <rect width="700" height="2" fill="rgba(0,0,0,0.08)"/>
+    <pattern id="px" width="8" height="8" patternUnits="userSpaceOnUse">
+      <rect width="8" height="1" y="7" fill="rgba(0,0,0,0.02)"/>
+      <rect width="1" height="8" x="7" fill="rgba(0,0,0,0.02)"/>
     </pattern>
   </defs>
 
-  <!-- Canvas -->
-  <rect width="700" height="280" fill="#0d1117"/>
+  <!-- ═══ MUSTARD YELLOW BACKGROUND ═══ -->
+  <rect width="700" height="420" fill="#f0d648"/>
 
-  <!-- Billboard surface -->
-  <rect x="14" y="14" width="672" height="252" fill="url(#bkgd)"/>
+  <!-- ═══ BOTTOM RED BAR ═══ -->
+  <rect y="365" width="700" height="55" fill="#cc2a2a"/>
+  <text x="350" y="397" text-anchor="middle"
+        font-family="'Courier New',Consolas,monospace" font-weight="700"
+        font-size="13" letter-spacing="0.1em" fill="#f0d648">OPEN SOURCE · FREE · GITHUB.COM/ZZY2289/BETTER-CALL-SAUL</text>
 
-  <!-- ═══ OUTER BORDER — gold 8 px ═══ -->
-  <rect x="14"  y="14"  width="672" height="8" fill="#f5a623"/>
-  <rect x="14"  y="258" width="672" height="8" fill="#f5a623"/>
-  <rect x="14"  y="22"  width="8"   height="236" fill="#f5a623"/>
-  <rect x="678" y="22"  width="8"   height="236" fill="#f5a623"/>
+  <!-- ═══ "GOT A DISPUTE?" BLACK BANNER ═══ -->
+  <rect x="55" y="52" width="295" height="34" fill="#1a1a1a"/>
+  <text x="202" y="76" text-anchor="middle"
+        font-family="'Courier New',Consolas,monospace" font-weight="700"
+        font-size="18" letter-spacing="0.25em" fill="#f0d648">GOT A DISPUTE?</text>
 
-  <!-- ═══ INNER BORDER — gold 4 px ═══ -->
-  <rect x="30" y="30"  width="640" height="4" fill="#f5a623" opacity="0.65"/>
-  <rect x="30" y="246" width="640" height="4" fill="#f5a623" opacity="0.65"/>
-  <rect x="30" y="34"  width="4"   height="212" fill="#f5a623" opacity="0.65"/>
-  <rect x="666" y="34" width="4"   height="212" fill="#f5a623" opacity="0.65"/>
-
-  <!-- Corner accent blocks -->
-  <rect x="22" y="22" width="8" height="8" fill="#f5a623"/>
-  <rect x="670" y="22" width="8" height="8" fill="#f5a623"/>
-  <rect x="22" y="250" width="8" height="8" fill="#f5a623"/>
-  <rect x="670" y="250" width="8" height="8" fill="#f5a623"/>
-
-  <!-- ═══ MARQUEE LIGHTS — top ═══ -->
-  <circle cx="50"  cy="26" r="2.5" fill="#e94560" opacity="0.9"/>
-  <circle cx="90"  cy="26" r="2.5" fill="#f5a623" opacity="0.85"/>
-  <circle cx="130" cy="26" r="2.5" fill="#e94560" opacity="0.9"/>
-  <circle cx="170" cy="26" r="2.5" fill="#f5a623" opacity="0.85"/>
-  <circle cx="210" cy="26" r="2.5" fill="#e94560" opacity="0.9"/>
-  <circle cx="250" cy="26" r="2.5" fill="#f5a623" opacity="0.85"/>
-  <circle cx="290" cy="26" r="2.5" fill="#e94560" opacity="0.9"/>
-  <circle cx="330" cy="26" r="2.5" fill="#f5a623" opacity="0.85"/>
-  <circle cx="370" cy="26" r="2.5" fill="#e94560" opacity="0.9"/>
-  <circle cx="410" cy="26" r="2.5" fill="#f5a623" opacity="0.85"/>
-  <circle cx="450" cy="26" r="2.5" fill="#e94560" opacity="0.9"/>
-  <circle cx="490" cy="26" r="2.5" fill="#f5a623" opacity="0.85"/>
-  <circle cx="530" cy="26" r="2.5" fill="#e94560" opacity="0.9"/>
-  <circle cx="570" cy="26" r="2.5" fill="#f5a623" opacity="0.85"/>
-  <circle cx="610" cy="26" r="2.5" fill="#e94560" opacity="0.9"/>
-  <circle cx="650" cy="26" r="2.5" fill="#f5a623" opacity="0.85"/>
-
-  <!-- ═══ MARQUEE LIGHTS — bottom ═══ -->
-  <circle cx="50"  cy="254" r="2.5" fill="#f5a623" opacity="0.85"/>
-  <circle cx="90"  cy="254" r="2.5" fill="#e94560" opacity="0.9"/>
-  <circle cx="130" cy="254" r="2.5" fill="#f5a623" opacity="0.85"/>
-  <circle cx="170" cy="254" r="2.5" fill="#e94560" opacity="0.9"/>
-  <circle cx="210" cy="254" r="2.5" fill="#f5a623" opacity="0.85"/>
-  <circle cx="250" cy="254" r="2.5" fill="#e94560" opacity="0.9"/>
-  <circle cx="290" cy="254" r="2.5" fill="#f5a623" opacity="0.85"/>
-  <circle cx="330" cy="254" r="2.5" fill="#e94560" opacity="0.9"/>
-  <circle cx="370" cy="254" r="2.5" fill="#f5a623" opacity="0.85"/>
-  <circle cx="410" cy="254" r="2.5" fill="#e94560" opacity="0.9"/>
-  <circle cx="450" cy="254" r="2.5" fill="#f5a623" opacity="0.85"/>
-  <circle cx="490" cy="254" r="2.5" fill="#e94560" opacity="0.9"/>
-  <circle cx="530" cy="254" r="2.5" fill="#f5a623" opacity="0.85"/>
-  <circle cx="570" cy="254" r="2.5" fill="#e94560" opacity="0.9"/>
-  <circle cx="610" cy="254" r="2.5" fill="#f5a623" opacity="0.85"/>
-  <circle cx="650" cy="254" r="2.5" fill="#e94560" opacity="0.9"/>
-
-  <!-- ═══ MARQUEE LIGHTS — left ═══ -->
-  <circle cx="26" cy="54"  r="2.5" fill="#e94560" opacity="0.9"/>
-  <circle cx="26" cy="94"  r="2.5" fill="#f5a623" opacity="0.85"/>
-  <circle cx="26" cy="134" r="2.5" fill="#e94560" opacity="0.9"/>
-  <circle cx="26" cy="174" r="2.5" fill="#f5a623" opacity="0.85"/>
-  <circle cx="26" cy="214" r="2.5" fill="#e94560" opacity="0.9"/>
-
-  <!-- ═══ MARQUEE LIGHTS — right ═══ -->
-  <circle cx="674" cy="54"  r="2.5" fill="#f5a623" opacity="0.85"/>
-  <circle cx="674" cy="94"  r="2.5" fill="#e94560" opacity="0.9"/>
-  <circle cx="674" cy="134" r="2.5" fill="#f5a623" opacity="0.85"/>
-  <circle cx="674" cy="174" r="2.5" fill="#e94560" opacity="0.9"/>
-  <circle cx="674" cy="214" r="2.5" fill="#f5a623" opacity="0.85"/>
-
-  <!-- ★ PIXEL STARS — crimson cross ★ -->
-  <g fill="#e94560">
-    <rect x="57" y="43" width="6" height="6"/><rect x="51" y="49" width="6" height="6"/>
-    <rect x="57" y="49" width="6" height="6"/><rect x="63" y="49" width="6" height="6"/>
-    <rect x="57" y="55" width="6" height="6"/>
-  </g>
-  <g fill="#e94560">
-    <rect x="637" y="43" width="6" height="6"/><rect x="631" y="49" width="6" height="6"/>
-    <rect x="637" y="49" width="6" height="6"/><rect x="643" y="49" width="6" height="6"/>
-    <rect x="637" y="55" width="6" height="6"/>
-  </g>
-  <g fill="#e94560">
-    <rect x="57" y="221" width="6" height="6"/><rect x="51" y="227" width="6" height="6"/>
-    <rect x="57" y="227" width="6" height="6"/><rect x="63" y="227" width="6" height="6"/>
-    <rect x="57" y="233" width="6" height="6"/>
-  </g>
-  <g fill="#e94560">
-    <rect x="637" y="221" width="6" height="6"/><rect x="631" y="227" width="6" height="6"/>
-    <rect x="637" y="227" width="6" height="6"/><rect x="643" y="227" width="6" height="6"/>
-    <rect x="637" y="233" width="6" height="6"/>
-  </g>
-
-  <!-- ══════════════════════════════════════════════════════
-       PIXEL SAUL — lawyer character, p=5, facing left
-       Origin col0=568, row0=72   (body left edge)
-       Pointing arm extends left toward title text
-       ══════════════════════════════════════════════════════ -->
-
-  <!-- Hair (#c8a24c) — slicked back -->
-  <g fill="#c8a24c">
-    <rect x="583" y="72"  width="20" height="5"/><!-- R0: cols 3-6 -->
-    <rect x="578" y="77"  width="30" height="5"/><!-- R1: cols 2-7 -->
-    <rect x="573" y="82"  width="40" height="5"/><!-- R2: cols 1-8 -->
-    <rect x="573" y="87"  width="40" height="5"/><!-- R3: cols 1-8 -->
-  </g>
-
-  <!-- Skin (#e8b87c) — face, neck, arm -->
-  <g fill="#e8b87c">
-    <rect x="573" y="92"  width="40" height="5"/><!-- R4: forehead -->
-    <rect x="573" y="97"  width="10" height="5"/><!-- R5: left cheek cols 1-2 -->
-    <rect x="588" y="97"  width="10" height="5"/><!-- R5: mid cols 4-5 -->
-    <rect x="603" y="97"  width="10" height="5"/><!-- R5: right cheek cols 7-8 -->
-    <rect x="573" y="102" width="40" height="5"/><!-- R6: mid-face -->
-    <rect x="573" y="107" width="10" height="5"/><!-- R7: left jaw cols 1-2 -->
-    <rect x="603" y="107" width="10" height="5"/><!-- R7: right jaw cols 7-8 -->
-    <rect x="578" y="112" width="30" height="5"/><!-- R8: chin cols 2-7 -->
-    <rect x="588" y="117" width="10" height="5"/><!-- R9: neck cols 4-5 -->
-    <!-- Pointing arm — diagonal from shoulder to finger -->
-    <rect x="563" y="132" width="5"  height="5"/><!-- R12: col -1 -->
-    <rect x="558" y="137" width="10" height="5"/><!-- R13: cols -2,-1 -->
-    <rect x="553" y="142" width="10" height="5"/><!-- R14: cols -3,-2 -->
-    <rect x="548" y="147" width="10" height="5"/><!-- R15: hand cols -4,-3 -->
-    <rect x="543" y="152" width="10" height="5"/><!-- R16: finger cols -5,-4 -->
-  </g>
-
-  <!-- Eyes (#1a1a2e) -->
-  <g fill="#1a1a2e">
-    <rect x="583" y="97" width="5" height="5"/><!-- R5: left eye col 3 -->
-    <rect x="598" y="97" width="5" height="5"/><!-- R5: right eye col 6 -->
-  </g>
-
-  <!-- Mouth / grin (#e94560) -->
-  <rect x="583" y="107" width="20" height="5" fill="#e94560"/><!-- R7: cols 3-6 -->
-
-  <!-- Shirt collar (#d0d0d0) -->
-  <g fill="#d0d0d0">
-    <rect x="578" y="122" width="10" height="5"/><!-- R10: cols 2-3 -->
-    <rect x="598" y="122" width="10" height="5"/><!-- R10: cols 6-7 -->
-  </g>
-
-  <!-- Tie (#e94560) -->
-  <g fill="#e94560">
-    <rect x="588" y="122" width="10" height="5"/><!-- R10: cols 4-5 -->
-    <rect x="588" y="127" width="10" height="5"/><!-- R11: cols 4-5 -->
-    <rect x="588" y="132" width="10" height="5"/><!-- R12: cols 4-5 -->
-  </g>
-
-  <!-- Suit (#16213e) -->
-  <g fill="#16213e">
-    <!-- R11: shoulders -->
-    <rect x="568" y="127" width="20" height="5"/><!-- cols 0-3 -->
-    <rect x="598" y="127" width="20" height="5"/><!-- cols 6-9 -->
-    <!-- R12: chest (arm extends from left) -->
-    <rect x="568" y="132" width="20" height="5"/><!-- cols 0-3 -->
-    <rect x="598" y="132" width="20" height="5"/><!-- cols 6-9 -->
-    <!-- R13: mid body -->
-    <rect x="568" y="137" width="45" height="5"/><!-- cols 0-8 -->
-    <!-- R14: lower body -->
-    <rect x="568" y="142" width="40" height="5"/><!-- cols 0-7 -->
-    <!-- R15: waist -->
-    <rect x="573" y="147" width="30" height="5"/><!-- cols 1-6 -->
-    <!-- R16: hip -->
-    <rect x="578" y="152" width="20" height="5"/><!-- cols 2-5 -->
-    <!-- R17-18: legs -->
-    <rect x="583" y="157" width="5"  height="10"/><!-- col 3, rows 17-18 -->
-    <rect x="598" y="157" width="5"  height="10"/><!-- col 6, rows 17-18 -->
-  </g>
-
-  <!-- Shoes (#1a1a2e) -->
-  <g fill="#1a1a2e">
-    <rect x="578" y="167" width="10" height="5"/><!-- cols 2-3 -->
-    <rect x="598" y="167" width="10" height="5"/><!-- cols 6-7 -->
-  </g>
-
-  <!-- ═══ TITLE (shifted left) ═══ -->
-  <text x="270" y="110" text-anchor="middle"
-        font-family="'Courier New','Consolas','Liberation Mono',monospace"
-        font-weight="900" font-size="40" letter-spacing="0.12em"
-        fill="#f5a623" filter="url(#glow)">BETTER CALL SAUL</text>
-
-  <!-- Pixel dot divider -->
-  <g fill="#f5a623" opacity="0.45">
-    <rect x="152" y="126" width="4" height="4"/>
-    <rect x="164" y="126" width="4" height="4"/>
-    <rect x="176" y="126" width="4" height="4"/>
-    <rect x="188" y="126" width="4" height="4"/>
-    <rect x="200" y="126" width="4" height="4"/>
-    <rect x="212" y="126" width="4" height="4"/>
-    <rect x="224" y="126" width="4" height="4"/>
-    <rect x="236" y="126" width="4" height="4"/>
-    <rect x="248" y="126" width="4" height="4"/>
-    <rect x="260" y="126" width="4" height="4"/>
-    <rect x="272" y="126" width="4" height="4"/>
-    <rect x="284" y="126" width="4" height="4"/>
-    <rect x="296" y="126" width="4" height="4"/>
-    <rect x="308" y="126" width="4" height="4"/>
-    <rect x="320" y="126" width="4" height="4"/>
-    <rect x="332" y="126" width="4" height="4"/>
-    <rect x="344" y="126" width="4" height="4"/>
-    <rect x="356" y="126" width="4" height="4"/>
-    <rect x="368" y="126" width="4" height="4"/>
-    <rect x="380" y="126" width="4" height="4"/>
-    <rect x="392" y="126" width="4" height="4"/>
-  </g>
-
-  <!-- ═══ SUBTITLE ═══ -->
-  <text x="270" y="160" text-anchor="middle"
-        font-family="'Courier New','Consolas','Liberation Mono',monospace"
-        font-weight="700" font-size="17" letter-spacing="0.35em"
-        fill="#7ec8e3">AI DISPUTE FIXER</text>
-
-  <!-- ═══ CHINESE TAGLINE ═══ -->
-  <text x="270" y="192" text-anchor="middle"
+  <!-- ═══ SCATTERED DISPUTE LABELS ═══ -->
+  <text x="55" y="42"
         font-family="'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif"
-        font-size="15" letter-spacing="0.6em"
-        fill="#e94560">纠纷终结者</text>
+        font-weight="900" font-size="15" fill="#1a1a1a"
+        transform="rotate(-8,55,42)">退款被拒</text>
 
-  <!-- ═══ BOTTOM TAGLINE ═══ -->
-  <text x="270" y="222" text-anchor="middle"
-        font-family="'Courier New','Consolas','Liberation Mono',monospace"
-        font-size="11" letter-spacing="0.2em"
-        fill="#a0a0a0" opacity="0.7">OPEN SOURCE · PRIVACY FIRST · FREE</text>
+  <text x="362" y="50"
+        font-family="'Courier New',monospace"
+        font-weight="900" font-size="14" fill="#1a1a1a"
+        transform="rotate(5,362,50)">SCAM ALERT</text>
 
-  <!-- Scanline overlay for retro CRT feel -->
-  <rect x="34" y="34" width="632" height="212" fill="url(#scan)" opacity="0.6"/>
+  <text x="38" y="175"
+        font-family="'Courier New',monospace"
+        font-weight="900" font-size="14" fill="#1a1a1a"
+        transform="rotate(-10,38,175)">DEPOSIT STOLEN</text>
+
+  <text x="355" y="145"
+        font-family="'Courier New',monospace"
+        font-weight="900" font-size="13" fill="#1a1a1a"
+        transform="rotate(6,355,145)">BAD SERVICE</text>
+
+  <text x="48" y="245"
+        font-family="'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif"
+        font-weight="900" font-size="14" fill="#1a1a1a"
+        transform="rotate(5,48,245)">被骗了?</text>
+
+  <text x="60" y="340"
+        font-family="'Courier New',monospace"
+        font-weight="900" font-size="13" fill="#1a1a1a"
+        transform="rotate(6,60,340)">BAD LANDLORD</text>
+
+  <text x="245" y="350"
+        font-family="'Courier New',monospace"
+        font-weight="900" font-size="14" fill="#1a1a1a"
+        transform="rotate(-4,245,350)">DEBT OWED</text>
+
+  <!-- ═══ MAIN TEXT: BETTER CALL SAUL ═══ -->
+  <text x="65" y="148"
+        font-family="Impact,'Arial Black',Helvetica,Arial,sans-serif"
+        font-weight="900" font-size="58" fill="#cc2a2a"
+        font-style="italic" letter-spacing="0.02em">BETTER</text>
+  <text x="120" y="222"
+        font-family="Impact,'Arial Black',Helvetica,Arial,sans-serif"
+        font-weight="900" font-size="62" fill="#cc2a2a"
+        font-style="italic" letter-spacing="0.02em">CALL</text>
+  <text x="140" y="305"
+        font-family="Impact,'Arial Black',Helvetica,Arial,sans-serif"
+        font-weight="900" font-size="78" fill="#cc2a2a"
+        font-style="italic" letter-spacing="0.01em">SAUL!</text>
+
+  <!-- ═══ "FIX IT NOW" CIRCLE BADGE ═══ -->
+  <circle cx="415" cy="325" r="32" fill="#1a1a1a"/>
+  <text x="415" y="320" text-anchor="middle"
+        font-family="Impact,'Arial Black',sans-serif" font-weight="900"
+        font-size="12" fill="#f0d648" letter-spacing="0.1em">FIX IT</text>
+  <text x="415" y="337" text-anchor="middle"
+        font-family="Impact,'Arial Black',sans-serif" font-weight="900"
+        font-size="15" fill="#f0d648" letter-spacing="0.08em">NOW</text>
+  <!-- Starburst rays -->
+  <g fill="#1a1a1a">
+    <rect x="413" y="286" width="4" height="6"/>
+    <rect x="389" y="299" width="4" height="4"/>
+    <rect x="437" y="299" width="4" height="4"/>
+    <rect x="378" y="323" width="6" height="4"/>
+    <rect x="452" y="323" width="6" height="4"/>
+    <rect x="389" y="347" width="4" height="4"/>
+    <rect x="437" y="347" width="4" height="4"/>
+    <rect x="413" y="360" width="4" height="6"/>
+  </g>
+
+  <!-- ═══ PIXEL CHARACTER SILHOUETTE (p=8, x0=456, y0=37) ═══ -->
+  <g fill="#1a1a1a">
+    <!-- Hair -->
+    <rect x="504" y="37" width="40" height="8"/>
+    <rect x="496" y="45" width="56" height="8"/>
+    <!-- Head -->
+    <rect x="488" y="53" width="64" height="24"/>
+    <!-- Nose profile extends left -->
+    <rect x="480" y="77" width="72" height="8"/>
+    <!-- Mouth / jaw -->
+    <rect x="488" y="85" width="56" height="8"/>
+    <rect x="496" y="93" width="48" height="8"/>
+    <!-- Neck -->
+    <rect x="504" y="101" width="32" height="8"/>
+    <!-- Collar -->
+    <rect x="496" y="109" width="48" height="8"/>
+    <!-- Shoulders build-up -->
+    <rect x="480" y="117" width="88" height="8"/>
+    <rect x="472" y="125" width="104" height="8"/>
+    <rect x="464" y="133" width="120" height="8"/>
+    <!-- Chest -->
+    <rect x="456" y="141" width="128" height="8"/>
+    <!-- Arm starts (connected to body) -->
+    <rect x="432" y="149" width="152" height="8"/>
+    <!-- Forearm (separates from body) -->
+    <rect x="400" y="157" width="40" height="8"/>
+    <rect x="496" y="157" width="80" height="8"/>
+    <!-- Hand -->
+    <rect x="368" y="165" width="40" height="8"/>
+    <rect x="504" y="165" width="72" height="8"/>
+    <!-- Pointing finger -->
+    <rect x="352" y="173" width="24" height="8"/>
+    <!-- Torso (finger row body merges into torso) -->
+    <rect x="504" y="173" width="64" height="24"/>
+    <!-- Mid-body -->
+    <rect x="496" y="197" width="72" height="32"/>
+    <!-- Waist -->
+    <rect x="496" y="229" width="64" height="24"/>
+    <!-- Upper legs -->
+    <rect x="496" y="253" width="32" height="40"/>
+    <rect x="536" y="253" width="24" height="40"/>
+    <!-- Lower legs -->
+    <rect x="496" y="293" width="32" height="24"/>
+    <rect x="536" y="293" width="32" height="24"/>
+    <!-- Ankles -->
+    <rect x="496" y="317" width="32" height="8"/>
+    <rect x="544" y="317" width="24" height="8"/>
+    <!-- Feet (wider) -->
+    <rect x="488" y="325" width="48" height="24"/>
+    <rect x="536" y="325" width="40" height="24"/>
+  </g>
+
+  <!-- ═══ PIXEL GRID OVERLAY (retro CRT feel) ═══ -->
+  <rect width="700" height="365" fill="url(#px)"/>
 </svg>
