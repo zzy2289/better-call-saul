@@ -21,7 +21,7 @@
 </p>
 
 <p align="center">
-  <img src="docs/assets/pixel-billboard.svg" alt="Better Call Saul pixel billboard" width="700">
+  <img src="docs/assets/pixel-billboard.png" alt="Better Call Saul pixel billboard" width="700">
 </p>
 
 ---
