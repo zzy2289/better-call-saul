@@ -64,8 +64,10 @@ In Claude Code:
 node dist/cli.js uninstall --host claude-code --scope project
 ```
 
-This removes only the four Saul skill folders and the `saul` subagent file. It
-never deletes your other `.claude/` content.
+This removes only the paths recorded in the install manifest
+(`<scope>/.claude/.saul-install.json`) — the four Saul skill folders and the
+`saul` subagent file we created. Pre-existing files with the same name are never
+overwritten on install and never deleted on uninstall.
 
 ---
 
@@ -79,7 +81,15 @@ openclaw onboard --install-daemon
 openclaw gateway status
 ```
 
-Install the skills into the active OpenClaw workspace:
+Install the four skills into the active OpenClaw workspace. The CLI shells out to
+the `openclaw` binary for you:
+
+```bash
+node dist/cli.js install --host openclaw            # install all 4 skills
+node dist/cli.js install --host openclaw --dry-run  # preview the exact commands
+```
+
+Equivalently, you can run the bundled script directly:
 
 ```bash
 bash scripts/install-local-skills.sh            # install

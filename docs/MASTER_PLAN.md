@@ -225,6 +225,8 @@ saul print-openclaw-config --workspace /abs/path
 
 > 格式：`YYYY-MM-DD | 阶段-任务 | 做了什么 | 验证结果`
 
+- 2026-06-01 | P1 review fixes | 修 Codex 三个 blocker：(1) install/uninstall 改用包内相对根 `findRepoRoot()`（不再依赖 cwd 的 SOUL.md），`npx better-call-saul install` 在任意用户目录可用；(2) `saul install --host openclaw` 真正执行 `openclaw skills install`（不再只打印），package files 加入 `scripts/`；(3) manifest 化安装（`.claude/.saul-install.json`）—— 不覆盖同名既有文件、卸载只删自己装的、完全可逆；并把 Claude Code subagent 输出改成 canonical 9 段全量格式 | typecheck 通过，33/33 测试（installer 新增冲突保护/卸载隔离/无 manifest 等用例），build/validate/check-refs 通过，外部 cwd 端到端 install→re-install→uninstall 验证 0 残留
+
 - 2026-06-01 | P1-1~7 | 零门槛集成：src/installer.ts（detect-hosts/install/uninstall，Claude Code 原生拷贝 skills + 生成 saul subagent，project/user scope，幂等且可逆）；cli 加 detect-hosts/install/uninstall；硬化 OpenClaw 脚本（--dry-run/预检）；GALLERY.md 6 案例；docs/INSTALL.md 双宿主；better-call-saul bin 别名；templates/ 入包 | typecheck 通过，30/30 测试绿（新增 installer 5 测试），validate/check-refs 通过，临时 HOME 实装+卸载验证可逆
 - 2026-06-01 | P0 收口 | 按 Codex review 修三点：P0-1 措辞改「prompt bundle 快照」；第2节补全提交链 + 19/19→25/25；记录 YOUR_NAME 占位符为公开前必修并加 P4-4b | 文档一致，未动代码
 - 2026-06-01 | P0-4 | 保留命名；给 DISCLAIMER 加商标/命名 + 善意合规条款，LICENSE 加商标排除说明 | validate 通过，P0 全部 5 任务完成，待 Review Gate 用户确认

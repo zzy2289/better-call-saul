@@ -15,6 +15,7 @@
     "prompts",
     "schema",
     "templates",
+    "scripts",
     "SOUL.md"
   ],
   "engines": {

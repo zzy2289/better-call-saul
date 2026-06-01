@@ -10,8 +10,10 @@ import { parseExampleFile } from "./example.js";
 import { buildOpenClawConfigSnippet, runDoctor } from "./doctor.js";
 import { checkReferenceSync } from "./references-sync.js";
 import {
-  applyPlan,
+  applyInstall,
+  applyUninstall,
   detectHosts,
+  installOpenClaw,
   planClaudeInstall,
   planClaudeUninstall,
   type InstallScope,
@@ -27,6 +29,15 @@ program
 
 function root(): string {
   return findRepoRoot(process.cwd());
+}
+
+/**
+ * Repo root resolved from this module's own location (package-relative), so
+ * `install`/`uninstall` work from any cwd — including `npx better-call-saul`
+ * run inside a user project that has no SOUL.md.
+ */
+function assetRoot(): string {
+  return findRepoRoot();
 }
 
 program
@@ -176,7 +187,7 @@ program
   .action((opts: { host: string; scope: string; dryRun?: boolean }) => {
     const scope = normalizeScope(opts.scope);
     const cwd = process.cwd();
-    const repoRoot = root();
+    const repoRoot = assetRoot();
 
     let host = opts.host;
     if (host === "auto") {
@@ -196,10 +207,18 @@ program
 
     if (host === "claude-code") {
       const plan = planClaudeInstall(repoRoot, scope, cwd);
-      const result = applyPlan(plan, Boolean(opts.dryRun));
+      const result = applyInstall(plan, Boolean(opts.dryRun));
       console.log(`${result.applied ? "Installed" : "[dry-run] Would install"} into ${plan.baseDir}:`);
-      for (const op of result.ops) {
-        console.log(`  ${op.action} ${op.target}`);
+      for (const target of result.installed) {
+        console.log(`  + ${target}`);
+      }
+      for (const target of result.skipped) {
+        console.log(`  ! skipped (pre-existing, not ours): ${target}`);
+      }
+      if (result.skipped.length > 0) {
+        console.log(
+          "Some targets already existed and were left untouched. Remove/rename them, then re-run.",
+        );
       }
       if (result.applied) {
         console.log('Done. In Claude Code, the "saul" subagent and skills are now available in this scope.');
@@ -208,9 +227,14 @@ program
     }
 
     if (host === "openclaw") {
-      console.log("For OpenClaw, run the install script (it shells out to the openclaw CLI):");
-      console.log("  bash scripts/install-local-skills.sh");
-      console.log("Or print a config snippet with: saul print-openclaw-config --workspace " + repoRoot);
+      const result = installOpenClaw(repoRoot, Boolean(opts.dryRun));
+      console.log(`${result.applied ? "Installed" : "[dry-run] Would install"} into OpenClaw:`);
+      for (const cmd of result.commands) {
+        console.log(`  ${cmd}`);
+      }
+      if (result.applied) {
+        console.log(`Done. ${result.skills.length} skills installed. Enable them in your OpenClaw workspace.`);
+      }
       return;
     }
 
@@ -231,10 +255,17 @@ program
     }
     const scope = normalizeScope(opts.scope);
     const plan = planClaudeUninstall(scope, process.cwd());
-    const result = applyPlan(plan, Boolean(opts.dryRun));
+    if (plan.ops.length === 0) {
+      console.log(`No Saul install manifest found in ${plan.baseDir}. Nothing to remove.`);
+      return;
+    }
+    const result = applyUninstall(plan, Boolean(opts.dryRun));
     console.log(`${result.applied ? "Removed" : "[dry-run] Would remove"} from ${plan.baseDir}:`);
-    for (const op of result.ops) {
-      console.log(`  ${op.action} ${op.target}`);
+    for (const target of result.removed) {
+      console.log(`  - ${target}`);
+    }
+    for (const target of result.missing) {
+      console.log(`  (already gone) ${target}`);
     }
   });
 

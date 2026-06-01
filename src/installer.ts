@@ -25,7 +25,7 @@ export interface FileOp {
   action: "copy-dir" | "write-file" | "remove";
   /** Absolute destination path. */
   target: string;
-  /** Absolute source path for copy-dir ops. */
+  /** Absolute source path for copy-dir / write-file ops. */
   source?: string;
 }
 
@@ -40,14 +40,59 @@ export interface InstallPlan {
 export interface InstallResult {
   plan: InstallPlan;
   applied: boolean;
-  ops: FileOp[];
+  /** Targets we created or refreshed. */
+  installed: string[];
+  /** Pre-existing foreign targets we refused to overwrite. */
+  skipped: string[];
+}
+
+export interface UninstallResult {
+  plan: InstallPlan;
+  applied: boolean;
+  /** Targets we removed (only ones our manifest owns). */
+  removed: string[];
+  /** Manifest-listed targets that no longer existed on disk. */
+  missing: string[];
 }
 
 const SUBAGENT_REL = "templates/claude-code/agents/saul.md";
+const MANIFEST_NAME = ".saul-install.json";
+
+interface InstallManifest {
+  tool: "better-call-saul";
+  host: HostKind;
+  scope: InstallScope;
+  installedAt: string;
+  /** Absolute paths we created and therefore own. */
+  entries: string[];
+}
 
 /** Resolve the Claude Code base dir for a scope (project = <cwd>/.claude). */
 export function claudeBaseDir(scope: InstallScope, cwd: string, home = homedir()): string {
   return scope === "user" ? join(home, ".claude") : join(cwd, ".claude");
+}
+
+function manifestPath(baseDir: string): string {
+  return join(baseDir, MANIFEST_NAME);
+}
+
+function readManifest(baseDir: string): InstallManifest | undefined {
+  const path = manifestPath(baseDir);
+  if (!existsSync(path)) return undefined;
+  try {
+    const parsed = JSON.parse(readFileSync(path, "utf8")) as InstallManifest;
+    if (parsed && parsed.tool === "better-call-saul" && Array.isArray(parsed.entries)) {
+      return parsed;
+    }
+  } catch {
+    // Corrupt manifest: treat as absent so we never act on bad data.
+  }
+  return undefined;
+}
+
+function writeManifestTo(baseDir: string, manifest: InstallManifest): void {
+  mkdirSync(baseDir, { recursive: true });
+  writeFileSync(manifestPath(baseDir), `${JSON.stringify(manifest, null, 2)}\n`);
 }
 
 /** Detect whether a CLI binary is on PATH without throwing. */
@@ -118,34 +163,49 @@ export function planClaudeInstall(
   return { host: "claude-code", scope, baseDir, ops };
 }
 
-/** Build the uninstall plan: remove only what we install (skills + subagent). */
+/**
+ * Build the uninstall plan from the on-disk manifest. We only ever remove paths
+ * we recorded as installed, so pre-existing user files are never touched.
+ */
 export function planClaudeUninstall(
   scope: InstallScope,
   cwd: string,
   home = homedir(),
 ): InstallPlan {
   const baseDir = claudeBaseDir(scope, cwd, home);
-  const ops: FileOp[] = SKILL_NAMES.map((name) => ({
-    action: "remove" as const,
-    target: join(baseDir, "skills", name),
-  }));
-  ops.push({ action: "remove", target: join(baseDir, "agents", "saul.md") });
+  const manifest = readManifest(baseDir);
+  const owned = manifest?.entries ?? [];
+  const ops: FileOp[] = owned.map((target) => ({ action: "remove" as const, target }));
   return { host: "claude-code", scope, baseDir, ops };
 }
 
-/** Apply a plan to disk. With `dryRun`, returns the ops without touching disk. */
-export function applyPlan(plan: InstallPlan, dryRun: boolean): InstallResult {
-  if (dryRun) {
-    return { plan, applied: false, ops: plan.ops };
-  }
+/**
+ * Apply a Claude Code install plan. Pre-existing foreign targets are skipped (we
+ * never clobber files we did not create); ones we own are refreshed. Records a
+ * manifest so uninstall is precise and reversible.
+ */
+export function applyInstall(plan: InstallPlan, dryRun: boolean, force = false): InstallResult {
+  const prior = readManifest(plan.baseDir);
+  const owned = new Set(prior?.entries ?? []);
+  const installed: string[] = [];
+  const skipped: string[] = [];
 
   for (const op of plan.ops) {
+    const exists = existsSync(op.target);
+    const isOurs = owned.has(op.target);
+    if (exists && !isOurs && !force) {
+      skipped.push(op.target);
+      continue;
+    }
+    if (dryRun) {
+      installed.push(op.target);
+      continue;
+    }
     if (op.action === "copy-dir") {
       if (!op.source || !existsSync(op.source)) {
         throw new Error(`Install source missing: ${op.source}`);
       }
       mkdirSync(join(op.target, ".."), { recursive: true });
-      // Replace any prior copy so installs are idempotent.
       rmSync(op.target, { recursive: true, force: true });
       cpSync(op.source, op.target, { recursive: true });
     } else if (op.action === "write-file") {
@@ -154,10 +214,81 @@ export function applyPlan(plan: InstallPlan, dryRun: boolean): InstallResult {
       }
       mkdirSync(join(op.target, ".."), { recursive: true });
       writeFileSync(op.target, readFileSync(op.source, "utf8"));
-    } else if (op.action === "remove") {
-      rmSync(op.target, { recursive: true, force: true });
     }
+    installed.push(op.target);
   }
 
-  return { plan, applied: true, ops: plan.ops };
+  if (!dryRun && installed.length > 0) {
+    const merged = new Set<string>([...(prior?.entries ?? []), ...installed]);
+    writeManifestTo(plan.baseDir, {
+      tool: "better-call-saul",
+      host: plan.host,
+      scope: plan.scope,
+      installedAt: new Date().toISOString(),
+      entries: [...merged],
+    });
+  }
+
+  return { plan, applied: !dryRun, installed, skipped };
+}
+
+/**
+ * Apply a Claude Code uninstall plan. Removes only manifest-owned targets, then
+ * drops the manifest. Empty `skills/` and `agents/` dirs are left in place so we
+ * never delete a directory the host or the user may also be using.
+ */
+export function applyUninstall(plan: InstallPlan, dryRun: boolean): UninstallResult {
+  const removed: string[] = [];
+  const missing: string[] = [];
+
+  for (const op of plan.ops) {
+    if (!existsSync(op.target)) {
+      missing.push(op.target);
+      continue;
+    }
+    if (!dryRun) {
+      rmSync(op.target, { recursive: true, force: true });
+    }
+    removed.push(op.target);
+  }
+
+  if (!dryRun) {
+    rmSync(manifestPath(plan.baseDir), { force: true });
+  }
+
+  return { plan, applied: !dryRun, removed, missing };
+}
+
+export interface OpenClawResult {
+  applied: boolean;
+  /** Skill names we installed (or would install in dry-run). */
+  skills: string[];
+  /** Human-readable commands we ran (or would run). */
+  commands: string[];
+}
+
+/**
+ * Install the four skills into OpenClaw by shelling out to its CLI:
+ *   openclaw skills install <repoRoot>/skills/<name> --as <name>
+ * Idempotent because OpenClaw upserts skills by name.
+ */
+export function installOpenClaw(repoRoot: string, dryRun: boolean): OpenClawResult {
+  const commands: string[] = [];
+  const skills: string[] = [];
+
+  for (const name of SKILL_NAMES) {
+    const skillPath = join(repoRoot, "skills", name);
+    if (!existsSync(skillPath)) {
+      throw new Error(`Skill source missing: ${skillPath}`);
+    }
+    commands.push(`openclaw skills install ${skillPath} --as ${name}`);
+    if (!dryRun) {
+      execFileSync("openclaw", ["skills", "install", skillPath, "--as", name], {
+        stdio: ["ignore", "inherit", "inherit"],
+      });
+    }
+    skills.push(name);
+  }
+
+  return { applied: !dryRun, skills, commands };
 }
