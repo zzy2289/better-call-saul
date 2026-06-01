@@ -5,23 +5,33 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.2.0] - 2026-06-02
 
 ### Added
 
-- Host integration: `saul detect-hosts`, `saul install`, and `saul uninstall`
-  commands. Native, reversible Claude Code install (skills into
-  `.claude/skills/`, a `saul` subagent into `.claude/agents/`; project or user
-  scope, `--dry-run` supported) plus a hardened OpenClaw install script.
-- `saul` Claude Code subagent template and `better-call-saul` bin alias for the
-  `npx better-call-saul install` workflow.
-- `GALLERY.md` with six illustrative input/output dispute cases and
-  `docs/INSTALL.md` covering both hosts.
-- Example output snapshot regression tests covering every file in `examples/`,
-  locking in the deterministic routing + prompt-bundle pipeline.
-- CI, Node, license, and tests badges to the top of the README.
-- Governance files: `CODE_OF_CONDUCT.md`, this `CHANGELOG.md`, and
-  `.github/FUNDING.yml`.
+- **Codex host support**: `saul install --host codex` copies skills into
+  `.agents/skills/`, `saul uninstall --host codex`, and `saul detect-hosts`
+  now detects codex CLI / `.agents/` directory.
+- **Skill self-containment** (Phase 2): each skill's `references/` now includes
+  `docs__SAFETY_POLICY.md` and `prompts__output_formats.md` so a standalone
+  skill directory is fully usable without the repo root.
+- **Multi-platform metadata** (Phase 4): all 4 SKILL.md frontmatter metadata
+  extended to `{openclaw, claude-code, codex}` — any agent tool can read the
+  key it recognizes.
+- Codex mentioned throughout README, README.zh-CN, docs/INSTALL.md, and CLI
+  help descriptions.
+
+### Changed
+
+- Unified entry point: `CODEX_PROMPT.md` merged into `AGENTS.md` with a
+  multi-platform routing table (Phase 1).
+- package.json description updated to be platform-neutral.
+- Reference count increased from 33 to 38 (5 new cross-skill copies).
+- Test count increased from 150 to 156 (6 new Codex installer tests).
+
+### Removed
+
+- `CODEX_PROMPT.md` (content merged into `AGENTS.md`).
 
 ## [0.1.0] - 2026-05-31
 
@@ -34,5 +44,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   output format contract, JSON schemas, and five example cases.
 - Safety policy, disclaimer, security policy, and contribution guidelines.
 
-[Unreleased]: https://github.com/zzy2289/better-call-saul/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/zzy2289/better-call-saul/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/zzy2289/better-call-saul/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/zzy2289/better-call-saul/releases/tag/v0.1.0

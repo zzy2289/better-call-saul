@@ -1,7 +1,7 @@
 {
   "name": "better-call-saul",
-  "version": "0.1.0",
-  "description": "An OpenClaw-based AI fixer for everyday disputes, complaints, and negotiations.",
+  "version": "0.2.0",
+  "description": "An AI agent skill pack for everyday disputes, complaints, and negotiations. Works with Claude Code, Codex, OpenClaw, and any YAML-frontmatter agent.",
   "type": "module",
   "bin": {
     "saul": "dist/cli.js",

@@ -27,7 +27,7 @@ const program = new Command();
 program
   .name("saul")
   .description("Better Call Saul — OpenClaw workspace CLI for disputes, complaints, and negotiations.")
-  .version("0.1.0");
+  .version("0.2.0");
 
 function root(): string {
   return findRepoRoot(process.cwd());
