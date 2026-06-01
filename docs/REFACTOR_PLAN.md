@@ -69,19 +69,16 @@
 
 ### Phase 4: Frontmatter 标准化
 
-- [ ] **4.1 frontmatter 支持平台特定 metadata 子 key**
-  - 当前 metadata 是单行 JSON：`{"openclaw":{"always":true}}`
-  - 保持向后兼容：单行 JSON 仍然合法
-  - 允许嵌套结构：
-    ```yaml
-    metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
-    ```
-  - `frontmatter.ts` 解析逻辑不需要改（已经是 `Record<string, unknown>`）
-  - 仅需确认 validate 不会拒绝新 key
+- [x] **4.1 frontmatter 支持平台特定 metadata 子 key**
+  - 确认 `frontmatter.ts` 解析逻辑已兼容（`Record<string, unknown>`，无需改动）
+  - `validate` 不拒绝新 key（验证通过）
 
-- [ ] **4.2 各 skill 的 SKILL.md 更新**
-  - 在 metadata 中加入 codex / claude-code 的子 key（如果需要）
-  - description 字段确保足够通用，不绑定特定工具
+- [x] **4.2 各 skill 的 SKILL.md 更新**
+  - 4 个 SKILL.md 的 metadata 扩展为：
+    `{"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}`
+  - description 字段已通用，未绑定特定工具
+  - frontmatter 测试更新为多平台 metadata 验证
+  - 22 个 snapshot 同步更新
 
 ### Phase 5: 对外名称 & 发布（可选）
 

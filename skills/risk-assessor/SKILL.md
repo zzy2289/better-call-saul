@@ -2,7 +2,7 @@
 name: risk-assessor
 description: Use this skill when the user wants to know whether a complaint, negotiation tactic, public review, legalistic message, chargeback, escalation, or pressure move could backfire. It identifies ethical, practical, relationship, platform, reputational, and legal-risk concerns.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Risk Assessor

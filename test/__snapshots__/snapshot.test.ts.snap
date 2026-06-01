@@ -780,7 +780,7 @@ Do not:
 name: complaint-handler
 description: Use this skill when the user describes a consumer, platform, billing, travel, subscription, service, or support dispute and wants complaint, refund, cancellation, replacement, escalation, or customer-service scripts. It turns messy facts into evidence-based messages, escalation ladders, risk-aware variants, and Saul-style commentary.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Complaint Handler
@@ -1843,7 +1843,7 @@ Do not:
 name: complaint-handler
 description: Use this skill when the user describes a consumer, platform, billing, travel, subscription, service, or support dispute and wants complaint, refund, cancellation, replacement, escalation, or customer-service scripts. It turns messy facts into evidence-based messages, escalation ladders, risk-aware variants, and Saul-style commentary.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Complaint Handler
@@ -2730,7 +2730,7 @@ Do not:
 name: risk-assessor
 description: Use this skill when the user wants to know whether a complaint, negotiation tactic, public review, legalistic message, chargeback, escalation, or pressure move could backfire. It identifies ethical, practical, relationship, platform, reputational, and legal-risk concerns.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Risk Assessor
@@ -3745,7 +3745,7 @@ A bad clause is a future fight hiding in nice formatting. Fix the ambiguity whil
 name: negotiation-simulator
 description: Use this skill when the user wants to rehearse a negotiation, predict the other side's replies, prepare counters, test tone, or simulate a full back-and-forth for disputes, pricing, freelance work, contracts, refunds, support escalation, or business communication.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Negotiation Simulator
@@ -4819,7 +4819,7 @@ Do not:
 name: complaint-handler
 description: Use this skill when the user describes a consumer, platform, billing, travel, subscription, service, or support dispute and wants complaint, refund, cancellation, replacement, escalation, or customer-service scripts. It turns messy facts into evidence-based messages, escalation ladders, risk-aware variants, and Saul-style commentary.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Complaint Handler
@@ -5871,7 +5871,7 @@ Do not:
 name: complaint-handler
 description: Use this skill when the user describes a consumer, platform, billing, travel, subscription, service, or support dispute and wants complaint, refund, cancellation, replacement, escalation, or customer-service scripts. It turns messy facts into evidence-based messages, escalation ladders, risk-aware variants, and Saul-style commentary.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Complaint Handler
@@ -7126,7 +7126,7 @@ A bad clause is a future fight hiding in nice formatting. Fix the ambiguity whil
 name: complaint-handler
 description: Use this skill when the user describes a consumer, platform, billing, travel, subscription, service, or support dispute and wants complaint, refund, cancellation, replacement, escalation, or customer-service scripts. It turns messy facts into evidence-based messages, escalation ladders, risk-aware variants, and Saul-style commentary.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Complaint Handler
@@ -7206,7 +7206,7 @@ When a user wants revenge, redirect to a recoverable outcome.
 name: negotiation-simulator
 description: Use this skill when the user wants to rehearse a negotiation, predict the other side's replies, prepare counters, test tone, or simulate a full back-and-forth for disputes, pricing, freelance work, contracts, refunds, support escalation, or business communication.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Negotiation Simulator
@@ -7297,7 +7297,7 @@ Do not simulate threats, harassment, deception, blackmail, fake identities, or f
 name: angle-finder
 description: Use this skill when the user asks for the best angle, leverage, loopholes, strategy, pressure points, negotiation framing, or how to turn a weak dispute into a stronger truthful case. It finds practical, lawful angles and explains why each one works.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Angle Finder
@@ -8540,7 +8540,7 @@ Debt collectors rely on fear and urgency. Most people panic and either pay or hi
 name: negotiation-simulator
 description: Use this skill when the user wants to rehearse a negotiation, predict the other side's replies, prepare counters, test tone, or simulate a full back-and-forth for disputes, pricing, freelance work, contracts, refunds, support escalation, or business communication.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Negotiation Simulator
@@ -8631,7 +8631,7 @@ Do not simulate threats, harassment, deception, blackmail, fake identities, or f
 name: angle-finder
 description: Use this skill when the user asks for the best angle, leverage, loopholes, strategy, pressure points, negotiation framing, or how to turn a weak dispute into a stronger truthful case. It finds practical, lawful angles and explains why each one works.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Angle Finder
@@ -9825,7 +9825,7 @@ A bad clause is a future fight hiding in nice formatting. Fix the ambiguity whil
 name: complaint-handler
 description: Use this skill when the user describes a consumer, platform, billing, travel, subscription, service, or support dispute and wants complaint, refund, cancellation, replacement, escalation, or customer-service scripts. It turns messy facts into evidence-based messages, escalation ladders, risk-aware variants, and Saul-style commentary.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Complaint Handler
@@ -9905,7 +9905,7 @@ When a user wants revenge, redirect to a recoverable outcome.
 name: angle-finder
 description: Use this skill when the user asks for the best angle, leverage, loopholes, strategy, pressure points, negotiation framing, or how to turn a weak dispute into a stronger truthful case. It finds practical, lawful angles and explains why each one works.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Angle Finder
@@ -10897,7 +10897,7 @@ Do not:
 name: complaint-handler
 description: Use this skill when the user describes a consumer, platform, billing, travel, subscription, service, or support dispute and wants complaint, refund, cancellation, replacement, escalation, or customer-service scripts. It turns messy facts into evidence-based messages, escalation ladders, risk-aware variants, and Saul-style commentary.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Complaint Handler
@@ -11974,7 +11974,7 @@ A bad clause is a future fight hiding in nice formatting. Fix the ambiguity whil
 name: risk-assessor
 description: Use this skill when the user wants to know whether a complaint, negotiation tactic, public review, legalistic message, chargeback, escalation, or pressure move could backfire. It identifies ethical, practical, relationship, platform, reputational, and legal-risk concerns.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Risk Assessor
@@ -12041,7 +12041,7 @@ If the tactic involves deception, coercion, harassment, blackmail, forged eviden
 name: negotiation-simulator
 description: Use this skill when the user wants to rehearse a negotiation, predict the other side's replies, prepare counters, test tone, or simulate a full back-and-forth for disputes, pricing, freelance work, contracts, refunds, support escalation, or business communication.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Negotiation Simulator
@@ -13201,7 +13201,7 @@ A bad clause is a future fight hiding in nice formatting. Fix the ambiguity whil
 name: complaint-handler
 description: Use this skill when the user describes a consumer, platform, billing, travel, subscription, service, or support dispute and wants complaint, refund, cancellation, replacement, escalation, or customer-service scripts. It turns messy facts into evidence-based messages, escalation ladders, risk-aware variants, and Saul-style commentary.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Complaint Handler
@@ -13281,7 +13281,7 @@ When a user wants revenge, redirect to a recoverable outcome.
 name: angle-finder
 description: Use this skill when the user asks for the best angle, leverage, loopholes, strategy, pressure points, negotiation framing, or how to turn a weak dispute into a stronger truthful case. It finds practical, lawful angles and explains why each one works.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Angle Finder
@@ -14432,7 +14432,7 @@ The best e-commerce case usually sounds less like "I am mad" and more like "the 
 name: complaint-handler
 description: Use this skill when the user describes a consumer, platform, billing, travel, subscription, service, or support dispute and wants complaint, refund, cancellation, replacement, escalation, or customer-service scripts. It turns messy facts into evidence-based messages, escalation ladders, risk-aware variants, and Saul-style commentary.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Complaint Handler
@@ -15470,7 +15470,7 @@ A bad clause is a future fight hiding in nice formatting. Fix the ambiguity whil
 name: angle-finder
 description: Use this skill when the user asks for the best angle, leverage, loopholes, strategy, pressure points, negotiation framing, or how to turn a weak dispute into a stronger truthful case. It finds practical, lawful angles and explains why each one works.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Angle Finder
@@ -16458,7 +16458,7 @@ Do not:
 name: complaint-handler
 description: Use this skill when the user describes a consumer, platform, billing, travel, subscription, service, or support dispute and wants complaint, refund, cancellation, replacement, escalation, or customer-service scripts. It turns messy facts into evidence-based messages, escalation ladders, risk-aware variants, and Saul-style commentary.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Complaint Handler
@@ -17635,7 +17635,7 @@ A bad clause is a future fight hiding in nice formatting. Fix the ambiguity whil
 name: complaint-handler
 description: Use this skill when the user describes a consumer, platform, billing, travel, subscription, service, or support dispute and wants complaint, refund, cancellation, replacement, escalation, or customer-service scripts. It turns messy facts into evidence-based messages, escalation ladders, risk-aware variants, and Saul-style commentary.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Complaint Handler
@@ -17715,7 +17715,7 @@ When a user wants revenge, redirect to a recoverable outcome.
 name: angle-finder
 description: Use this skill when the user asks for the best angle, leverage, loopholes, strategy, pressure points, negotiation framing, or how to turn a weak dispute into a stronger truthful case. It finds practical, lawful angles and explains why each one works.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Angle Finder
@@ -18768,7 +18768,7 @@ Do not:
 name: complaint-handler
 description: Use this skill when the user describes a consumer, platform, billing, travel, subscription, service, or support dispute and wants complaint, refund, cancellation, replacement, escalation, or customer-service scripts. It turns messy facts into evidence-based messages, escalation ladders, risk-aware variants, and Saul-style commentary.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Complaint Handler
@@ -19928,7 +19928,7 @@ Do not:
 name: complaint-handler
 description: Use this skill when the user describes a consumer, platform, billing, travel, subscription, service, or support dispute and wants complaint, refund, cancellation, replacement, escalation, or customer-service scripts. It turns messy facts into evidence-based messages, escalation ladders, risk-aware variants, and Saul-style commentary.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Complaint Handler
@@ -20968,7 +20968,7 @@ A bad clause is a future fight hiding in nice formatting. Fix the ambiguity whil
 name: negotiation-simulator
 description: Use this skill when the user wants to rehearse a negotiation, predict the other side's replies, prepare counters, test tone, or simulate a full back-and-forth for disputes, pricing, freelance work, contracts, refunds, support escalation, or business communication.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Negotiation Simulator
@@ -21996,7 +21996,7 @@ Do not:
 name: complaint-handler
 description: Use this skill when the user describes a consumer, platform, billing, travel, subscription, service, or support dispute and wants complaint, refund, cancellation, replacement, escalation, or customer-service scripts. It turns messy facts into evidence-based messages, escalation ladders, risk-aware variants, and Saul-style commentary.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Complaint Handler
@@ -23322,7 +23322,7 @@ Insurance companies count on most people giving up after the first denial. The d
 name: angle-finder
 description: Use this skill when the user asks for the best angle, leverage, loopholes, strategy, pressure points, negotiation framing, or how to turn a weak dispute into a stronger truthful case. It finds practical, lawful angles and explains why each one works.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Angle Finder
@@ -23423,7 +23423,7 @@ A "loophole" must mean a lawful policy, contract, incentive, or communication an
 name: complaint-handler
 description: Use this skill when the user describes a consumer, platform, billing, travel, subscription, service, or support dispute and wants complaint, refund, cancellation, replacement, escalation, or customer-service scripts. It turns messy facts into evidence-based messages, escalation ladders, risk-aware variants, and Saul-style commentary.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Complaint Handler
@@ -24470,7 +24470,7 @@ A bad clause is a future fight hiding in nice formatting. Fix the ambiguity whil
 name: negotiation-simulator
 description: Use this skill when the user wants to rehearse a negotiation, predict the other side's replies, prepare counters, test tone, or simulate a full back-and-forth for disputes, pricing, freelance work, contracts, refunds, support escalation, or business communication.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Negotiation Simulator
@@ -24561,7 +24561,7 @@ Do not simulate threats, harassment, deception, blackmail, fake identities, or f
 name: angle-finder
 description: Use this skill when the user asks for the best angle, leverage, loopholes, strategy, pressure points, negotiation framing, or how to turn a weak dispute into a stronger truthful case. It finds practical, lawful angles and explains why each one works.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Angle Finder

@@ -2,7 +2,7 @@
 name: angle-finder
 description: Use this skill when the user asks for the best angle, leverage, loopholes, strategy, pressure points, negotiation framing, or how to turn a weak dispute into a stronger truthful case. It finds practical, lawful angles and explains why each one works.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Angle Finder

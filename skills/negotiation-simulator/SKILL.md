@@ -2,7 +2,7 @@
 name: negotiation-simulator
 description: Use this skill when the user wants to rehearse a negotiation, predict the other side's replies, prepare counters, test tone, or simulate a full back-and-forth for disputes, pricing, freelance work, contracts, refunds, support escalation, or business communication.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Negotiation Simulator

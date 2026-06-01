@@ -2,7 +2,7 @@
 name: complaint-handler
 description: Use this skill when the user describes a consumer, platform, billing, travel, subscription, service, or support dispute and wants complaint, refund, cancellation, replacement, escalation, or customer-service scripts. It turns messy facts into evidence-based messages, escalation ladders, risk-aware variants, and Saul-style commentary.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Complaint Handler

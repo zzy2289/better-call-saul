@@ -5,19 +5,23 @@ const VALID = `---
 name: complaint-handler
 description: Handle complaints and refunds.
 user-invocable: true
-metadata: {"openclaw":{"always":true}}
+metadata: {"openclaw":{"always":true},"claude-code":{"agent":"saul"},"codex":{"scope":"repo"}}
 ---
 
 # Complaint Handler
 `;
 
 describe("frontmatter", () => {
-  it("parses a valid skill", () => {
+  it("parses a valid skill with multi-platform metadata", () => {
     const meta = skillMetaFromRaw(VALID, "/x/skills/complaint-handler", "/x/skills/complaint-handler/SKILL.md");
     expect(meta.name).toBe("complaint-handler");
     expect(meta.description).toContain("complaints");
     expect(meta.userInvocable).toBe(true);
-    expect(meta.metadata).toEqual({ openclaw: { always: true } });
+    expect(meta.metadata).toEqual({
+      openclaw: { always: true },
+      "claude-code": { agent: "saul" },
+      codex: { scope: "repo" },
+    });
   });
 
   it("rejects a missing name", () => {
