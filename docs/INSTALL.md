@@ -7,7 +7,7 @@ then ask the host to use the Saul fixer for your dispute.
 Prerequisite: Node.js >= 18.
 
 ```bash
-git clone https://github.com/YOUR_NAME/better-call-saul.git
+git clone https://github.com/zzy2289/better-call-saul.git
 cd better-call-saul
 npm install
 npm run build

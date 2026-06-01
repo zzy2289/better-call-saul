@@ -1,6 +1,6 @@
-<!-- Badges: replace YOUR_NAME with the GitHub owner once the repo is published. -->
+<!-- Badges -->
 <p align="center">
-  <a href="https://github.com/YOUR_NAME/better-call-saul/actions/workflows/ci.yml"><img src="https://github.com/YOUR_NAME/better-call-saul/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://github.com/zzy2289/better-call-saul/actions/workflows/ci.yml"><img src="https://github.com/zzy2289/better-call-saul/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <a href="https://nodejs.org"><img src="https://img.shields.io/badge/node-%3E%3D18-339933?logo=node.js&logoColor=white" alt="Node"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
   <img src="https://img.shields.io/badge/tests-150%20passed-6E9F18?logo=vitest&logoColor=white" alt="Tests">

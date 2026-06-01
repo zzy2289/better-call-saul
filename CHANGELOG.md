@@ -34,5 +34,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   output format contract, JSON schemas, and five example cases.
 - Safety policy, disclaimer, security policy, and contribution guidelines.
 
-[Unreleased]: https://github.com/YOUR_NAME/better-call-saul/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/YOUR_NAME/better-call-saul/releases/tag/v0.1.0
+[Unreleased]: https://github.com/zzy2289/better-call-saul/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/zzy2289/better-call-saul/releases/tag/v0.1.0
