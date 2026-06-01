@@ -26,7 +26,7 @@ Available skills:
 | `angle-finder` | User asks "what leverage/angle/loophole/strategy do I have?" |
 | `risk-assessor` | User asks "is this risky/too aggressive? Should I do/say this?" |
 
-Use `saul install --host <claude-code|codex|openclaw>` to copy skills into the expected location for each tool.
+Codex can read skills from `.agents/skills/` or the repo `skills/` directory. For Claude Code and OpenClaw, use `saul install --host <claude-code|openclaw>` to copy skills into the expected location. Codex host support is planned (see Phase 3 in `docs/REFACTOR_PLAN.md`).
 
 ## Primary instructions
 

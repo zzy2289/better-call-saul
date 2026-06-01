@@ -10,15 +10,15 @@
 
 ### Phase 1: 统一入口 & 清理冗余
 
-- [ ] **1.1 合并 CODEX_PROMPT.md → AGENTS.md**
+- [x] **1.1 合并 CODEX_PROMPT.md → AGENTS.md**
   - 把 CODEX_PROMPT.md 中 Codex 专属的编排指令提取为通用描述
   - AGENTS.md 增加 "Agent Discovery" 段落，说明各工具如何找到本项目的 skill
   - 删除 CODEX_PROMPT.md
-  - 更新 `paths.ts` 中的 `REQUIRED_ROOT_FILES`（移除 CODEX_PROMPT.md）
-  - 更新 `validate.ts` 对应检查
-  - 修复受影响的测试
+  - `paths.ts` 的 `REQUIRED_ROOT_FILES` 无需修改（未包含 CODEX_PROMPT.md）
+  - `validate.ts` 无需修改（同上）
+  - 测试无影响（150/150 通过）
 
-- [ ] **1.2 AGENTS.md 增加多平台路由表**
+- [x] **1.2 AGENTS.md 增加多平台路由表**
   - 新增一节说明各 agent 应读取哪些文件：
     ```
     | Agent Tool   | Entry Point                          |
