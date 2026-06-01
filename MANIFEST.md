@@ -9,7 +9,6 @@ Generated files in this starter repo:
 - `.github/pull_request_template.md`
 - `.gitignore`
 - `AGENTS.md`
-- `CODEX_PROMPT.md`
 - `CONTRIBUTING.md`
 - `DISCLAIMER.md`
 - `LICENSE`
