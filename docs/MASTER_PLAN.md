@@ -81,9 +81,12 @@ saul print-openclaw-config --workspace /abs/path
   - `aca5b3f` docs: pass Review Gate P1
   - `62760f5` feat(p2): product thickness — knowledge, i18n, examples, eval, safety
   - `f639931` fix: address P2 review — 4 findings
+  - `da9d6fe` fix: P2 review round 2 — output quality scoring + no test side effects
+  - `2a09b1a` feat(p3): README landing page + zh-CN + brand assets + comparison
 - **代码层**：CLI 9 模块全部就绪，`tsc` 通过，**150/150 测试绿**（8 测试文件，含评测集 82 + 安全红线 18 + 快照 23 + 分类器 7 + 其他），CI 已配置。
 - **内容层**：4 skills + 16 知识包 + 22 examples + 安全策略齐全，33 份引用副本无漂移。
-- **当前所处阶段**：**P2 · 产品厚度** 已完成（P2-0 延后，P2-1–P2-5 全部完成），等待用户 Review。
+- **首屏层**：README 落地页重构完成，中文 README 就绪，Logo/OG 卡/配色方案/品牌指南/录制脚本齐全。
+- **当前所处阶段**：**P3 · 首屏说服力 — Review Gate 待审**。P3-1~P3-5 全部完成，等待用户确认通过 Review Gate P3。
 - **关键决策（已拍板，2026-06-01）**：
   1. **命名**：✅ 保留 "Better Call Saul"。P0-4 已用商标排除 + 善意合规条款把 IP 风险压到最低。
   2. **产品形态**：✅ **不接独立 LLM、不做付费 Web 部署**。本项目是**集成到已有智能体宿主的插件**——用户先装好 OpenClaw 或 Claude Code，再装本项目，即可在宿主里用 Saul 角色解决日常纠纷。推理由宿主智能体提供。
@@ -172,18 +175,18 @@ saul print-openclaw-config --workspace /abs/path
 - [x] P2-4 建评测集（纠纷→理想策略），量化输出质量，作为换模型/改 prompt 的标尺
 - [x] P2-5 安全红线自动化测试（证明会拒绝伪造证据/敲诈/冒充）
 
-**Review Gate P2**：OpenClaw 兼容性实测延后（P2-0）；知识/场景扩充达标（✓）；双语可用（✓）；评测集有基线分（✓）；安全红线测试全过（✓）。→ 用户确认。
+**Review Gate P2**：✅ **已通过（2026-06-01）**。OpenClaw 兼容性实测延后（P2-0）；知识/场景扩充达标（✓）；双语可用（✓）；评测集有基线分（✓）；安全红线测试全过（✓）。Codex re-review 通过，用户确认进入 P3。
 
 ---
 
 ### P3 · 首屏说服力（点 star 的临门一脚）
 > 目标：README 当落地页，看一眼就想点 star。（可与 P2 并行）
 
-- [ ] P3-1 README 重构：一句话定位 + 顶部演示 GIF/视频 + 体验链接 + 三步上手
-- [ ] P3-2 录制演示 GIF / 短视频
-- [ ] P3-3 品牌视觉：Logo、OG 社交分享卡片、配色
-- [ ] P3-4 中英双 README（中文圈是流量金矿）
-- [ ] P3-5 对比/定位段落：说清与"直接问 ChatGPT"的区别
+- [x] P3-1 README 重构：一句话定位 + 顶部演示 GIF/视频 + 体验链接 + 三步上手
+- [x] P3-2 录制演示 GIF / 短视频（placeholder SVG + record-demo.sh 脚本就绪，实际 GIF 待用户运行录制）
+- [x] P3-3 品牌视觉：Logo、OG 社交分享卡片、配色（logo.svg + og-card.svg + BRAND_GUIDE.md）
+- [x] P3-4 中英双 README（README.zh-CN.md 完整中文版）
+- [x] P3-5 对比/定位段落：说清与"直接问 ChatGPT"的区别（README 内 Why Not Just ChatGPT 对比表）
 
 **Review Gate P3（= M2）**：README 首屏有 GIF + 链接 + 定位；双语齐全；视觉物料就绪。→ 用户确认。
 
@@ -234,6 +237,8 @@ saul print-openclaw-config --workspace /abs/path
 
 > 格式：`YYYY-MM-DD | 阶段-任务 | 做了什么 | 验证结果`
 
+- 2026-06-01 | P3-1~P3-5 | **首屏说服力全部完成**：(1) README 重构为落地页——居中标题+双语 tagline+GIF 占位+3 步 Quick Start+10 段输出表格+Gallery 引用；(2) 新增「Why Not Just ChatGPT」对比表（8 维度）；(3) 中文 README.zh-CN.md 完整版，双 README 互链；(4) demo-placeholder.svg（终端风格预览）+ record-demo.sh 录制脚本；(5) 品牌视觉：logo.svg + og-card.svg（1200×630）+ BRAND_GUIDE.md（配色/字体/语气/资产清单）| 150/150 测试绿，validate + check-refs 通过
+- 2026-06-01 | P2 Review Gate | Codex re-review 通过；用户确认可进入 P3；更新当前阶段为 **P3 · 首屏说服力**，下一步从 P3-1 开始 | P2 gate 通过；git 工作区此前验证干净；P2-0 OpenClaw 实测延后为后期拓展
 - 2026-06-01 | P2 Review Fix 2 | 修 3 项审查发现：(1) scoreCase 从 5→9 维度，新增 requiredSections/conceptCoverage/guardrails/languageCheck 四个输出质量维度；(2) 测试不再写 eval/baseline.json 到工作区，消除副作用；(3) MASTER_PLAN 补 f639931 提交 + 测试数更新为 150 | typecheck 通过，150/150 测试绿，validate + check-refs 通过
 - 2026-06-01 | P2 Review Fix | 修 4 项审查发现：(1) bundle 高/中风险时注入 secondary skill 内容 + SAFETY_POLICY.md；(2) 评测集加真正质量评分（scoreCase 5 维度 + 80% 逐案基线 + 90% 聚合基线）；(3) chargeback 从 HIGH_RISK 降到 MEDIUM_RISK 对齐安全策略；(4) MASTER_PLAN 补缺漏的 5 个 commit + 修正日期 | typecheck 通过，130/130 测试绿，validate + check-refs 通过，8 快照已更新
 - 2026-06-01 | P2-1–P2-5 | **产品厚度全部完成**：(1) knowledge 9→16 个，新增 7 个领域（中国消费者/chargeback/就业/房东租客/保险/催收/质保），分类器新增 7 个 domain rule + CJK 词边界修复；(2) 多语言支持（DisputeCase.language + bundler zh/bilingual/other + CLI --lang）；(3) examples 5→22 个 + 快照；(4) 评测集 10 个 JSON cases + vitest 评测测试（51 个 assertions）；(5) 安全红线 16 个测试（伪造证据/敲诈/冒充/制造假评论等均检测为 high risk）；总测试 117/117 绿，validate + check-refs 通过，P2-0 OpenClaw 延后为后期拓展 | typecheck 通过，117 测试绿，33 副本无漂移

@@ -1,263 +1,174 @@
-# Better Call Saul
-
 <!-- Badges: replace YOUR_NAME with the GitHub owner once the repo is published. -->
-[![CI](https://github.com/YOUR_NAME/better-call-saul/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_NAME/better-call-saul/actions/workflows/ci.yml)
-[![Node](https://img.shields.io/badge/node-%3E%3D18-339933?logo=node.js&logoColor=white)](https://nodejs.org)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Tests](https://img.shields.io/badge/tests-vitest-6E9F18?logo=vitest&logoColor=white)](test)
+<p align="center">
+  <a href="https://github.com/YOUR_NAME/better-call-saul/actions/workflows/ci.yml"><img src="https://github.com/YOUR_NAME/better-call-saul/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://nodejs.org"><img src="https://img.shields.io/badge/node-%3E%3D18-339933?logo=node.js&logoColor=white" alt="Node"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
+  <a href="test"><img src="https://img.shields.io/badge/tests-150%20passed-6E9F18?logo=vitest&logoColor=white" alt="Tests"></a>
+</p>
 
-An OpenClaw-based AI fixer for everyday disputes, complaints, and negotiations.
+<h1 align="center">Better Call Saul ☎️</h1>
 
-Better Call Saul turns messy conflict descriptions into practical strategies, copy-ready scripts, simulated replies, risk checks, and short "Saul commentary" that explains why a certain angle works.
+<p align="center">
+  <strong>把杂乱的纠纷变成赢的策略。</strong><br>
+  Turn messy disputes into winning strategies — copy-ready scripts, counter-replies, risk checks, and a Saul-style commentary, all inside the AI agent you already use.
+</p>
 
-> Fan-inspired open-source project. This repo is not affiliated with, endorsed by, or sponsored by AMC, Sony Pictures Television, Netflix, Vince Gilligan, Peter Gould, Better Call Saul, Breaking Bad, Saul Goodman, or Jimmy McGill. The project uses an original "Saul-inspired fixer" persona and does not reproduce copyrighted dialogue or scenes.
+<p align="center">
+  <a href="#quickstart">Quick Start</a> •
+  <a href="GALLERY.md">Gallery</a> •
+  <a href="docs/INSTALL.md">Install Guide</a> •
+  <a href="#why-not-just-chatgpt">Why not just ChatGPT?</a> •
+  <a href="README.zh-CN.md">中文</a>
+</p>
 
-## What this is
+<!-- TODO: Replace with actual demo GIF after recording (P3-2) -->
+<p align="center">
+  <img src="docs/assets/demo-placeholder.svg" alt="Better Call Saul demo" width="700">
+</p>
 
-This is a focused agent workspace built on OpenClaw. It is not a fork of OpenClaw and not an upstream contribution. The goal is to package a specialized OpenClaw workspace with:
+---
 
-- A strong fixer persona in `SOUL.md`.
-- Lightweight character-style memory in `lore/`.
-- Dispute, complaint, negotiation, and risk knowledge in `knowledge/`.
-- OpenClaw-compatible skills in `skills/`.
-- Example cases in `examples/`.
-- A code-development plan for turning this into a polished local CLI, installer, and demo runner.
+## The Problem
 
-## MVP scope
+You got ripped off. The seller ghosted you. Your landlord stole your deposit. A client won't pay. The hotel "overbooked."
 
-The MVP should handle these scenarios well:
+You know you're right — but you don't know **what to say**, **who to escalate to**, or **how to make them actually do something**.
 
-1. E-commerce refunds, returns, shipping delays, defective goods, and misleading listings.
-2. Customer service escalation for telecom, banking, insurance, utilities, airlines, SaaS subscriptions, and booking platforms.
-3. Freelance and small-business disputes, especially late payment, scope creep, lowball offers, and proposal negotiation.
-4. General negotiation support for rent, cars, renovations, service agreements, and high-value purchases.
-5. Public review and reputation responses.
+## The Fix
 
-## Core output
+Better Call Saul is a plug-in for your AI agent (Claude Code / OpenClaw). Give it your messy situation, and it returns a **structured 10-section battle plan**:
 
-Every answer should convert a messy situation into this structure:
+| # | Section | What you get |
+|---|---------|-------------|
+| 1 | Situation Read | Clear summary of what happened |
+| 2 | What You Want | Your actual goal, stated precisely |
+| 3 | Leverage Map | Every piece of evidence and pressure point |
+| 4 | Best Strategy | The angle most likely to win |
+| 5 | Scripts × 4 | Polite · Firm · Legalistic · Saul-style — copy-paste ready |
+| 6 | Their Reply | What the other side will probably say |
+| 7 | Counter-Reply | Your comeback for each likely response |
+| 8 | Risk Check | What could go wrong and how to avoid it |
+| 9 | Saul Commentary | Why this angle works (the strategic "why") |
+| 10 | Next Moves | Exact action checklist with deadlines |
 
-1. Situation read
-2. What the user actually wants
-3. Evidence and leverage map
-4. Best strategy
-5. Multi-version scripts
-6. Likely replies from the other side
-7. Counter-replies
-8. Risk check
-9. Saul commentary
-10. Next action checklist
+> **Example:** "The laptop I bought was listed as 'new' but arrived scratched with 300+ battery cycles."
+>
+> **Saul says:** *"You're not asking for a favor — you're holding them to their own word. The cycle count is the kill shot; lead with it."*
+>
+> → [See 6 full examples in the Gallery](GALLERY.md)
 
-See `prompts/output_formats.md` for the standard output contract.
+---
 
-## Repository layout
-
-```text
-better-call-saul/
-  README.md
-  SOUL.md
-  AGENTS.md
-  MEMORY.seed.md
-  DISCLAIMER.md
-  SECURITY.md
-  CONTRIBUTING.md
-  LICENSE
-  config/
-    openclaw.example.json5
-  docs/
-    ARCHITECTURE.md
-    DEVELOPMENT_PLAN.md
-    CODEX_TASKS.md
-    OPENCLAW_NOTES.md
-    ROADMAP.md
-    SAFETY_POLICY.md
-  lore/
-    saul_memory_brief.md
-    saul_style_guide.md
-    character_boundaries.md
-  knowledge/
-    negotiation_principles.md
-    customer_service_escalation.md
-    ecommerce_refunds.md
-    freelance_late_payment.md
-    contract_red_flags.md
-    travel_disputes.md
-    reputation_management.md
-    subscription_cancellation.md
-    jurisdiction_notes.md
-  prompts/
-    output_formats.md
-  schema/
-    dispute_case.schema.json
-    saul_output.schema.json
-  skills/
-    complaint-handler/
-      SKILL.md
-    negotiation-simulator/
-      SKILL.md
-    angle-finder/
-      SKILL.md
-    risk-assessor/
-      SKILL.md
-  examples/
-    amazon_refund.md
-    freelance_late_payment.md
-    hotel_cancellation.md
-    subscription_cancellation.md
-    bad_review_response.md
-  scripts/
-    install-local-skills.sh
-    validate-repo.sh
-```
-
-## OpenClaw integration approach
-
-Better Call Saul is a **plugin for an agent host you already run** (OpenClaw or
-Claude Code). It ships no model and no cloud service — the host provides the
-reasoning; this repo provides the Saul persona, the dispute knowledge, the four
-skills, and the routing.
-
-**Install into your host** (full guide: [docs/INSTALL.md](docs/INSTALL.md)):
+<h2 id="quickstart">⚡ Quick Start — 3 Steps</h2>
 
 ```bash
+# 1. Install
 npm install && npm run build
-node dist/cli.js detect-hosts                                  # see what's available
-node dist/cli.js install --host claude-code --scope project    # Claude Code
-bash scripts/install-local-skills.sh                           # OpenClaw
+
+# 2. Plug into your agent host
+npx better-call-saul install --host auto   # auto-detects Claude Code / OpenClaw
+
+# 3. Ask your agent
+# Just describe your situation in your agent — Saul takes over.
 ```
 
-See [GALLERY.md](GALLERY.md) for example outputs.
-
-OpenClaw skills are AgentSkills-compatible folders containing `SKILL.md` frontmatter plus instructions. This repo keeps project skills under `skills/<skill-name>/SKILL.md` and keeps shared knowledge packs outside the skills to avoid turning every skill into a giant prompt.
-
-The intended runtime pattern is:
-
-- Use the repo root as the OpenClaw workspace, or copy the whole repo into the active OpenClaw workspace.
-- Let OpenClaw load `skills/` as workspace skills.
-- Keep `SOUL.md`, `lore/`, and `knowledge/` in the same workspace so skills can reference them by relative paths.
-- Each skill also includes a small `references/` copy of relevant files so local skill installs remain usable.
-- Start with Markdown knowledge packs. Add RAG only after the knowledge directory becomes too large for manual routing.
-
-Relevant OpenClaw docs:
-
-- https://docs.openclaw.ai/start/getting-started
-- https://docs.openclaw.ai/tools/skills
-- https://docs.openclaw.ai/gateway/configuration
-
-## Quick start
-
-Install and onboard OpenClaw first:
+Or, without a host — generate a paste-ready prompt bundle:
 
 ```bash
-npm install -g openclaw@latest
-openclaw onboard --install-daemon
-openclaw gateway status
+npx better-call-saul bundle --text "My landlord is keeping my $1800 deposit for 'cleaning' but I have move-in photos proving it was already dirty"
 ```
 
-Clone this repo and use it as an OpenClaw workspace:
+> Full install guide for Claude Code & OpenClaw → [docs/INSTALL.md](docs/INSTALL.md)
+
+---
+
+<h2 id="why-not-just-chatgpt">🤔 Why Not Just Ask ChatGPT?</h2>
+
+| | Just ChatGPT / Claude | Better Call Saul |
+|---|---|---|
+| **Structure** | Free-form text, different every time | Consistent 10-section format with scripts, risks, counters |
+| **Scripts** | Generic "be polite" advice | 4 tones (polite / firm / legalistic / Saul-style), copy-paste ready |
+| **Counter-moves** | You have to ask "what if they say X?" manually | Pre-built: their likely replies + your comebacks, included by default |
+| **Risk awareness** | Might suggest something legally questionable | Built-in safety rails — refuses forgery, threats, impersonation |
+| **Domain knowledge** | General training data | 16 specialized knowledge packs (e-commerce, landlord, chargeback, 12315, insurance…) |
+| **Consistency** | Prompt engineering every time | One install, consistent persona + quality every time |
+| **Language** | You specify each time | Auto zh/en/bilingual based on your input |
+| **Reusable** | Conversation disappears | Structured output you can save, share, and act on |
+
+**TL;DR:** ChatGPT gives you _a_ answer. Saul gives you _a system_ — scripts for every tone, counters for every excuse, and a checklist to actually follow through.
+
+---
+
+## What It Covers
+
+Better Call Saul ships 16 domain knowledge packs and handles:
+
+- 🛒 **E-commerce** — refunds, "not as described," shipping damage, marketplace disputes
+- 🏠 **Landlord & Tenant** — deposit disputes, maintenance failures, illegal deductions
+- 💼 **Freelance & Business** — late payment, scope creep, contract red flags
+- ✈️ **Travel** — hotel overbooking, flight cancellation, OTA runaround
+- 🏦 **Banking & Insurance** — unfair fees, claim denials, chargeback guidance
+- 📱 **Subscriptions** — dark-pattern cancellation, unauthorized renewals
+- 🇨🇳 **China-specific** — 12315, 消费者权益保护法, 电商平台投诉
+- 📝 **Reputation** — responding to bad reviews, managing public disputes
+- ⚖️ **Employment** — wage disputes, wrongful termination basics
+- 🔧 **Warranty & Debt** — warranty claims, debt collection harassment
+
+---
+
+## Safety — Aggressive Strategy, Conservative Ethics
+
+Saul will help you win, but won't cross the line.
+
+✅ **Will do:** persuasive scripts, evidence-based escalation, firm but lawful pressure, multi-tone negotiation
+
+🚫 **Won't do:** forge evidence, impersonate lawyers, fabricate complaints, threaten or blackmail, file fake chargebacks
+
+> Every prompt bundle is screened for risk level. High-risk requests get safety guardrails injected automatically. [Full safety policy →](docs/SAFETY_POLICY.md)
+
+---
+
+## Architecture
+
+```
+better-call-saul/
+├── SOUL.md              # Persona, mission, output contract, safety red lines
+├── knowledge/           # 16 domain knowledge packs
+├── skills/              # 4 OpenClaw-compatible skills
+│   ├── complaint-handler/
+│   ├── negotiation-simulator/
+│   ├── angle-finder/
+│   └── risk-assessor/
+├── examples/            # 22 real-world scenarios
+├── eval/                # Quality eval suite (10 cases, 9-dimension scoring)
+├── src/                 # TypeScript CLI core
+├── test/                # 150 tests (vitest)
+└── docs/                # Install, architecture, safety, roadmap
+```
+
+### CLI Commands
 
 ```bash
-git clone https://github.com/YOUR_NAME/better-call-saul.git
-cd better-call-saul
+saul doctor                    # Environment + repo health check
+saul validate                  # Validate files, skills, schemas, references
+saul detect-hosts              # Find Claude Code / OpenClaw on this machine
+saul install --host <host>     # Install into your agent host
+saul uninstall --host <host>   # Clean uninstall (only removes what it installed)
+saul classify --text "..."     # Route a dispute to the right skill + knowledge
+saul bundle --text "..."       # Generate a paste-ready prompt bundle
+saul check-refs                # Detect drift between reference copies and sources
 ```
 
-Then either copy this repo into the workspace you configured during onboarding, or point OpenClaw at this repo as a workspace in your local config. See `config/openclaw.example.json5`.
+---
 
-Install local skills into the active workspace:
+## Contributing
 
-```bash
-bash scripts/install-local-skills.sh
-```
+PRs welcome! See [CONTRIBUTING.md](CONTRIBUTING.md). Please read [AGENTS.md](AGENTS.md) for repo conventions.
 
-Start a new OpenClaw session after changing skills. OpenClaw snapshots eligible skills at session start, so a fresh session avoids stale skill instructions.
+## Disclaimer
 
-## CLI (`saul`)
-
-This repo ships a small TypeScript CLI for setup, validation, classification, and prompt bundling. It never sends messages, runs browser automation, or edits your OpenClaw config.
-
-```bash
-npm install
-npm run build        # compile to dist/ (optional; tsx runs src directly)
-
-# During development you can run commands via tsx:
-npm run saul -- doctor
-npm run saul -- validate
-```
-
-Commands:
-
-```bash
-saul doctor                              # check Node, OpenClaw, and repo health
-saul validate                            # validate files, skills, schemas, examples, reference sync
-saul list-skills [--json]                # list discovered skills
-saul check-refs                          # detect drift between skill references/ copies and sources
-saul detect-hosts                        # detect OpenClaw / Claude Code on this machine
-saul install --host <claude-code|openclaw|auto> [--scope project|user] [--dry-run]
-saul uninstall --host claude-code [--scope project|user] [--dry-run]
-saul classify --text "..."               # route a dispute to skill/knowledge/risk/missing-facts
-saul classify --file examples/x.md       # classify from an example or case .json
-saul bundle --text "..." [--json]        # build a full prompt bundle to paste into your host
-saul run-example examples/amazon_refund.md  # parse + classify + bundle (dry-run)
-saul print-openclaw-config --workspace /abs/path  # print a config snippet (does not edit config)
-```
-
-## Example prompts
-
-```text
-I bought a laptop online. The listing said new, but it arrived with scratches and a battery cycle count over 300. The seller refuses a refund and says it is normal warehouse wear. I want a refund without sounding crazy.
-```
-
-```text
-A freelance client accepted my proposal, added two extra pages, delayed feedback for 3 weeks, and now says they only want to pay 50 percent because the launch date passed. Help me respond.
-```
-
-```text
-The hotel refuses to refund me after canceling my booking because they overbooked and moved me to a worse property. I booked through an OTA. I want escalation scripts.
-```
-
-## Safety posture
-
-This project is aggressive about strategy, but conservative about harm.
-
-It can help with:
-
-- Clear complaints.
-- Persuasive negotiation.
-- Evidence-based escalation.
-- Policy-aware refund requests.
-- Firm but lawful scripts.
-- Risk-aware public review replies.
-
-It must not help with:
-
-- Threats, blackmail, extortion, or harassment.
-- Forged evidence, fake identities, fake legal letters, or impersonation.
-- Lying about facts, invented injuries, fake regulatory complaints, or fake chargeback claims.
-- Evading lawful obligations or avoiding legitimate payment.
-- Personalized legal advice presented as a lawyer-client conclusion.
-
-See `docs/SAFETY_POLICY.md`.
-
-## Development status
-
-The content layer and the core code layer are both in place:
-
-- ✅ TypeScript CLI (`saul`) with `doctor`, `validate`, `list-skills`, `check-refs`, `classify`, `bundle`, `run-example`, and `print-openclaw-config`.
-- ✅ Repo validator (required files, skill frontmatter, JSON schemas, examples, reference drift).
-- ✅ Deterministic keyword scenario classifier and knowledge-file router.
-- ✅ Prompt bundler (Markdown + JSON) assembling persona, lore, knowledge, skill, and case.
-- ✅ Reference drift checker so skill `references/` copies stay in sync with sources.
-- ✅ Vitest test suite and multi-version GitHub Actions CI.
-
-Possible next steps:
-
-1. Example expected-output snapshots for regression testing.
-2. OpenClaw workspace installer beyond the current local skill installer.
-3. Optional local web/demo UI.
-4. Optional RAG/search layer once `knowledge/` grows large.
-
-See `docs/DEVELOPMENT_PLAN.md` and `docs/CODEX_TASKS.md`. For the full roadmap to a public open-source launch (with phase-by-phase review gates), see `docs/MASTER_PLAN.md`.
+Fan-inspired open-source project. **Not affiliated with** AMC, Sony Pictures Television, Netflix, Vince Gilligan, Peter Gould, or any entity associated with the TV series *Better Call Saul* or *Breaking Bad*. This project uses an original "Saul-inspired fixer" persona and does not reproduce copyrighted dialogue or scenes. See [DISCLAIMER.md](DISCLAIMER.md).
 
 ## License
 
-MIT for original project code and project-authored docs. The project name/persona is fan-inspired; see `DISCLAIMER.md` for non-affiliation and IP boundaries.
+[MIT](LICENSE) for original code and docs. Trademark/trade-dress exclusions apply — see [DISCLAIMER.md](DISCLAIMER.md).

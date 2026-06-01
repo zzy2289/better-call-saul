@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e94560"/>
+      <stop offset="100%" style="stop-color:#f5a623"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- Accent bar -->
+  <rect x="0" y="0" width="1200" height="6" fill="url(#accent)"/>
+  <!-- Logo area -->
+  <text x="100" y="180" font-family="Georgia, serif" font-size="72" fill="#e8e8e8" font-weight="bold">Better Call Saul</text>
+  <text x="100" y="210" font-family="Georgia, serif" font-size="20" fill="#f5a623">☎️</text>
+  <!-- Tagline -->
+  <text x="100" y="280" font-family="sans-serif" font-size="32" fill="#7ec8e3">Turn messy disputes into winning strategies.</text>
+  <text x="100" y="325" font-family="sans-serif" font-size="28" fill="#a0a0a0">把杂乱的纠纷变成赢的策略。</text>
+  <!-- Feature pills -->
+  <rect x="100" y="380" width="200" height="40" rx="20" fill="#e94560" opacity="0.9"/>
+  <text x="200" y="406" font-family="sans-serif" font-size="16" fill="white" text-anchor="middle">4-Tone Scripts</text>
+  <rect x="320" y="380" width="200" height="40" rx="20" fill="#e94560" opacity="0.7"/>
+  <text x="420" y="406" font-family="sans-serif" font-size="16" fill="white" text-anchor="middle">Counter-Replies</text>
+  <rect x="540" y="380" width="200" height="40" rx="20" fill="#e94560" opacity="0.5"/>
+  <text x="640" y="406" font-family="sans-serif" font-size="16" fill="white" text-anchor="middle">Risk Check</text>
+  <rect x="760" y="380" width="250" height="40" rx="20" fill="#e94560" opacity="0.3"/>
+  <text x="885" y="406" font-family="sans-serif" font-size="16" fill="white" text-anchor="middle">16 Knowledge Packs</text>
+  <!-- Footer -->
+  <text x="100" y="540" font-family="monospace" font-size="22" fill="#f5a623">npx better-call-saul install --host auto</text>
+  <text x="100" y="580" font-family="sans-serif" font-size="16" fill="#666">MIT License · Fan-inspired open-source project · Not affiliated with AMC</text>
+</svg>
