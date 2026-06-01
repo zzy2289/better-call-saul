@@ -21,6 +21,10 @@
   <a href="README.zh-CN.md">中文</a>
 </p>
 
+<p align="center">
+  <img src="docs/assets/pixel-billboard.svg" alt="Better Call Saul pixel billboard" width="700">
+</p>
+
 <!-- TODO: Replace with actual demo GIF after recording (P3-2) -->
 <p align="center">
   <img src="docs/assets/demo-placeholder.svg" alt="Better Call Saul demo" width="700">

@@ -21,6 +21,10 @@
   <a href="README.md">English</a>
 </p>
 
+<p align="center">
+  <img src="docs/assets/pixel-billboard.svg" alt="Better Call Saul 像素广告牌" width="700">
+</p>
+
 <!-- TODO: 录制后替换为实际演示 GIF (P3-2) -->
 <p align="center">
   <img src="docs/assets/demo-placeholder.svg" alt="Better Call Saul 演示" width="700">
