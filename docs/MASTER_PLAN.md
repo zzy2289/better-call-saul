@@ -83,6 +83,7 @@ saul print-openclaw-config --workspace /abs/path
   - `f639931` fix: address P2 review — 4 findings
   - `da9d6fe` fix: P2 review round 2 — output quality scoring + no test side effects
   - `25c9f4d` feat(p3): README landing page + zh-CN + brand assets + comparison
+  - `(本条提交)` fix: P3 review — npm files / badge links / commit hash
 - **代码层**：CLI 9 模块全部就绪，`tsc` 通过，**150/150 测试绿**（8 测试文件，含评测集 82 + 安全红线 18 + 快照 23 + 分类器 7 + 其他），CI 已配置。
 - **内容层**：4 skills + 16 知识包 + 22 examples + 安全策略齐全，33 份引用副本无漂移。
 - **首屏层**：README 落地页重构完成，中文 README 就绪，Logo/OG 卡/配色方案/品牌指南/录制脚本齐全。
@@ -238,6 +239,7 @@ saul print-openclaw-config --workspace /abs/path
 
 > 格式：`YYYY-MM-DD | 阶段-任务 | 做了什么 | 验证结果`
 
+- 2026-06-01 | P3 Review Fix | 修 2 项审查发现：(1) package.json files 补 CONTRIBUTING.md + AGENTS.md，Tests 徽章去掉对 `test/` 目录的链接改为纯 shield 图片；(2) MASTER_PLAN commit hash 改用自引用标记避免追 hash 循环，补本条日志 | typecheck 通过，150/150 测试绿，validate + check-refs 通过，npm pack 验证 CONTRIBUTING/AGENTS 已入包
 - 2026-06-01 | P3-1~P3-5 | **首屏说服力全部完成**：(1) README 重构为落地页——居中标题+双语 tagline+GIF 占位+3 步 Quick Start+10 段输出表格+Gallery 引用；(2) 新增「Why Not Just ChatGPT」对比表（8 维度）；(3) 中文 README.zh-CN.md 完整版，双 README 互链；(4) demo-placeholder.svg（终端风格预览）+ record-demo.sh 录制脚本；(5) 品牌视觉：logo.svg + og-card.svg（1200×630）+ BRAND_GUIDE.md（配色/字体/语气/资产清单）| 150/150 测试绿，validate + check-refs 通过
 - 2026-06-01 | P2 Review Gate | Codex re-review 通过；用户确认可进入 P3；更新当前阶段为 **P3 · 首屏说服力**，下一步从 P3-1 开始 | P2 gate 通过；git 工作区此前验证干净；P2-0 OpenClaw 实测延后为后期拓展
 - 2026-06-01 | P2 Review Fix 2 | 修 3 项审查发现：(1) scoreCase 从 5→9 维度，新增 requiredSections/conceptCoverage/guardrails/languageCheck 四个输出质量维度；(2) 测试不再写 eval/baseline.json 到工作区，消除副作用；(3) MASTER_PLAN 补 f639931 提交 + 测试数更新为 150 | typecheck 通过，150/150 测试绿，validate + check-refs 通过
