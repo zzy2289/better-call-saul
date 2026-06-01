@@ -34,7 +34,7 @@ You know you're right — but you don't know **what to say**, **who to escalate 
 
 ## The Fix
 
-Better Call Saul is a plug-in for your AI agent (Claude Code / OpenClaw). Give it your messy situation, and it returns a **structured 10-section battle plan**:
+Better Call Saul is a plug-in for your AI agent (Claude Code / Codex / OpenClaw). Give it your messy situation, and it returns a **structured 10-section battle plan**:
 
 | # | Section | What you get |
 |---|---------|-------------|
@@ -149,7 +149,7 @@ better-call-saul/
 ```bash
 saul doctor                    # Environment + repo health check
 saul validate                  # Validate files, skills, schemas, references
-saul detect-hosts              # Find Claude Code / OpenClaw on this machine
+saul detect-hosts              # Find Claude Code / Codex / OpenClaw on this machine
 saul install --host <host>     # Install into your agent host
 saul uninstall --host <host>   # Clean uninstall (only removes what it installed)
 saul classify --text "..."     # Route a dispute to the right skill + knowledge

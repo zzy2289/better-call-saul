@@ -34,7 +34,7 @@
 
 ## 解决方案
 
-Better Call Saul 是你的 AI 智能体（Claude Code / OpenClaw）的一个插件。把你的情况丢进去，它给你一份**结构化的 10 段作战计划**：
+Better Call Saul 是你的 AI 智能体（Claude Code / Codex / OpenClaw）的一个插件。把你的情况丢进去，它给你一份**结构化的 10 段作战计划**：
 
 | # | 模块 | 你会得到什么 |
 |---|------|-------------|
@@ -149,7 +149,7 @@ better-call-saul/
 ```bash
 saul doctor                    # 环境 + 仓库健康检查
 saul validate                  # 校验文件、技能、Schema、引用
-saul detect-hosts              # 检测本机的 Claude Code / OpenClaw
+saul detect-hosts              # 检测本机的 Claude Code / Codex / OpenClaw
 saul install --host <host>     # 安装到你的智能体宿主
 saul uninstall --host <host>   # 干净卸载（只删自己装的文件）
 saul classify --text "..."     # 将纠纷路由到合适的技能 + 知识包
