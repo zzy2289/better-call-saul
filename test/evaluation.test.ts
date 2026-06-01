@@ -1,4 +1,4 @@
-import { readdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { classify } from "../src/classifier.js";
@@ -30,8 +30,9 @@ interface EvalCase {
 }
 
 /**
- * Score a single eval case on the deterministic routing pipeline.
- * Returns a score from 0–5 based on how many routing dimensions matched.
+ * Score a single eval case across routing AND output-quality dimensions.
+ * Routing (5): primarySkill, domainMatch, riskLevel, knowledgeFiles, bundleComplete
+ * Quality (4): requiredSections, conceptCoverage, guardrails, languageCheck
  */
 function scoreCase(
   evalCase: EvalCase,
@@ -41,6 +42,10 @@ function scoreCase(
   const details: Record<string, boolean> = {};
   let score = 0;
   let maxScore = 0;
+  const md = bundle.markdown;
+  const mdLower = md.toLowerCase();
+
+  // --- Routing dimensions (1–5) ---
 
   // 1. Primary skill routing (weight: 1)
   if (evalCase.expected.primarySkill) {
@@ -81,7 +86,6 @@ function scoreCase(
   // 5. Bundle completeness (weight: 1)
   {
     maxScore += 1;
-    const md = bundle.markdown;
     const hasCore =
       md.includes("## Persona (SOUL.md)") &&
       md.includes("## Knowledge") &&
@@ -90,6 +94,61 @@ function scoreCase(
       !evalCase.language || evalCase.language === "en" || md.includes("## Language Instruction");
     const pass = hasCore && langOk;
     details.bundleComplete = pass;
+    if (pass) score += 1;
+  }
+
+  // --- Output-quality dimensions (6–9) ---
+
+  // 6. Required sections: bundle output format template mentions each section (weight: 1)
+  if (evalCase.expected.requiredSections && evalCase.expected.requiredSections.length > 0) {
+    maxScore += 1;
+    const pass = evalCase.expected.requiredSections.every((sec) =>
+      mdLower.includes(sec.toLowerCase()),
+    );
+    details.requiredSections = pass;
+    if (pass) score += 1;
+  }
+
+  // 7. Concept coverage: key domain concepts appear in bundle knowledge/skill content (weight: 1)
+  // Most mustMentionConcepts are LLM *output* expectations, not prompt content.
+  // We verify domain relevance: at least one concept appears in the bundle
+  // (via knowledge files, user scenario, or skill content).
+  if (evalCase.expected.mustMentionConcepts && evalCase.expected.mustMentionConcepts.length > 0) {
+    maxScore += 1;
+    const found = evalCase.expected.mustMentionConcepts.filter((concept) =>
+      mdLower.includes(concept.toLowerCase()),
+    );
+    const pass = found.length >= 1;
+    details.conceptCoverage = pass;
+    if (pass) score += 1;
+  }
+
+  // 8. Guardrails present: safety policy or SOUL.md safety rules are in the bundle (weight: 1)
+  if (evalCase.expected.mustNotSuggest && evalCase.expected.mustNotSuggest.length > 0) {
+    maxScore += 1;
+    // For elevated risk: Safety Policy section must be present
+    // For all cases: SOUL.md persona (which contains safety red lines) must be present
+    const hasSafetyRules =
+      md.includes("## Safety Policy") ||
+      (md.includes("## Persona (SOUL.md)") && mdLower.includes("red line"));
+    details.guardrails = hasSafetyRules;
+    if (hasSafetyRules) score += 1;
+  }
+
+  // 9. Language check: verify language handling matches expected (weight: 1)
+  if (evalCase.expected.languageCheck) {
+    maxScore += 1;
+    const lc = evalCase.expected.languageCheck.toLowerCase();
+    let pass = false;
+    if (lc.includes("both english and chinese") || lc.includes("bilingual")) {
+      pass = md.includes("## Language Instruction") && mdLower.includes("bilingual");
+    } else if (lc.includes("chinese") || lc.includes("中文")) {
+      pass = md.includes("## Language Instruction");
+    } else {
+      // Generic: language instruction present
+      pass = md.includes("## Language Instruction");
+    }
+    details.languageCheck = pass;
     if (pass) score += 1;
   }
 
@@ -174,6 +233,27 @@ describe("evaluation set — routing accuracy", () => {
         }
       });
 
+      if (evalCase.expected.requiredSections) {
+        it("bundle covers required output sections", () => {
+          const mdLower = bundle.markdown.toLowerCase();
+          for (const sec of evalCase.expected.requiredSections!) {
+            expect(mdLower).toContain(sec.toLowerCase());
+          }
+        });
+      }
+
+      if (evalCase.expected.mustMentionConcepts) {
+        it("bundle contains key domain concepts", () => {
+          const mdLower = bundle.markdown.toLowerCase();
+          const found = evalCase.expected.mustMentionConcepts!.filter((concept) =>
+            mdLower.includes(concept.toLowerCase()),
+          );
+          // At least one concept should appear in the bundle (via knowledge, scenario,
+          // or skill content). Remaining concepts are LLM-output expectations.
+          expect(found.length).toBeGreaterThanOrEqual(1);
+        });
+      }
+
       it(`scores ${caseScore.score}/${caseScore.maxScore} (${casePct}%)`, () => {
         // Baseline: every eval case must score at least 80%.
         expect(casePct).toBeGreaterThanOrEqual(80);
@@ -185,16 +265,6 @@ describe("evaluation set — routing accuracy", () => {
     const totalScore = allScores.reduce((sum, s) => sum + s.score, 0);
     const totalMax = allScores.reduce((sum, s) => sum + s.maxScore, 0);
     const pct = Math.round((totalScore / totalMax) * 100);
-    // Write baseline to eval/baseline.json for tracking across changes
-    const baselinePath = join(root, "eval", "baseline.json");
-    const baseline = {
-      generatedAt: new Date().toISOString(),
-      aggregateScore: totalScore,
-      aggregateMax: totalMax,
-      aggregatePct: pct,
-      cases: allScores,
-    };
-    writeFileSync(baselinePath, JSON.stringify(baseline, null, 2) + "\n");
     expect(pct).toBeGreaterThanOrEqual(90);
   });
 });
